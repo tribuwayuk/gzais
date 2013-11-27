@@ -33,8 +33,6 @@ require([
         'require', 
         'chai',
         'mocha',
-        'jquery',
-        'underscore',
         'backbone'
     ], function(require, chai, mocha) {
 
