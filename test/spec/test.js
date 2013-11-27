@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone',
     'User'
-], function (_, Backbone, User) {
+], function(_, Backbone, User) {
     'use strict';
 
     describe('User', function() {
@@ -12,8 +12,11 @@ define([
                 (new User()).should.be.an.instanceof(User).and.have.property('cid');
             });
             it('should create a new instance of User with a given parameter', function() {
-                (new User({name:'John', age:21})).should.be.an.instanceof(User)
-                .and.have.property('attributes').that.is.an('object');
+                (new User({
+                    name: 'John',
+                    age: 21
+                })).should.be.an.instanceof(User)
+                    .and.have.property('attributes').that.is.an('object');
             });
         });
     });
