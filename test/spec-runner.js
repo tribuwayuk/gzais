@@ -1,11 +1,12 @@
 'use strict';
 require.config({
     paths: {
-        'jquery': '../bower_components/jquery/jquery',
-        'backbone': '../bower_components/backbone/backbone',
-        'underscore': '../bower_components/underscore/underscore',
+        'jquery': '/bower_components/jquery/jquery',
+        'underscore': '/bower_components/underscore/underscore',
+        'backbone': '/bower_components/backbone/backbone',
         'mocha': 'lib/mocha/mocha',
-        'chai': 'lib/chai'
+        'chai': 'lib/chai',
+        'User': '/scripts/models/user'
     },
     shim: {
         'chai': {
@@ -28,7 +29,14 @@ require.config({
     urlArgs: 'bust=' + (new Date()).getTime()
 });
 
-require(['require', 'chai', 'mocha', 'jquery'], function(require, chai) {
+require([
+        'require', 
+        'chai',
+        'mocha',
+        'jquery',
+        'underscore',
+        'backbone'
+    ], function(require, chai, mocha) {
 
     // Chai
     var should = chai.should();
