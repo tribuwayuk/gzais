@@ -20,7 +20,10 @@
     "predef"        : [  // Extra globals.
         "require",
         "define",
-        "notify"
+        "notify",
+        "describe",
+        "notify",
+        "it"
     ],
 
 
