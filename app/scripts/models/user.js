@@ -1,5 +1,4 @@
 /*global define*/
-
 define([
     'underscore',
     'backbone'
@@ -11,6 +10,5 @@ define([
         }
     });
 
-    console.log('im a user');
     return UserModel;
 });
