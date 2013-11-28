@@ -59,8 +59,10 @@ define([
 
       });
 
-      it('should render the EJS template with a heading title', function() {
-
+      it('should render the EJS template with a given title', function() {
+        _appView.render({title:'render EJS'})
+        .$el.find('.main-title')[0]
+        .innerText.should.equal('render EJS');
       });
 
     });
