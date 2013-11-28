@@ -70,7 +70,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
-        max-width: 730px;
+        max-width: 960px;
     }
 
     /* Remove the padding we set earlier */
@@ -88,4 +88,26 @@ body {
     .jumbotron {
         border-bottom: 0;
     }
+}
+
+/* GZAIS Defaults */
+$navbar-bg: #cef274;
+$link-color: #a3bf46;
+$link-color-hover: #638214;
+
+.main-title {
+    font-weight: bold;
+}
+
+.navbar {
+    background-color: $navbar-bg;
+    border: 1px solid #bada55;
+}
+
+a {
+    color: #a3bf46;
+}
+
+a:hover {
+    color: #638214;
 }
