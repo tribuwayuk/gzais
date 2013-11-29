@@ -38,18 +38,13 @@ require([
   'backbone'
 ], function(require, chai, mocha) {
 
-  // Chai
-  chai.should();
-
-  /*globals mocha */
-  mocha.setup('bdd');
+  var _mocha = window.mochaPhantomJS ? window.mochaPhantomJS : mocha;
+  _mocha.setup('bdd');
 
   require([
     'spec/app-view.js',
   ], function(require) {
 
-    // This lets you run the test in both browser or phantomjs with `mocha-phantomjs <url>` command
-    var _mocha = window.mochaPhantomJS ? window.mochaPhantomJS : mocha;
     _mocha.run();
 
   });

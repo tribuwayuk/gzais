@@ -13,6 +13,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 body {
     padding-top: 20px;
     padding-bottom: 20px;
+    background-color: #efefef;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -92,8 +93,12 @@ body {
 
 /* GZAIS Defaults */
 $navbar-bg: #cef274;
-$link-color: #a3bf46;
-$link-color-hover: #638214;
+
+.main {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #fff;
+}
 
 .main-title {
     font-weight: bold;
@@ -102,12 +107,4 @@ $link-color-hover: #638214;
 .navbar {
     background-color: $navbar-bg;
     border: 1px solid #bada55;
-}
-
-a {
-    color: #a3bf46;
-}
-
-a:hover {
-    color: #638214;
 }
