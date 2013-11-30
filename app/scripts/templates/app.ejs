@@ -1,52 +1,24 @@
 <header class="header">
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <% var title = title === undefined ? '' : title; %>
+    <% var title = model.get('title') === undefined ? 'ais' : model.get('title'); %>
     <a href="/" class="main-title navbar-brand"><%= title %></a>
     <ul class="nav navbar-nav navbar-right">
-      <li class="/"><a href="/#home"><span class="glyphicon glyphicon-list"></span> Dashboard</a></li>
-      <li><a href="/#account"><span class="glyphicon glyphicon-user"></span> Tibur Sho</a></li>
-      <li><a href="/#logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+      <!--<li><a href="/home"><span class="glyphicon glyphicon-list"></span> Dashboard</a></li>-->
+      <li><a href="/account"><span class="glyphicon glyphicon-user"></span> Account Settings</a></li>
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
     </ul>
   </nav>
 </header>
 
-<div class="main container">
-  <h3>Asset Inventory Login</h3>
-  <hr>
-  <form action="/" method="POST" class="form-horizontal" role="form">
-  <div class="form-group">
-    <label for="email" class="col-sm-2 control-label">Email</label>
-    <div class="col-sm-6">
-      <input type="text" class="form-control" id="email" placeholder="Email">
-    </div>
+<div class="main">
+  <div class="container">
+    
   </div>
-  <div class="form-group">
-    <label for="password" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-6">
-      <input type="password" class="form-control" id="password" placeholder="Password">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="remember"> Remember me
-        </label>
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Log In</button>
-      <button type="submit" class="btn btn-link">Forgot Password</button>
-    </div>
-  </div>
-</form>
 </div>
 
 <div class="footer">
   <div class="container">
     <p class="muted credit pull-left">Copyright 2013 <a href="http://globalzeal.net">Global Zeal</a> and <a href="http://wayuk.com/">Tribu Wayuk</a>.</p>
-    <p class="muted credit pull-right"><a href="/#Help">Help</a> / <a href="/#faq">FAQ</a> / <a href="/#tos">Contact Us</a></p>
+    <p class="muted credit pull-right"><a href="/Help">Help</a> / <a href="/faq">FAQ</a> / <a href="/tos">Contact Us</a></p>
   </div>
 </div>

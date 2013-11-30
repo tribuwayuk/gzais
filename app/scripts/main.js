@@ -23,17 +23,63 @@ require.config({
     backbone: '../bower_components/backbone/backbone',
     underscore: '../bower_components/underscore/underscore',
     bootstrap: 'vendor/bootstrap',
-    AppView: 'views/app'
+    AppModel: 'models/app',
+    AppView: 'views/app',
+    AppRouter: 'routes/app',
+    EmployeesView: 'views/employees'
   }
 });
 
 require([
   'backbone',
-  'AppView'
-], function(Backbone, AppView) {
+  'AppModel',
+  'AppView',
+  'AppRouter'
+], function(Backbone, AppModel, AppView, AppRouter) {
 
-  // let's init app
-  var app = new AppView();
-  Backbone.history.start({pushState: true});
+  var App = {};
+
+  // Init AppView
+  App.view = new AppView({
+    model: new AppModel()
+  });
+
+  // Init AppRouter
+  App.router = new AppRouter();
+
+  window.App = App;
+
+  /**
+   * An awesome way to handle click events with pushState
+   * source: http://artsy.github.io/blog/2012/06/25/replacing-hashbang-routes-with-pushstate/
+   **/
+  $(document).on('click', 'a[href^="/"]', function(e) {
+
+    var href = $(e.currentTarget).attr('href');
+
+    if (!event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
+
+      e.preventDefault();
+      // Remove leading slashes and hash bangs (backward compatablility)
+      var url = href.replace(/^\//, '').replace('#\/', '');
+      App.router.navigate(url, {
+        trigger: true
+      });
+
+      return false;
+    }
+
+  }).ready(function() {
+
+    // if (window.location.hash.indexOf('#') > -1) {
+    //   window.location = window.location.hash.substring(2);
+    // }
+
+  });
+
+  // Init Backbone.history
+  Backbone.history.start({
+    pushState: true
+  });
 
 });
