@@ -10,8 +10,6 @@ define([
 
     var UserView = Backbone.View.extend({
 
-        className: 'container',
-
         template: JST['app/scripts/templates/employees.ejs'],
 
         render: function() {

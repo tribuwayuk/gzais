@@ -26,7 +26,8 @@ require.config({
     AppModel: 'models/app',
     AppView: 'views/app',
     AppRouter: 'routes/app',
-    EmployeesView: 'views/employees'
+    EmployeesView: 'views/employees',
+    AssetsView: 'views/assets'
   }
 });
 
@@ -34,14 +35,15 @@ require([
   'backbone',
   'AppModel',
   'AppView',
-  'AppRouter'
+  'AppRouter',
+  'bootstrap'
 ], function(Backbone, AppModel, AppView, AppRouter) {
 
   var App = {};
 
   // Init AppView
   App.view = new AppView({
-    model: new AppModel()
+    model: new AppModel({baseUrl: '/assets'})
   });
 
   // Init AppRouter
@@ -71,9 +73,9 @@ require([
 
   }).ready(function() {
 
-    // if (window.location.hash.indexOf('#') > -1) {
-    //   window.location = window.location.hash.substring(2);
-    // }
+    if (window.location.hash.indexOf('#') > -1) {
+      window.location = window.location.hash.substring(1);
+    }
 
   });
 

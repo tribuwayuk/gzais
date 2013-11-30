@@ -8,9 +8,15 @@ define([
   var AppModel = Backbone.Model.extend({
 
     defaults: {
-      title: 'Asset Inventory System',
-      company: 'Global Zeal',
-      team: 'Tribu Wayuk'
+      title: 'Global Zeal AIS',
+      company: {
+        name: 'Global Zeal',
+        url: 'http://www.globalzeal.net'
+      },
+      team: {
+        name: 'Tribu Wayuk',
+        url: 'http://tribuwayuk.com'
+      }
     },
 
     doLogin: function() {

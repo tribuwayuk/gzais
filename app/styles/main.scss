@@ -108,3 +108,43 @@ $navbar-bg: #cef274;
     background-color: $navbar-bg;
     border: 1px solid #bada55;
 }
+
+.btn-add {
+  color: #ffffff;
+  font-weight: bold;
+  border-color: #ef5b00 !important;
+  background-color: #ef5b00 !important;
+  &:hover {
+    color: #ffffff;
+    background-color: #ef7a37 !important;
+  }
+}
+
+.main-nav {
+    & > li {
+        
+        &.active > a {
+            background-color: #CEF274 !important;
+            color: #779b14;
+        }
+
+        & > a {
+            font-weight: bold;
+            color: #82ad14;
+        }
+    }
+}
+
+.employee-entry {
+  button {
+    visibility: hidden;
+  }
+  &:hover {
+    & > td {
+      background-color: #eeffc4 !important;
+    }
+    button {
+      visibility: visible;
+    }
+  }
+}
