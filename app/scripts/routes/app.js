@@ -23,13 +23,12 @@ define([
     home: function() {
       // home
       var self = this;
-
+      console.log('/');
     },
 
     employees: function() {
       // mount users
       var employeesView = new EmployeesView();
-      console.log(employeesView);
       $(window.App.view.contentSection)
       .empty()
       .html(employeesView.render().el);
