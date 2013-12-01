@@ -20,7 +20,7 @@
 
 * Run with `$ grunt server` 
 
-* While the server is up, run test with `$ mocha-phantomjs http://localhost:9000/index.html`
+* And test with `$ grunt test --force` and then `$ mocha-phantomjs http://localhost:9001/index.html`
     
 ### Start Working
 -------

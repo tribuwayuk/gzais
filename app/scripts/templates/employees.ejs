@@ -1,0 +1,166 @@
+<br>
+<h2>Manage Employees</h2>
+<hr>
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <div class="filters">
+      <select class="employees-filter">
+        <option value="all">View all</option>
+        <option value="assigned">View Admins</option>
+        <option value="not-assigned">View Custodians</option>
+        <option value="not-assigned">View Employees</option>
+      </select>
+      <script>
+        $('.employees-filter').selectpicker();
+      </script>
+    </div>
+  </div>
+  <div class="col-xs-6 col-md-4">
+    <button  class="btn btn-add pull-right" data-toggle="modal" data-target="#add-modal"><span class="glyphicon glyphicon-plus-sign"></span> New Employee </button>
+    <!-- Modal -->
+    <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header panel-primary">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h2 class="modal-title" id="myModalLabel">Add New Employee</h2>
+          </div>
+          <div class="modal-body">
+            
+            <!-- FORM -->
+            <form role="form">
+              <div class="form-group row">
+                <div class="col-xs-4">
+                  <label for="firstname">First Name</label>
+                  <input type="text" class="form-control" id="firstname">
+                </div>
+                <div class="col-xs-4">
+                  <label for="middlename">Middle Name</label>
+                  <input type="text" class="form-control" id="middlename">
+                </div>
+                <div class="col-xs-4">
+                  <label for="lastname">Last Name</label>
+                  <input type="text" class="form-control" id="lastname">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="description">Address</label>
+                <input type="text" class="form-control" id="address">
+              </div>
+              <div class="form-group row">
+                <div class="col-xs-6">
+                  <label for="status">Gender</label>
+                  <select class="gender-picker">
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                  <script>
+                    $('.gender-picker').selectpicker();
+                  </script>
+                </div>
+                <div class="col-xs-6">
+                  <label for="birthdate">Date of Birth</label>
+                  <input type="text" class="form-control birthdate">
+                  <script>
+                    $('.birthdate').datepicker();
+                  </script>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-xs-6">
+                  <label for="status">User Role</label>
+                  <select class="role-picker">
+                    <option>Admin</option>
+                    <option>Custodian</option>
+                    <option>Employee</option>
+                  </select>
+                  <script>
+                    $('.role-picker').selectpicker();
+                  </script>
+                </div>
+                <div class="col-xs-6">
+                  <label for="employeddate">Date Employed</label>
+                  <input type="text" class="form-control employeddate">
+                  <script>
+                    $('.employeddate').datepicker();
+                  </script>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="text" class="form-control" id="email" placeholder="name@globalzeal.net">
+              </div>
+            </form>
+            <!-- FORM END -->
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-save">Save Changes</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  </div>
+</div>
+<hr>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Assets</th>
+      <th>Full Name</th>
+      <th>Date of Birth</th>
+      <th>Email</th>
+      <th>User Role</th>
+      <th>Date Employed</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="employee-entry">
+      <td>3</td>
+      <td>Elizar Pepino</td>
+      <td>03/20/1985</td>
+      <td>elizar.pepino@globalzeal.net</td>
+      <td>admin</td>
+      <td>11/01/2013</td>
+      <td>
+        <button type="button" data-toggle="tooltip" data-placement="bottom" title="View Details" class="btn btn-default btn-xs tool-tip"><span class="glyphicon glyphicon-search"> </span></button>
+        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-default btn-xs tool-tip"><span class="glyphicon glyphicon-edit"> </span></button>
+        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Reset Password" class="btn btn-default btn-xs tool-tip"><span class="glyphicon glyphicon-lock"> </span></button>
+        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip"> &nbsp;x&nbsp; </button>
+      </td>
+    </tr>
+    <tr class="employee-entry">
+      <td>1337</td>
+      <td>Tibur Sho</td>
+      <td>02/30/1945</td>
+      <td>tibur.sho@globalzeal.net</td>
+      <td>custodian</td>
+      <td>12/25/2013</td>
+      <td>
+        <button type="button" data-toggle="tooltip" data-placement="bottom" title="View Details" class="btn btn-default btn-xs tool-tip"><span class="glyphicon glyphicon-search"> </span></button>
+        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-default btn-xs tool-tip"><span class="glyphicon glyphicon-edit"> </span></button>
+        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Reset Password" class="btn btn-default btn-xs tool-tip"><span class="glyphicon glyphicon-lock"> </span></button>
+        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip"> &nbsp;x&nbsp; </button>
+      </td>
+    </tr>
+    <tr class="employee-entry">
+      <td>143</td>
+      <td>John Doe</td>
+      <td>01/01/1901</td>
+      <td>john.doe@globalzeal.net</td>
+      <td>employee</td>
+      <td>12/30/2013</td>
+      <td>
+        <button type="button" data-toggle="tooltip" data-placement="bottom" title="View Details" class="btn btn-default btn-xs tool-tip"><span class="glyphicon glyphicon-search"> </span></button>
+        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-default btn-xs tool-tip"><span class="glyphicon glyphicon-edit"> </span></button>
+        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Reset Password" class="btn btn-default btn-xs tool-tip"><span class="glyphicon glyphicon-lock"> </span></button>
+        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip"> &nbsp;x&nbsp; </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<script>
+  $('.tool-tip').tooltip();
+</script>
