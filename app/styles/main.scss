@@ -1,6 +1,8 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import 'sass-bootstrap/lib/bootstrap';
+@import 'datepicker.scss';
+@import 'bootstrap-select.scss';
 
 .browsehappy {
     margin: 0.2em 0;
@@ -120,6 +122,16 @@ $navbar-bg: #cef274;
   }
 }
 
+.btn-save {
+  color: #779b14 !important;
+  font-weight: bold;
+  border-color: #779b14 !important;
+  background-color: #CEF274 !important;
+  &:hover {
+    background-color: #bde064 !important;
+  }
+}
+
 .main-nav {
     & > li {
         
@@ -153,4 +165,8 @@ $navbar-bg: #cef274;
     background-color: transparent;
     color: #000000;
     font-weight: bold;
+}
+
+#add-modal .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]) {
+    width: 250px;
 }

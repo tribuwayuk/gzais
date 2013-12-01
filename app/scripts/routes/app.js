@@ -13,6 +13,7 @@ define([
 
     routes: {
       '': 'home',
+      'logout': 'logout',
       'assets': 'assets',
       'employees': 'employees',
       'inventory-reports': 'inventoryReports'
@@ -21,6 +22,18 @@ define([
     initialize: function() {
       var self = this;
       self.app = window.App || {};
+    },
+
+    logout: function() {
+
+      if (window.App.view.model.get('user')) {
+
+        window.App.view.model.set('user', undefined);
+        window.location = '/';
+        return false;
+
+      }      
+
     },
 
     checkIfLoggedIn: function() {
