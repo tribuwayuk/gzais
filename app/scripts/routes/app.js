@@ -32,14 +32,14 @@ define([
         window.location = '/';
         return false;
 
-      }      
+      }
 
     },
 
     checkIfLoggedIn: function() {
 
       if (!window.App.view.model.get('user')) {
-        
+
         // if not logged in then redirect to /
         window.location = '/';
         return false;
@@ -75,7 +75,7 @@ define([
     assets: function() {
 
       this.mountSubView('assetsView', AssetsView);
-      
+
     },
 
 
