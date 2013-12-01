@@ -4,8 +4,9 @@ define([
   'jquery',
   'backbone',
   'EmployeesView',
-  'AssetsView'
-], function($, Backbone, EmployeesView, AssetsView) {
+  'AssetsView',
+  'InventoryReportsView'
+], function($, Backbone, EmployeesView, AssetsView, InventoryReportsView) {
   'use strict';
 
   var MainRouter = Backbone.Router.extend({
@@ -13,12 +14,39 @@ define([
     routes: {
       '': 'home',
       'assets': 'assets',
-      'employees': 'employees'
+      'employees': 'employees',
+      'inventory-reports': 'inventoryReports'
     },
 
     initialize: function() {
       var self = this;
       self.app = window.App || {};
+    },
+
+    checkIfLoggedIn: function() {
+
+      if (!window.App.view.model.get('user')) {
+        
+        // if not logged in then redirect to /
+        window.location = '/';
+        return false;
+
+      }
+
+    },
+
+    mountSubView: function(name, SubView) {
+
+      this.checkIfLoggedIn();
+
+      /**
+      * Mount Sub View
+      */
+      var appSubViews = window.App.view.subViews;
+          appSubViews[name] = appSubViews[name] ? appSubViews[name] : new SubView();
+
+      window.App.view.model.set('currentContent', appSubViews[name]);
+
     },
 
     home: function() {
@@ -33,26 +61,20 @@ define([
 
     assets: function() {
 
-      if (!window.App.view.model.get('user')) {
-        return window.App.router.navigate('/', {trigger: true});
-      }
-
-      // mount assets view
-      var assetsView = new AssetsView();
-      window.App.view.model.set('currentContent', assetsView);
-
+      this.mountSubView('assetsView', AssetsView);
+      
     },
 
 
     employees: function() {
 
-      if (!window.App.view.model.get('user')) {
-        return window.App.router.navigate('/', {trigger: true});
-      }
+      this.mountSubView('employeesView', EmployeesView);
 
-      // mount employees view
-      var employeesView = new EmployeesView();
-      window.App.view.model.set('currentContent', employeesView);
+    },
+
+    inventoryReports: function() {
+
+      this.mountSubView('inventoryReportsView', InventoryReportsView);
 
     }
 

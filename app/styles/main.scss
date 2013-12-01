@@ -148,3 +148,9 @@ $navbar-bg: #cef274;
     }
   }
 }
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+    background-color: transparent;
+    color: #000000;
+    font-weight: bold;
+}

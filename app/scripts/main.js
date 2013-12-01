@@ -27,7 +27,8 @@ require.config({
     AppView: 'views/app',
     AppRouter: 'routes/app',
     EmployeesView: 'views/employees',
-    AssetsView: 'views/assets'
+    AssetsView: 'views/assets',
+    InventoryReportsView: 'views/inventory-reports'
   }
 });
 

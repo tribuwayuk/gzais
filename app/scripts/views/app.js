@@ -11,10 +11,12 @@ define([
 
     el: $('#app'),
 
+    subViews: {
+
+    },
+
     template: JST['app/scripts/templates/app.ejs'],
-
     loginTemplate: JST['app/scripts/templates/login-form.ejs'],
-
     mainTemplate: JST['app/scripts/templates/app-main.ejs'],
 
     initialize: function() {
