@@ -29,8 +29,7 @@ define([
       if (window.App.view.model.get('user')) {
 
         window.App.view.model.set('user', undefined);
-        window.location = '/';
-        return false;
+        return window.App.router.navigate('/', true);
 
       }
 

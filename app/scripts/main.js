@@ -72,9 +72,10 @@ require([
 
     var href = $(e.currentTarget).attr('href');
 
-    if (!event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
+    if (!e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
 
       e.preventDefault();
+
       // Remove leading slashes and hash bangs (backward compatablility)
       var url = href.replace(/^\//, '').replace('#\/', '');
       App.router.navigate(url, {
@@ -84,13 +85,11 @@ require([
       return false;
     }
 
-  }).ready(function() {
-
-    if (window.location.hash.indexOf('#') > -1) {
-      window.location = window.location.hash.substring(1);
-    }
-
   });
+
+  //if (window.location.hash.indexOf('#') > -1) {
+    //window.location = window.location.hash.substring(1);
+  //}
 
   // Init Backbone.history
   Backbone.history.start({
