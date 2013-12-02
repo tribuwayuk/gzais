@@ -18,9 +18,11 @@ require.config({
       exports: 'jquery'
     },
     datepicker: {
+      deps: ['jquery'],
       exports: 'datepicker'
     },
     selectpicker: {
+      deps: ['jquery'],
       exports: 'selectpicker'
     }
   },
