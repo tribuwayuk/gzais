@@ -79,8 +79,8 @@ define([
       var contentSectionDiv = self.model.get('contentSectionDiv');
       // let's render
       $(contentSectionDiv)
-      .empty()
-      .html(self.model.get('currentContent').render().el);
+      .hide()
+      .html(self.model.get('currentContent').render().el).fadeIn(400);
 
       // handle .main-nav tabs
       self.handleMainNav();

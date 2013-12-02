@@ -134,7 +134,7 @@ $navbar-bg: #cef274;
 
 .main-nav {
     & > li {
-        
+
         &.active > a {
             background-color: #CEF274 !important;
             color: #779b14 !important;
@@ -169,4 +169,15 @@ $navbar-bg: #cef274;
 
 #add-modal .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]) {
     width: 250px;
+}
+
+.modal-header {
+  border-color: #779b14 !important;
+  background-color: #CEF274 !important;
+  color: #779b14;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  h3, h4 {
+    text-align: center;
+  }
 }
