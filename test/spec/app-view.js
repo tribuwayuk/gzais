@@ -13,6 +13,22 @@ define([
       AppView.prototype.should.be.an.instanceof(Backbone.View);
     });
 
+    describe('#initialize', function() {
+
+      var appView = new AppView({model: new AppModel(), el: document.createElement('div')});
+
+      it('should return an instance of AppView', function() {
+        appView.should.be.an.instanceof(AppView);
+      });
+
+      it('should render the default view', function() {
+        appView.el.querySelector('.header').should.be.ok;
+        appView.el.querySelector('.main').should.be.ok;
+        appView.el.querySelector('.footer').should.be.ok;
+      });
+
+    });
+
     describe('#template', function() {
 
       it('should be a function', function() {
@@ -29,6 +45,9 @@ define([
 
       });
 
+    });
+
+    describe('asd', function() {
 
     });
 
