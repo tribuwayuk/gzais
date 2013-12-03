@@ -37,6 +37,9 @@ require.config({
     AppView: 'views/app',
     AppRouter: 'routes/app',
     EmployeesView: 'views/employees',
+    EmployeesCollection: 'collections/employees',
+    EmployeeView: 'views/employee',
+    EmployeeModel: 'models/employee',
     AssetsView: 'views/assets',
     InventoryReportsView: 'views/inventory-reports'
   }
