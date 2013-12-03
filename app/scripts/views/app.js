@@ -16,6 +16,8 @@ define([
     },
 
     template: JST['app/scripts/templates/app.ejs'],
+
+    // Sub Templates
     loginTemplate: JST['app/scripts/templates/login-form.ejs'],
     mainTemplate: JST['app/scripts/templates/app-main.ejs'],
     
@@ -51,10 +53,8 @@ define([
 
         // logged in
         $(self.model.get('containerDiv')).html(self.mainTemplate());
-
         // set contentSectionDiv var to point to the <div class="content-section"></div>
         self.model.set('contentSectionDiv', $(self.model.get('containerDiv')).find('.content-section')[0]);
-
         // redirect to /employees
         window.App.router.navigate(self.model.get('baseUrl'), {
           trigger: true
