@@ -21,10 +21,10 @@ define([
         appView.should.be.an.instanceof(AppView);
       });
 
-      it('should render the default view', function() {
-        appView.el.querySelector('.header').should.be.ok;
-        appView.el.querySelector('.main').should.be.ok;
-        appView.el.querySelector('.footer').should.be.ok;
+      it('should render the template view', function() {
+        appView.el.querySelector('.header').should.be.an.instanceof(HTMLElement);
+        appView.el.querySelector('.main').should.be.an.instanceof(HTMLElement);
+        appView.el.querySelector('.footer').should.be.an.instanceof(HTMLElement);
       });
 
     });
@@ -44,10 +44,6 @@ define([
         tmpl.match(/Global Zeal AIS/)['index'].should.be.above(-1);
 
       });
-
-    });
-
-    describe('asd', function() {
 
     });
 
