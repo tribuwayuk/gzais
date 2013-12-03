@@ -7,7 +7,8 @@ define([
 
     var UserModel = Backbone.Model.extend({
         defaults: {
-        }
+        },
+        
     });
 
     return UserModel;
