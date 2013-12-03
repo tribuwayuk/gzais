@@ -12,11 +12,20 @@ define([
 
     template: JST['app/scripts/templates/assets.ejs'],
 
+    events: {
+      'submit form': 'newAsset'
+    },
+
+    newAsset: function(e) {
+      e.preventDefault();
+      // TODO: handle form submission
+    },
+
     render: function() {
       var self = this;
       self.$el.html(self.template());
       return self;
-    }
+    },
 
   });
 

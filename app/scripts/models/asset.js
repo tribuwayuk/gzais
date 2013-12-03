@@ -5,11 +5,11 @@ define([
 ], function (_, Backbone) {
     'use strict';
 
-    var UserModel = Backbone.Model.extend({
+    var AssetModel = Backbone.Model.extend({
         defaults: {
         },
 
     });
 
-    return UserModel;
+    return AssetModel;
 });

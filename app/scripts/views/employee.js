@@ -8,17 +8,9 @@ define([
 ], function ($, _, Backbone, JST) {
     'use strict';
 
-    var EmployeesView = Backbone.View.extend({
+    var EmployeeView = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/employees.ejs'],
-
-        events: {
-          'submit form': 'newEmployee'
-        },
-
-        newEmployee: function(e) {
-          e.preventDefault();
-        },
+        template: JST['app/scripts/templates/employee.ejs'],
 
         render: function() {
           var self = this;
@@ -28,5 +20,6 @@ define([
 
     });
 
-    return EmployeesView;
+
+    return EmployeeView;
 });

@@ -1,14 +1,14 @@
+
 'use strict';
 require.config({
   paths: {
-    'jquery': 'bower_components/jquery/jquery',
-    'underscore': 'bower_components/underscore/underscore',
-    'backbone': 'bower_components/backbone/backbone',
+    'jquery': '../app/bower_components/jquery/jquery',
+    'underscore': '../app/bower_components/underscore/underscore',
+    'backbone': '../app/bower_components/backbone/backbone',
     'mocha': 'lib/mocha/mocha',
     'chai': 'lib/chai',
-    'templates': '/scripts/templates',
-    'AppView': '/scripts/views/app',
-    'AppModel': '/scripts/models/app'
+    'templates': '../app/.tmp/scripts/templates',
+    'AppView': '../app/scripts/views/app'
   },
   shim: {
     'chai': {
@@ -40,14 +40,16 @@ require([
 
   chai.should();
 
-  mocha.setup('bdd');
+  var _mocha = window.mochaPhantomJS ? window.mochaPhantomJS : mocha;
+  _mocha.setup('bdd');
 
   require([
     'spec/app-view',
-    'spec/app-model'
+    'spec/app-collection'
   ], function(require) {
 
-    mocha.run();
+    console.log(window.mochaPhantomJS);
+    _mocha.run();
 
   });
 
