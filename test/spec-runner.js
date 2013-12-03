@@ -8,7 +8,8 @@ require.config({
     'chai': 'lib/chai',
     'templates': '/scripts/templates',
     'AppView': '/scripts/views/app',
-    'AppModel': '/scripts/models/app'
+    'AppModel': '/scripts/models/app',
+    'EmployeeModel': '/scripts/models/employee'
   },
   shim: {
     'chai': {
@@ -44,7 +45,8 @@ require([
 
   require([
     'spec/app-view',
-    'spec/app-model'
+    'spec/app-model',
+    'spec/employee-model'
   ], function(require) {
 
     mocha.run();

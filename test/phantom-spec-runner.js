@@ -1,4 +1,3 @@
-
 'use strict';
 require.config({
   paths: {
@@ -7,8 +6,10 @@ require.config({
     'backbone': '../app/bower_components/backbone/backbone',
     'mocha': 'lib/mocha/mocha',
     'chai': 'lib/chai',
-    'templates': '../app/.tmp/scripts/templates',
-    'AppView': '../app/scripts/views/app'
+    'templates': '../.tmp/scripts/templates',
+    'AppView': '../app/scripts/views/app',
+    'AppModel': '../app/scripts/models/app',
+    'EmployeeModel': '../app/scripts/models/employee'
   },
   shim: {
     'chai': {
@@ -40,16 +41,15 @@ require([
 
   chai.should();
 
-  var _mocha = window.mochaPhantomJS ? window.mochaPhantomJS : mocha;
-  _mocha.setup('bdd');
+  mocha.setup('bdd');
 
   require([
     'spec/app-view',
-    'spec/app-collection'
+    'spec/app-model',
+    'spec/employee-model'
   ], function(require) {
 
-    console.log(window.mochaPhantomJS);
-    _mocha.run();
+    window.mochaPhantomJS.run();
 
   });
 
