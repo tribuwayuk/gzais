@@ -1,15 +1,17 @@
 /*global define*/
 define([
-    'underscore',
-    'backbone'
-], function (_, Backbone) {
-    'use strict';
+  'underscore',
+  'backbone'
+], function(_, Backbone) {
+  'use strict';
 
-    var UserModel = Backbone.Model.extend({
-        defaults: {
-        },
+  var EmployeeModel = Backbone.Model.extend({
 
-    });
+    defaults: {
+      'user-role': 'employee'
+    }
 
-    return UserModel;
+  });
+
+  return EmployeeModel;
 });
