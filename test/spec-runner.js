@@ -7,8 +7,8 @@ require.config({
     'mocha': 'lib/mocha/mocha',
     'chai': 'lib/chai',
     'templates': '/scripts/templates',
-    'AppView': '/scripts/views/app',
     'AppModel': '/scripts/models/app',
+    'AppView': '/scripts/views/app',
     'EmployeeModel': '/scripts/models/employee'
   },
   shim: {
@@ -44,8 +44,6 @@ require([
   mocha.setup('bdd');
 
   require([
-    'spec/app-view',
-    'spec/app-model',
     'spec/employee-model'
   ], function(require) {
 
