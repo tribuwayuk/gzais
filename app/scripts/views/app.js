@@ -103,7 +103,7 @@ define([
         case "/inventory-reports":
           $('.main-nav > li.reports').addClass('active');
         break;
-      
+
       }
 
     },
