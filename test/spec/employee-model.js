@@ -30,7 +30,7 @@ define([
 
       var newEmployee = new EmployeeModel(employee);
 
-      newEmployee.should.be.ok();
+      newEmployee.should.be.ok;
       newEmployee.get('firstname').should.equal('Elizar');
       newEmployee.get('middlename').should.equal('Diano');
       newEmployee.get('lastname').should.equal('Pepino');

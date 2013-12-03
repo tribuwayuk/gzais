@@ -44,7 +44,8 @@ require([
   mocha.setup('bdd');
 
   require([
-    'spec/employee-model'
+    'spec/employee-model',
+    'spec/app-view'
   ], function(require) {
 
     mocha.run();
