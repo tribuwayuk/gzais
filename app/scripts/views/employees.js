@@ -8,7 +8,7 @@ define([
 ], function ($, _, Backbone, JST) {
     'use strict';
 
-    var UserView = Backbone.View.extend({
+    var EmployeesView = Backbone.View.extend({
 
         template: JST['app/scripts/templates/employees.ejs'],
 
@@ -20,6 +20,5 @@ define([
 
     });
 
-
-    return UserView;
+    return EmployeesView;
 });
