@@ -1,5 +1,6 @@
 [{
   "id": "1",
+  "assets": "3"
   "first_name": "Elizar",
   "middle_name": "Diano",
   "last_name": "Pepino",
@@ -12,6 +13,7 @@
   "date_employed": "01/03/2013"
 }, {
   "id": "2",
+  "assets": "1"
   "first_name": "Alexj",
   "middle_name": "Pinaka",
   "last_name": "Gwapo",
@@ -24,6 +26,7 @@
   "date_employed": "01/02/2013"
 }, {
   "id": "3",
+  "assets": "1"
   "first_name": "Rohit",
   "middle_name": "Pinaka",
   "last_name": "Tisoy",

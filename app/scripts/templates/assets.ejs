@@ -10,7 +10,7 @@
         <option value="not-assigned">View Not Assigned</option>
       </select>
       <script>
-        $('.assets-filter').selectpicker();
+      $('.assets-filter').selectpicker();
       </script>
     </div>
   </div>
@@ -30,40 +30,40 @@
             <div class="modal-body">
 
               <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name">
+                <label for="asset_name">Name</label>
+                <input type="text" class="form-control" id="asset_name">
               </div>
               <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description"></textarea>
+                <label for="asset_description">Description</label>
+                <textarea class="form-control" id="asset_description"></textarea>
               </div>
               <div class="form-group row">
                 <div class="col-xs-6">
-                  <label for="type">Type</label>
-                  <input type="text" class="form-control" id="type" placeholder="e.g., Printer, Laptop">
+                  <label for="asset_type">Type</label>
+                  <input type="text" class="form-control" id="asset_type" placeholder="e.g., Printer, Laptop">
                 </div>
                 <div class="col-xs-6">
-                  <label for="date-purchased">Date Purchased</label>
-                  <input type="text" id="date-purchased" class="form-control date-purchased">
+                  <label for="date_purchased">Date Purchased</label>
+                  <input type="text" id="date_purchased" class="form-control date-purchased">
                   <script>
-                    $('.date-purchased').datepicker();
+                  $('.date-purchased').datepicker();
                   </script>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-xs-6">
                   <label for="status">Status</label>
-                  <select id="status" class="status-picker">
-                    <option>Working</option>
-                    <option>Defective</option>
+                  <select id="status" class="status-picker" id="status">
+                    <option value="working">Working</option>
+                    <option value="defective">Defective</option>
                   </select>
                   <script>
-                    $('.status-picker').selectpicker();
+                  $('.status-picker').selectpicker();
                   </script>
                 </div>
                 <div class="col-xs-6">
-                  <label for="serial-number">Serial Number</label>
-                  <input type="text" class="form-control" id="serial-number">
+                  <label for="serial_number">Serial Number</label>
+                  <input type="text" class="form-control" id="serial_number">
                 </div>
               </div>
               <div class="form-group">
@@ -71,8 +71,8 @@
                 <input type="text" class="form-control" id="supplier">
               </div>
               <div class="form-group">
-                <label for="purchase-reason">Reason for Purchase?</label>
-                <textarea class="form-control" id="purchase-reason"></textarea>
+                <label for="reason">Reason for Purchase?</label>
+                <textarea class="form-control" id="reason"></textarea>
               </div>
 
             </div>
@@ -109,11 +109,5 @@
   </tbody>
 </table>
 <script>
-  $('.tool-tip').tooltip();
+$('.tool-tip').tooltip();
 </script>
-
-<style>
-.mali {
-  border-color: 'red';
-}
-</style>

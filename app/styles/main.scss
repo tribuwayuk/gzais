@@ -147,7 +147,7 @@ $navbar-bg: #cef274;
     }
 }
 
-.employee-entry {
+.employee-entry, .asset-entry {
   button {
     visibility: hidden;
   }
@@ -184,8 +184,4 @@ $navbar-bg: #cef274;
 
 .hidden {
   visibility: hidden;
-}
-
-.mali {
-  border-color: #ff0000;
 }
