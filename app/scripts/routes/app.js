@@ -50,8 +50,7 @@ define([
       * Mount Sub View
       */
       var appSubViews       = window.App.view.subViews,
-          collection        = new Collection(),
-          subView           = (name === 'inventoryReportsView') ? new SubView() : new SubView({collection: collection});
+          subView           = (name === 'inventoryReportsView') ? new SubView() : new SubView({collection: new Collection()});
           appSubViews[name] = appSubViews[name] ? appSubViews[name] : subView;
 
       window.App.view.model.set('currentContent', appSubViews[name]);
