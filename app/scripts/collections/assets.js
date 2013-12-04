@@ -9,7 +9,7 @@ define([
 
     var AssetsCollection = Backbone.Collection.extend({
         model: AssetModel,
-        url: '/employees.json'
+	url: '/assets.json'
     });
 
     return AssetsCollection;

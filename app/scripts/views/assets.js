@@ -132,16 +132,16 @@ define([
 	    var asset_purchase_reason = $('#purchase-reason').val();
 
 	    var push_values = {
-		name: asset_name,
-		assignedTo: '',
-		type: asset_type,
-		serial: asset_serial_number,
-		datePurchased: asset_date_purchased,
-		supplier: asset_supplier,
-		reason: asset_purchase_reason
+		itemName: asset_name,
+		itemAsignee: '',
+		itemType: asset_type,
+		itemSerialNumber: asset_serial_number,
+		itemDatePurchased: asset_date_purchased,
+		itemSupplier: asset_supplier,
+		itemStatus: asset_status
 	    };
 
-	    $('#asset_list tr:last').after(this.templateModel(push_values));
+	    $('#asset_list tr:first').after(this.templateModel(push_values));
 	    this.clearForm();
 	},
 
@@ -149,11 +149,6 @@ define([
 	    var self = this;
 	    self.$el.html(self.template());
 	    return self;
-	},
-
-	saveAsset: function(e) {
-	    e.preventDefault();
-	    console.log('Asset Saved!');
 	},
 
 	validateNameChars: function(str) {
