@@ -11,12 +11,13 @@ define([
 
     var EmployeesView = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/employees.ejs'],
+	template: JST['app/scripts/templates/employees.ejs'],
 
-        events: {
-	    'submit form': 'newEmployee',
+	events: {
+	    'submit form#addForm': 'newEmployee',
+	    'submit form#editForm': 'editEmployee',
 	    'click btn-add': 'newEmployee'
-        },
+	},
 	errorFields: [],
         newEmployee: function(e) {
 	    e.preventDefault();
@@ -44,9 +45,27 @@ define([
 		self.errorFields = [];
 	    }
 
-        },
+	},
+	editEmployee: function(e) {
+	    e.preventDefault();
+	    var self = this,
+		form = e.currentTarget,
+		editEmployee = {};
 
-        render: function() {
+	    editEmployee.first_name = form.first_name.value;
+	    editEmployee.middle_name = form.middle_name.value;
+	    editEmployee.last_name = form.last_name.value;
+	    editEmployee.email = form.email.value;
+	    editEmployee.gender = form.gender.value;
+	    editEmployee.date_of_birth = form.date_of_birth.value;
+	    editEmployee.date_employed = form.date_employed.value;
+	    editEmployee.user_role = form.user_role.value;
+
+
+	    // to do: implement update collection.
+	},
+
+	render: function() {
 	    var self = this;
 	    self.$el.html(self.template());
 	    return self;

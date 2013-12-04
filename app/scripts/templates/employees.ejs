@@ -17,13 +17,13 @@
   </div>
   <div class="col-xs-6 col-md-4">
     <button class="btn btn-add pull-right" data-toggle="modal" data-target="#add-modal">
-      <span class="glyphicon glyphicon-plus-sign"></span>New Employee</button>
+      <span class="glyphicon glyphicon-plus-sign"></span> New Employee</button>
     <!-- Modal -->
     <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- FORM -->
-          <form role="form">
+	  <form role="form" id="addForm">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               <h4 class="modal-title" id="myModalLabel">Add New Employee</h4>
@@ -96,7 +96,7 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
               <button type="submit" class="btn btn-add">
-                <span class="glyphicon glyphicon-ok-sign"></span>Save Changes</button>
+		<span class="glyphicon glyphicon-ok-sign"></span> Save Employee</button>
             </div>
           </form>
           <!-- FORM END -->
@@ -108,6 +108,48 @@
     <!-- /.modal -->
   </div>
 </div>
+<!-- Edit Modal -->
+<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <!-- <div class="modal-dialog">
+    <div class="modal-content"> -->
+      <!-- FORM -->
+
+      <!-- FORM END -->
+    <!-- </div> -->
+    <!-- /.modal-content -->
+  <!-- </div> -->
+  <!-- /.modal-dialog -->
+</div>
+
+<!-- Reset Modal -->
+<div class="modal fade" id="reset-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- FORM -->
+      <form role="form" id="editForm">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	  <h4 class="modal-title" id="myModalLabel">Reset Employees Password</h4>
+	</div>
+	<div class="modal-body">
+	  <div class="form-group">
+	    <label for="email">Email Address</label>
+	    <input type="text" class="form-control" id="email" placeholder="name@globalzeal.net">
+	  </div>
+	</div>
+	<div class="modal-footer">
+	  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	  <button type="submit" class="btn btn-reset">
+	    <span class="glyphicon glyphicon-ok-sign"></span> Reset Password</button>
+	</div>
+      </form>
+      <!-- FORM END -->
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
 <hr>
 <table class="table table-striped">
   <thead>
