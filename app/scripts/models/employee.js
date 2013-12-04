@@ -1,21 +1,26 @@
 /*global define*/
 define([
-    'underscore',
-    'backbone'
+  'underscore',
+  'backbone'
 ], function(_, Backbone) {
-    'use strict';
+  'use strict';
 
-    var EmployeeModel = Backbone.Model.extend({
-        validate: function(attrs) {
-            if (!attrs.email) {
-                alert( 'Please fill email field.');
-            }
+  var EmployeeModel = Backbone.Model.extend({
 
-            if (!attrs.first_name) {
-                return 'Please fill feedback field.';
-            }
-        }
-    });
+    defaults: {
+      assets: 0
+    },
 
-    return EmployeeModel;
+    validate: function(attrs) {
+      if (!attrs.email) {
+        alert('Please fill email field.');
+      }
+
+      if (!attrs.first_name) {
+        return 'Please fill feedback field.';
+      }
+    }
+  });
+
+  return EmployeeModel;
 });
