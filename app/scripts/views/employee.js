@@ -15,14 +15,27 @@ define([
         tagName: 'tr',
 
         template: JST['app/scripts/templates/employee.ejs'],
+	editTemplate: JST['app/scripts/templates/employee-edit.ejs'],
+
         events: {
             'click .deleteEmployee': 'deleteList',
-        },
-        deleteList: function () {
-          // for implementation to delete data from db.
+	    'click .editEmployee': 'displayEditForm'
+	},
 
-          // delete model.
-          this.remove();
+	displayEditForm: function(e) {
+	    e.preventDefault();
+	    var self = this;
+	    $('#edit-modal').empty();
+	    $('#edit-modal').append(self.editTemplate({
+		model: this.model
+	    }));
+        },
+
+	deleteList: function() {
+	    // for implementation to delete data from db.
+
+	    // delete model.
+	    this.remove();
         },
         render: function() {
             var self = this;
