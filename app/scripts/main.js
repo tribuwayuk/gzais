@@ -58,17 +58,16 @@ require([
   'selectpicker'
 ], function(Backbone, AppModel, AppView, AppRouter) {
 
-  var App = {};
+  var app = window.App = window.App || {};
+
+  // Init AppRouter
+  app.router = new AppRouter();
 
   // Init AppView
-  App.view = new AppView({
+  app.view = new AppView({
     model: new AppModel({baseUrl: '/assets'})
   });
 
-  // Init AppRouter
-  App.router = new AppRouter();
-
-  window.App = App;
 
   /**
    * An awesome way to handle click events with pushState
@@ -84,7 +83,7 @@ require([
 
       // Remove leading slashes and hash bangs (backward compatablility)
       var url = href.replace(/^\//, '').replace('#\/', '');
-      App.router.navigate(url, {
+      app.router.navigate(url, {
         trigger: true
       });
 
