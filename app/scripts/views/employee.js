@@ -18,7 +18,6 @@ define([
 
     render: function() {
       var self = this;
-      console.log(self.model);
       self.$el.html(self.template({model: self.model}));
       return self;
     }

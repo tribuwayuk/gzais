@@ -32,16 +32,16 @@
 
               <div class="form-group row">
                 <div class="col-xs-4">
-                  <label for="firstname">First Name</label>
-                  <input type="text" class="form-control" id="firstname">
+                  <label for="first_name">First Name</label>
+                  <input type="text" class="form-control" id="first_name">
                 </div>
                 <div class="col-xs-4">
-                  <label for="middlename">Middle Name</label>
-                  <input type="text" class="form-control" id="middlename">
+                  <label for="middle_name">Middle Name</label>
+                  <input type="text" class="form-control" id="middle_name">
                 </div>
                 <div class="col-xs-4">
-                  <label for="lastname">Last Name</label>
-                  <input type="text" class="form-control" id="lastname">
+                  <label for="last_name">Last Name</label>
+                  <input type="text" class="form-control" id="last_name">
                 </div>
               </div>
               <div class="form-group">
@@ -51,7 +51,7 @@
               <div class="form-group row">
                 <div class="col-xs-6">
                   <label for="status">Gender</label>
-                  <select class="gender-picker">
+                  <select class="gender-picker" id="gender">
                     <option>Male</option>
                     <option>Female</option>
                   </select>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-xs-6">
                   <label for="birthdate">Date of Birth</label>
-                  <input type="text" class="form-control birthdate">
+                  <input type="text" class="form-control birthdate" id="date_of_birth">
                   <script>
                     $('.birthdate').datepicker();
                   </script>
@@ -70,7 +70,7 @@
               <div class="form-group row">
                 <div class="col-xs-6">
                   <label for="status">User Role</label>
-                  <select class="role-picker">
+                  <select class="role-picker" id="user_role">
                     <option>Admin</option>
                     <option>Custodian</option>
                     <option>Employee</option>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-xs-6">
                   <label for="employeddate">Date Employed</label>
-                  <input type="text" class="form-control employeddate">
+                  <input type="text" class="form-control employeddate" id="date_employed">
                   <script>
                   $('.employeddate').datepicker();
                   </script>
@@ -121,67 +121,7 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
-    <tr class="employee-entry">
-      <td>3</td>
-      <td>Elizar Pepino</td>
-      <td>03/20/1985</td>
-      <td>elizar.pepino@globalzeal.net</td>
-      <td>admin</td>
-      <td>11/01/2013</td>
-      <td>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="View Details" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-search"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-edit"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Reset Password" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-lock"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip">&nbsp;x&nbsp;</button>
-      </td>
-    </tr>
-    <tr class="employee-entry">
-      <td>1337</td>
-      <td>Tibur Sho</td>
-      <td>02/30/1945</td>
-      <td>tibur.sho@globalzeal.net</td>
-      <td>custodian</td>
-      <td>12/25/2013</td>
-      <td>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="View Details" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-search"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-edit"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Reset Password" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-lock"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip">&nbsp;x&nbsp;</button>
-      </td>
-    </tr>
-    <tr class="employee-entry">
-      <td>143</td>
-      <td>John Doe</td>
-      <td>01/01/1901</td>
-      <td>john.doe@globalzeal.net</td>
-      <td>employee</td>
-      <td>12/30/2013</td>
-      <td>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="View Details" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-search"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-edit"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Reset Password" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-lock"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip">&nbsp;x&nbsp;</button>
-      </td>
-    </tr>
+  <tbody class="employees-list">
   </tbody>
 </table>
 <script>
