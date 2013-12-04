@@ -145,6 +145,28 @@ define([
 	    this.clearForm();
 	},
 
+	initialize: function() {
+	    var self = this;
+	    self.listenTo(self.collection, 'add', self.onAdd);
+	    self.collection.fetch();
+	},
+
+	onAdd: function(model) {
+	    var self = this;
+
+	    var push_values = {
+		itemName: model.attributes.name,
+		itemAsignee: '',
+		itemType: model.attributes.type,
+		itemSerialNumber: model.attributes.serial,
+		itemDatePurchased: model.attributes.datePurchased,
+		itemSupplier: model.attributes.supplier,
+		itemStatus: model.attributes.status
+	    };
+
+	    $('#asset_list tr:first').after(this.templateModel(push_values));
+	},
+
 	render: function() {
 	    var self = this;
 	    self.$el.html(self.template());
