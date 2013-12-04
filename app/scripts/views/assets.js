@@ -143,6 +143,7 @@ define([
 
             $('#asset_list tr:first').after(this.templateModel(push_values));
             this.clearForm();
+	    $('#add-modal').modal('hide');
         },
 
         initialize: function() {
