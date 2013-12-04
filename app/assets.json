@@ -1,0 +1,22 @@
+[{
+  "id": "1",
+  "name": "Samsung Galaxy S2",
+  "type": "Smartphone",
+  "datePurchased":"2013-07-22",
+  "status": "Working",
+  "serial":"123456789",
+  "supplier":"Samsung Philippines",
+  "reason":"This is so cool",
+  "description":"cool"
+},
+{
+  "id": "2",
+  "name": "IPhone 5s",
+  "type": "Smartphone",
+  "datePurchased":"2013-07-24",
+  "status": "Working",
+  "serial":"987654321",
+  "supplier":"Apple Philippines",
+  "Reason":"This is so good",
+  "description":"good"
+}]  

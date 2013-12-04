@@ -7,6 +7,10 @@ require.config({
     'mocha': 'lib/mocha/mocha',
     'chai': 'lib/chai',
     'templates': '/scripts/templates',
+    'AssetsModel': '/scripts/models/assets',
+    'AssetsView': '/scripts/views/assets',
+    'AssetModel': '/scripts/models/asset',
+    'AssetView': '/scripts/views/asset',
     'AppModel': '/scripts/models/app',
     'AppView': '/scripts/views/app',
     'EmployeeModel': '/scripts/models/employee'
@@ -45,7 +49,9 @@ require([
 
   require([
     'spec/employee-model',
-    'spec/app-view'
+    'spec/app-view',
+    'spec/asset-view',
+    'spec/assets-view'
   ], function(require) {
 
     mocha.run();
