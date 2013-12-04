@@ -18,8 +18,16 @@ define([
     editTemplate: JST['app/scripts/templates/employee-edit.ejs'],
 
     events: {
-      'click .deleteEmployee': 'deleteList',
-      'click .editEmployee': 'displayEditForm'
+      'click .delete-employee': 'deleteEmployee',
+      'click .edit-employee': 'displayEditForm'
+    },
+
+    initialize: function() {
+      var self = this;
+      // Proper way to handle deletion through events
+      self.listenTo(self.model, 'remove', function(index) {
+        return self.remove();
+      });
     },
 
     displayEditForm: function(e) {
@@ -31,11 +39,13 @@ define([
       }));
     },
 
-    deleteList: function() {
+    deleteEmployee: function() {
+      var self = this;
       // for implementation to delete data from db.
-
-      // delete model.
-      this.remove();
+      if (confirm('Delete '+self.model.get('first_name')+' '+self.model.get('last_name')+' ?')) {
+        // delete model.
+        return self.model.collection.remove(self.model);
+      }
     },
     render: function() {
       var self = this;
