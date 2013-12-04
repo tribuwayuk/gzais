@@ -22,7 +22,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- FORM -->
-          <form action="/" method="post" role="form">
+          <form action="/" method="post" role="form" id="addform">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               <h4 class="modal-title" id="myModalLabel">Add New Asset</h4>
@@ -78,8 +78,8 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-add" id='save_asset'>
-                <span class="glyphicon glyphicon-ok-sign"></span> Save Changes </button>
+              <button type="submit" class="btn btn-add">
+                <span class="glyphicon glyphicon-ok-sign"></span> Add Asset </button>
             </div>
           </form>
           <!-- FORM END -->
@@ -105,61 +105,7 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
-    <tr class="employee-entry">
-      <td>Macbook Pro</td>
-      <td>Elizar Pepino</td>
-      <td>Laptop</td>
-      <td>F12AFRC010</td>
-      <td>01/01/2013</td>
-      <td>Apple Inc.</td>
-      <td>Working</td>
-      <td>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-edit"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Assign" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-hand-up"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip">&nbsp;x&nbsp;</button>
-      </td>
-    </tr>
-    <tr class="employee-entry">
-      <td>HP Printer</td>
-      <td></td>
-      <td>Printer</td>
-      <td>R02A1F1FC0</td>
-      <td>01/01/2013</td>
-      <td>HP</td>
-      <td>Working</td>
-      <td>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-edit"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Assign" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-hand-up"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip">&nbsp;x&nbsp;</button>
-      </td>
-    </tr>
-    <tr class="employee-entry">
-      <td>Macbook Pro Retina</td>
-      <td>Tibur Sho</td>
-      <td>Laptop</td>
-      <td>1920CHAHH2</td>
-      <td>01/01/2013</td>
-      <td>Apple Inc.</td>
-      <td>Working</td>
-      <td>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-edit"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Assign" class="btn btn-default btn-xs tool-tip">
-          <span class="glyphicon glyphicon-hand-up"></span>
-        </button>
-        <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip">&nbsp;x&nbsp;</button>
-      </td>
-    </tr>
+  <tbody class="assets-list">
   </tbody>
 </table>
 <script>

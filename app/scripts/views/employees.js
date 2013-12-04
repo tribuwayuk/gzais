@@ -88,7 +88,6 @@ define([
     },
 
     fieldValidation: function(field, regexp) {
-      console.log(field.value.match(regexp));
       $(field).removeClass('error');
       if (field.value.match(regexp) !== null) {
         $(field).parent().removeClass('has-error');
