@@ -24,14 +24,14 @@ define([
               form        = e.currentTarget,
               newEmployee = {};
 
-          newEmployee.first_name = form.first_name.value;
-          newEmployee.middle_name = form.middle_name.value;
-          newEmployee.last_name = form.last_name.value;
-          newEmployee.email = form.email.value;
-          newEmployee.gender = form.gender.value;
+          newEmployee.first_name    = form.first_name.value;
+          newEmployee.middle_name   = form.middle_name.value;
+          newEmployee.last_name     = form.last_name.value;
+          newEmployee.email         = form.email.value;
+          newEmployee.gender        = form.gender.value;
           newEmployee.date_of_birth = form.date_of_birth.value;
           newEmployee.date_employed = form.date_employed.value;
-          newEmployee.user_role = form.user_role.value;
+          newEmployee.user_role     = form.user_role.value;
 
           self.collection.add(newEmployee);
           
@@ -54,7 +54,6 @@ define([
         onAdd: function(model) {
           var self = this;
           var employee = new EmployeeView({model: model});
-          console.log(self.employeesListEl);
           $('tbody.employees-list').prepend(employee.render().el);
         }
 
