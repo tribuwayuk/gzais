@@ -1,144 +1,77 @@
 /*global define*/
 
 define([
+
   'jquery',
   'underscore',
   'backbone',
   'templates',
-], function($, _, Backbone, JST) {
+  'AssetView'
+], function($, _, Backbone, JST, AssetView) {
   'use strict';
 
   var AssetsView = Backbone.View.extend({
-    name_num_chars: 30,
-    desc_num_chars: 160,
-    type_num_chars: 30,
-    serial_num_chars: 30,
-    supplier_num_chars: 160,
-    reason_num_chars: 160,
 
     template: JST['app/scripts/templates/assets.ejs'],
-    templateModel: JST['app/scripts/templates/asset.ejs'],
 
     events: {
-      'submit form#addform': 'newAsset',
-      'click .btn-add': 'newAsset'
+      'submit form': 'newAsset',
+      'click btn-add': 'newAsset'
     },
 
-    enableSaveButton: function() {
-      $('#save_asset').attr("disabled", false);
-    },
-
-    disableSaveButton: function() {
-      $('#save_asset').attr("disabled", true);
-    },
-
-    validForm: function(formid) {
-      $(formid).removeClass('mali');
-      this.enableSaveButton();
-    },
-
-    invalidForm: function(formid) {
-      $(formid).addClass('mali');
-      this.disableSaveButton();
-    },
-
-    focusOutName: function(e) {
-      var formid = '#name';
-      var asset_name = $(formid).val();
-      if (!this.validateNameChars(asset_name)) {
-        this.invalidForm(formid);
-      } else {
-        this.validForm(formid);
-      }
-    },
-
-    focusOutDescription: function(e) {
-      var formid = '#description';
-      var asset_description = $(formid).val();
-      if (!this.validateNameChars(asset_description)) {
-        this.invalidForm(formid);
-      } else {
-        this.validForm(formid);
-      }
-    },
-
-    focusOutType: function(e) {
-      var formid = '#type';
-      var asset_type = $(formid).val();
-      if (!this.validateNameChars(asset_type)) {
-        this.invalidForm(formid);
-      } else {
-        this.validForm(formid);
-      }
-    },
-
-    focusOutSerial: function(e) {
-      var formid = '#serial-number';
-      var asset_serial_number = $(formid).val();
-      if (!this.validateNameChars(asset_serial_number)) {
-        this.invalidForm(formid);
-      } else {
-        this.validForm(formid);
-      }
-    },
-
-    focusOutSupplier: function(e) {
-      var formid = '#supplier';
-      var asset_supplier = $(formid).val();
-      if (!this.validateNameChars(asset_supplier)) {
-        this.invalidForm(formid);
-      } else {
-        this.validForm(formid);
-      }
-    },
-
-    focusOutReason: function(e) {
-      var formid = '#purchase-reason';
-      var asset_reason = $(formid).val();
-      if (!this.validateNameChars(asset_reason)) {
-        this.invalidForm(formid);
-      } else {
-        this.validForm(formid);
-      }
-    },
-
-    clearForm: function() {
-      $('#name').val('');
-      $('#description').val('');
-      $('#type').val('');
-      $('#date-purchased').val('');
-      $('#status').val('');
-      $('#serial-number').val('');
-      $('#supplier').val('');
-      $('#purchase-reason').val('');
-    },
+    errorFields: [],
 
     newAsset: function(e) {
+
       e.preventDefault();
 
-      // TODO: handle form submission
-      var asset_name = $('#name').val();
-      var asset_description = $('#description').val();
-      var asset_type = $('#type').val();
-      var asset_date_purchased = $('#date-purchased').val();
-      var asset_status = $('#status').val();
-      var asset_serial_number = $('#serial-number').val();
-      var asset_supplier = $('#supplier').val();
-      var asset_purchase_reason = $('#purchase-reason').val();
+      var self = this,
+        form = e.currentTarget,
+        newAsset = {};
 
-      var push_values = {
-        itemName: asset_name,
-        itemAsignee: '',
-        itemType: asset_type,
-        itemSerialNumber: asset_serial_number,
-        itemDatePurchased: asset_date_purchased,
-        itemSupplier: asset_supplier,
-        itemStatus: asset_status
-      };
 
-      $('#asset_list tr:first').after(this.templateModel(push_values));
-      this.clearForm();
-      $('#add-modal').modal('hide');
+      newAsset.asset_name = self.fieldValidation(form.asset_name, /^.{2,}$/);
+      newAsset.asset_type = self.fieldValidation(form.asset_type, /^.{2,}$/);
+      newAsset.date_purchased = self.fieldValidation(form.date_purchased, /^.{2,}$/);
+      newAsset.status = self.fieldValidation(form.status, /^(working|defective)$/);
+      newAsset.serial_number = self.fieldValidation(form.serial_number, /^.{5,}$/);
+      newAsset.supplier = self.fieldValidation(form.supplier, /^.{2,}$/);
+      newAsset.reason = form.reason.value;
+      newAsset.asset_description = self.fieldValidation(form.asset_description, /^.{2,}$/);
+
+      if (self.errorFields.length === 0) {
+        self.collection.add(newAsset);
+        form.reset();
+        $('#add-modal').modal('hide');
+      } else {
+        self.errorFields = [];
+      }
+
+    },
+
+    editAsset: function(e) {
+      e.preventDefault();
+      var self = this,
+        form = e.currentTarget,
+        editAsset = {};
+
+      editAsset.first_name = form.first_name.value;
+      editAsset.middle_name = form.middle_name.value;
+      editAsset.last_name = form.last_name.value;
+      editAsset.email = form.email.value;
+      editAsset.gender = form.gender.value;
+      editAsset.date_of_birth = form.date_of_birth.value;
+      editAsset.date_employed = form.date_employed.value;
+      editAsset.user_role = form.user_role.value;
+
+
+      // to do: implement update collection.
+    },
+
+    render: function() {
+      var self = this;
+      self.$el.html(self.template({}));
+      return self;
     },
 
     initialize: function() {
@@ -149,66 +82,22 @@ define([
 
     onAdd: function(model) {
       var self = this;
-
-      var push_values = {
-        itemName: model.attributes.name,
-        itemAsignee: '',
-        itemType: model.attributes.type,
-        itemSerialNumber: model.attributes.serial,
-        itemDatePurchased: model.attributes.datePurchased,
-        itemSupplier: model.attributes.supplier,
-        itemStatus: model.attributes.status
-      };
-
-      $('#asset_list tr:first').after(this.templateModel(push_values));
+      var asset = new AssetView({
+        model: model
+      });
+      $('tbody.assets-list').prepend(asset.render().el);
     },
 
-    render: function() {
-      var self = this;
-      self.$el.html(self.template());
-      return self;
-    },
-
-    validateNameChars: function(str) {
-      if (str.length > this.name_num_chars)
-        return false;
-      else
-        return true;
-    },
-
-    validateDescriptionChars: function(str) {
-      if (str.length > this.desc_num_chars)
-        return false;
-      else
-        return true;
-    },
-
-    validateTypeChars: function(str) {
-      if (str.length > this.type_num_chars)
-        return false;
-      else
-        return true;
-    },
-
-    validateSerialChars: function(str) {
-      if (str.length > this.serial_num_chars)
-        return false;
-      else
-        return true;
-    },
-
-    validateSupplierChars: function(str) {
-      if (str.length > this.supplier_num_chars)
-        return false;
-      else
-        return true;
-    },
-
-    validateReasonChars: function(str) {
-      if (str.length > this.reason_num_chars)
-        return false;
-      else
-        return true;
+    fieldValidation: function(field, regexp) {
+      $(field).removeClass('error');
+      if (field.value.match(regexp) !== null) {
+        $(field).parent().removeClass('has-error');
+        return field.value;
+      } else {
+        this.errorFields.pop(field.id);
+        this.errorFields.push(field.id);
+        return $(field).parent().addClass('has-error');
+      }
     }
 
   });
