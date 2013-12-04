@@ -1,29 +1,38 @@
 /*global define*/
 
 define([
-  'jquery',
-  'underscore',
-  'backbone',
-  'templates',
+    'jquery',
+    'underscore',
+    'backbone',
+    'templates',
 ], function($, _, Backbone, JST) {
-  'use strict';
+    'use strict';
 
-  var EmployeeView = Backbone.View.extend({
+    var EmployeeView = Backbone.View.extend({
 
-    className: 'employee-entry',
+        className: 'employee-entry',
 
-    tagName: 'tr',
+        tagName: 'tr',
 
-    template: JST['app/scripts/templates/employee.ejs'],
+        template: JST['app/scripts/templates/employee.ejs'],
+        events: {
+            'click .deleteEmployee': 'deleteList',
+        },
+        deleteList: function () {
+          // for implementation to delete data from db.
 
-    render: function() {
-      var self = this;
-      self.$el.html(self.template({model: self.model}));
-      return self;
-    }
+          // delete model.
+          this.remove();
+        },
+        render: function() {
+            var self = this;
+            self.$el.html(self.template({
+                model: self.model
+            }));
+            return self;
+        }
+    });
 
-  });
 
-
-  return EmployeeView;
+    return EmployeeView;
 });
