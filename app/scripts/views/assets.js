@@ -20,13 +20,8 @@ define([
     templateModel: JST['app/scripts/templates/asset.ejs'],
 
     events: {
-      'focusout #name': 'focusOutName',
-      'focusout #description': 'focusOutDescription',
-      'focusout #type': 'focusOutType',
-      'focusout #serial-number': 'focusOutSerial',
-      'focusout #supplier': 'focusOutSupplier',
-      'focusout #purchase-reason': 'focusOutReason',
-      'submit form': 'newAsset'
+      'submit form#addform': 'newAsset',
+      'click .btn-add': 'newAsset'
     },
 
     enableSaveButton: function() {
