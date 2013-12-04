@@ -20,7 +20,7 @@ define([
     // Sub Templates
     loginTemplate: JST['app/scripts/templates/login-form.ejs'],
     mainTemplate: JST['app/scripts/templates/app-main.ejs'],
-    
+ 
     initialize: function() {
 
       var self = this;
