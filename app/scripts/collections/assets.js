@@ -8,7 +8,8 @@ define([
     'use strict';
 
     var AssetsCollection = Backbone.Collection.extend({
-        model: AssetModel
+        model: AssetModel,
+        url: '/employees.json'
     });
 
     return AssetsCollection;

@@ -1,25 +1,30 @@
 /*global define*/
 
 define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'templates',
-], function ($, _, Backbone, JST) {
-    'use strict';
+  'jquery',
+  'underscore',
+  'backbone',
+  'templates',
+], function($, _, Backbone, JST) {
+  'use strict';
 
-    var EmployeeView = Backbone.View.extend({
+  var EmployeeView = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/employee.ejs'],
+    className: 'employee-entry',
 
-        render: function() {
-          var self = this;
-          self.$el.html(self.template());
-          return self;
-        }
+    tagName: 'tr',
 
-    });
+    template: JST['app/scripts/templates/employee.ejs'],
+
+    render: function() {
+      var self = this;
+      console.log(self.model);
+      self.$el.html(self.template({model: self.model}));
+      return self;
+    }
+
+  });
 
 
-    return EmployeeView;
+  return EmployeeView;
 });

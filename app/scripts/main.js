@@ -41,6 +41,7 @@ require.config({
     EmployeeView: 'views/employee',
     EmployeeModel: 'models/employee',
     AssetsView: 'views/assets',
+    AssetsCollection: 'collections/assets',
     InventoryReportsView: 'views/inventory-reports'
   }
 });

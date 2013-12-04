@@ -1,0 +1,37 @@
+[{
+  "id": "1",
+  "first_name": "Elizar",
+  "middle_name": "Diano",
+  "last_name": "Pepino",
+  "gender": "male",
+  "date_of_birth": "03/20/1985",
+  "email": "elizar.pepino@globalzeal.net",
+  "password": "admin123",
+  "user_role": "Admin",
+  "address": "Cebu Zoo",
+  "date_employed": "01/03/2013"
+}, {
+  "id": "2",
+  "first_name": "Alexj",
+  "middle_name": "Pinaka",
+  "last_name": "Gwapo",
+  "gender": "male",
+  "date_of_birth": "06/09/1990",
+  "email": "alex.gwapo@globalzeal.net",
+  "password": "admin123",
+  "user_role": "Custodian",
+  "address": "Cebu Zoo",
+  "date_employed": "01/02/2013"
+}, {
+  "id": "3",
+  "first_name": "Rohit",
+  "middle_name": "Pinaka",
+  "last_name": "Tisoy",
+  "gender": "male",
+  "date_of_birth": "01/01/01",
+  "email": "rohit.daryanani@globalzeal.net",
+  "password": "admin123",
+  "user_role": "Employee",
+  "address": "Cebu Zoo",
+  "date_employed": "01/01/2013"
+}]

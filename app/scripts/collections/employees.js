@@ -3,12 +3,13 @@
 define([
     'underscore',
     'backbone',
-    'models/employees'
-], function (_, Backbone, EmployeesModel) {
+    'models/employee'
+], function (_, Backbone, EmployeeModel) {
     'use strict';
 
     var EmployeesCollection = Backbone.Collection.extend({
-        model: EmployeesModel
+        model: EmployeeModel,
+        url: '/employees.json',
     });
 
     return EmployeesCollection;

@@ -5,7 +5,8 @@ define([
     'underscore',
     'backbone',
     'templates',
-], function ($, _, Backbone, JST) {
+    'EmployeeView'
+], function ($, _, Backbone, JST, EmployeeView) {
     'use strict';
 
     var EmployeesView = Backbone.View.extend({
@@ -24,6 +25,17 @@ define([
           var self = this;
           self.$el.html(self.template());
           return self;
+        },
+
+        initialize: function() {
+          var self = this;
+          self.listenTo(self.collection, 'add', self.onAdd);
+          self.collection.fetch();
+        },
+
+        onAdd: function(model) {
+          var employee = new EmployeeView({model: model});
+          console.log(employee.render().el);
         }
 
     });

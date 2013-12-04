@@ -6,11 +6,6 @@ define([
   'use strict';
 
   var EmployeeModel = Backbone.Model.extend({
-
-    defaults: {
-      'user-role': 'employee'
-    }
-
   });
 
   return EmployeeModel;

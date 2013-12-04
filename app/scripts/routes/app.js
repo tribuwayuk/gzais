@@ -5,8 +5,10 @@ define([
   'backbone',
   'EmployeesView',
   'AssetsView',
-  'InventoryReportsView'
-], function($, Backbone, EmployeesView, AssetsView, InventoryReportsView) {
+  'InventoryReportsView',
+  'EmployeesCollection',
+  'AssetsCollection'
+], function($, Backbone, EmployeesView, AssetsView, InventoryReportsView, EmployeesCollection, AssetsCollection) {
   'use strict';
 
   var MainRouter = Backbone.Router.extend({
@@ -25,37 +27,32 @@ define([
     },
 
     logout: function() {
-
       if (window.App.view.model.get('user')) {
-
         window.App.view.model.set('user', undefined);
         return window.App.router.navigate('/', true);
-
       }
-
     },
 
     checkIfLoggedIn: function() {
-
       if (!window.App.view.model.get('user')) {
-
         // if not logged in then redirect to /
         window.location = '/';
         return false;
-
       }
 
     },
 
-    mountSubView: function(name, SubView) {
+    mountSubView: function(name, SubView, Collection) {
 
       this.checkIfLoggedIn();
 
       /**
       * Mount Sub View
       */
-      var appSubViews = window.App.view.subViews;
-          appSubViews[name] = appSubViews[name] ? appSubViews[name] : new SubView();
+      var appSubViews       = window.App.view.subViews,
+          collection        = new Collection(),
+          subView           = (name === 'inventoryReportsView') ? new SubView() : new SubView({collection: collection});
+          appSubViews[name] = appSubViews[name] ? appSubViews[name] : subView;
 
       window.App.view.model.set('currentContent', appSubViews[name]);
 
@@ -72,22 +69,16 @@ define([
     },
 
     assets: function() {
-
-      this.mountSubView('assetsView', AssetsView);
-
+      this.mountSubView('assetsView', AssetsView, AssetsCollection);
     },
 
 
     employees: function() {
-
-      this.mountSubView('employeesView', EmployeesView);
-
+      this.mountSubView('employeesView', EmployeesView, EmployeesCollection);
     },
 
     inventoryReports: function() {
-
       this.mountSubView('inventoryReportsView', InventoryReportsView);
-
     }
 
   });
