@@ -9,7 +9,7 @@ define([
 
     var AssetsCollection = Backbone.Collection.extend({
         model: AssetModel,
-        url: '/assets.json'
+        url: 'http://gzais-api.herokuapp.com/assets'
     });
 
     return AssetsCollection;
