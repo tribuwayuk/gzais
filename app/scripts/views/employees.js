@@ -27,7 +27,9 @@ define([
 
             newEmployee.first_name = self.fieldValidation(form.first_name, /^.{2,}$/);
             newEmployee.middle_name = self.fieldValidation(form.middle_name, /^.{2,}$/);
+            newEmployee.first_name = self.fieldValidation(form.first_name, /^.{2,}$/);
             newEmployee.last_name = self.fieldValidation(form.last_name, /^.{2,}$/);
+            newEmployee.address = self.fieldValidation(form.address, /^.{2,}$/);
             newEmployee.email = self.fieldValidation(form.email, /^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/);
             newEmployee.gender = form.gender.value;
             newEmployee.date_of_birth = self.fieldValidation(form.date_of_birth, /^.{2,}$/);
