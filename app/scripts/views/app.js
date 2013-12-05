@@ -20,7 +20,7 @@ define([
     // Sub Templates
     loginTemplate: JST['app/scripts/templates/login-form.ejs'],
     mainTemplate: JST['app/scripts/templates/app-main.ejs'],
- 
+
     initialize: function() {
 
       var self = this;
@@ -34,7 +34,8 @@ define([
     },
 
     events: {
-      'submit form.login-form': 'doLogin'
+      'submit form.login-form': 'doLogin',
+      'click a.logout': 'doLogOut'
     },
 
     render: function() {
@@ -79,8 +80,8 @@ define([
       var contentSectionDiv = self.model.get('contentSectionDiv');
       // let's render
       $(contentSectionDiv)
-      .hide()
-      .html(self.model.get('currentContent').render().el).fadeIn(400);
+        .hide()
+        .html(self.model.get('currentContent').render().el).fadeIn(400);
 
       // handle .main-nav tabs
       self.handleMainNav();
@@ -93,16 +94,16 @@ define([
       $('.main-nav > li.active').removeClass('active');
 
       // check pathname
-      switch(Backbone.history.location.pathname) {
+      switch (Backbone.history.location.pathname) {
         case "/assets":
           $('.main-nav > li.assets').addClass('active');
-        break;
+          break;
         case "/employees":
           $('.main-nav > li.employees').addClass('active');
-        break;
+          break;
         case "/inventory-reports":
           $('.main-nav > li.reports').addClass('active');
-        break;
+          break;
 
       }
 
@@ -118,14 +119,15 @@ define([
         passwordField = form.password;
 
       /**
-      * Login Form Validation
-      **/
+       * Login Form Validation
+       **/
       if (!emailField.value.trim().match(/^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/)) {
 
         $(emailField).parent().addClass('has-error');
         return emailField.focus();
 
       }
+
       $(emailField).parent().removeClass('has-error').blur();
 
       if (passwordField.value.trim().length < 6) {
@@ -134,7 +136,11 @@ define([
         return passwordField.focus();
 
       }
+
       $(passwordField).parent().removeClass('has-error').blur();
+
+      // $('input, button').prop('disabled', true);
+      // $('.btns').addClass('loading');
 
       if (emailField.value === 'admin@admin.com' && passwordField.value === 'admin123') {
 
@@ -143,6 +149,16 @@ define([
           password: passwordField
         });
 
+      }
+
+    },
+
+    doLogOut: function(e) {
+      e.preventDefault();
+      // let's check if it's currently logged in
+      if (this.model.get('user')) {
+        this.model.set('user', null);
+        window.location = '/';
       }
 
     }

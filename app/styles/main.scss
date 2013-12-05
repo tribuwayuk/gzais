@@ -186,3 +186,17 @@ $navbar-bg: #cef274;
 .hidden {
   visibility: hidden;
 }
+
+.btns {
+  &.loading {
+    .btn-add.btn-load {
+      display: block;
+    }
+    .btn-add {
+      display: none;
+    }
+  }
+  .btn-add.btn-load {
+    display: none;
+  }
+}

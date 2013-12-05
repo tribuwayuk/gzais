@@ -6,8 +6,8 @@
     <ul class="nav navbar-nav navbar-right">
       <% if (model.get('user')) { %>
         <li><p class="navbar-text navbar-right">Logged in as <strong>Elizar Pepino</strong></p></li>
-        <li><a href="/account"><span class="glyphicon glyphicon-cog"></span> Account Settings</a></li>
-        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+        <li><a href="/account-settings" class="account-settings"><span class="glyphicon glyphicon-cog"></span> Account Settings</a></li>
+        <li><a href="#logout" class="logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
       <% } else { %>
           <li><p class="navbar-text navbar-right">You are currently not <strong>Logged In </strong></p></li>
       <% } %>
