@@ -1,61 +1,70 @@
 /*global define*/
 
 define([
-  'jquery',
-  'underscore',
-  'backbone',
-  'templates',
+    'jquery',
+    'underscore',
+    'backbone',
+    'templates',
 ], function($, _, Backbone, JST) {
-  'use strict';
+    'use strict';
 
-  var EmployeeView = Backbone.View.extend({
+    var EmployeeView = Backbone.View.extend({
 
-    className: 'employee-entry',
+        className: 'employee-entry',
 
-    tagName: 'tr',
+        tagName: 'tr',
 
-    template: JST['app/scripts/templates/employee.ejs'],
-    editTemplate: JST['app/scripts/templates/employee-edit.ejs'],
+        template: JST['app/scripts/templates/employee.ejs'],
+        editTemplate: JST['app/scripts/templates/employee-edit.ejs'],
 
-    events: {
-      'click .delete-employee': 'deleteEmployee',
-      'click .edit-employee': 'displayEditForm'
-    },
+        events: {
+            'click .delete-employee': 'deleteEmployee',
+            'click .edit-employee': 'displayEditForm'
+        },
 
-    initialize: function() {
-      var self = this;
-      // Proper way to handle deletion through events
-      self.listenTo(self.model, 'remove', function(index) {
-        return self.remove();
-      });
-    },
+        initialize: function() {
+            var self = this;
+            // Proper way to handle deletion through events
+            self.listenTo(self.model, 'remove', function(index) {
+                var options = options || {};
+                options.url = self.model.url() + '/' + self.model.get('_id');
+                
+                options.success = function() {
+                    return self.remove();
+                };
+                options.error = function() {
+                    console.log('error');
+                };
 
-    displayEditForm: function(e) {
-      e.preventDefault();
-      var self = this;
-      $('#edit-modal').empty();
-      $('#edit-modal').append(self.editTemplate({
-        model: this.model
-      }));
-    },
+                self.model.collection.sync('delete', self.model, options);
+            });
+        },
 
-    deleteEmployee: function() {
-      var self = this;
-      // for implementation to delete data from db.
-      if (confirm('Delete '+self.model.get('first_name')+' '+self.model.get('last_name')+' ?')) {
-        // delete model.
-        return self.model.collection.remove(self.model);
-      }
-    },
-    render: function() {
-      var self = this;
-      self.$el.html(self.template({
-        model: self.model
-      }));
-      return self;
-    }
-  });
+        displayEditForm: function(e) {
+            e.preventDefault();
+            var self = this;
+            $('#edit-modal').empty();
+            $('#edit-modal').append(self.editTemplate({
+                model: this.model
+            }));
+        },
 
+        deleteEmployee: function() {
+            var self = this;
+            // for implementation to delete data from db.
+            if (confirm('Delete ' + self.model.get('first_name') + ' ' + self.model.get('last_name') + ' ?')) {
+                // delete model.
+                return self.model.collection.remove(self.model);
+            }
+        },
+        render: function() {
+            var self = this;
+            self.$el.html(self.template({
+                model: self.model
+            }));
+            return self;
+        }
+    });
 
-  return EmployeeView;
+    return EmployeeView;
 });
