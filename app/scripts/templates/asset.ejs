@@ -1,0 +1,20 @@
+<td><%= model.get('asset_name') %></td>
+<td></td>
+<td><%= model.get('asset_type') %></td>
+<td><%= model.get('serial_number') %></td>
+<% var dp = new Date(model.get('date_purchased')) %>
+<td><%= dp.getMonth() + 1 + '/' + dp.getDate() + '/' + dp.getFullYear() %></td>
+<td><%= model.get('supplier') %></td>
+<td><%= model.get('status') %></td>
+<td>
+  <button type="button" data-toggle="modal" data-target="#edit-modal" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip edit-asset" data-original-title="Edit">
+    <span class="glyphicon glyphicon-edit"></span>
+  </button>
+  <button type="button" data-toggle="tooltip" data-placement="bottom" title="Assign" class="btn btn-default btn-xs tool-tip assign-asset">
+    <span class="glyphicon glyphicon-hand-up"></span>
+  </button>
+  <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip delete-asset">&nbsp;x&nbsp;</button>
+</td>
+<script>
+	$('.tool-tip').tooltip();
+</script>

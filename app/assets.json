@@ -1,0 +1,21 @@
+[{
+  "id": "1",
+  "asset_name": "Samsung Galaxy S2",
+  "asset_type": "Smartphone",
+  "date_purchased": "2013/07/22",
+  "status": "defective",
+  "serial_number": "123456789",
+  "supplier": "Samsung Philippines",
+  "reason": "This is so cool",
+  "asset_description": "cool"
+}, {
+  "id": "2",
+  "asset_name": "IPhone 5s",
+  "asset_type": "Smartphone",
+  "date_purchased": "2013/07/24",
+  "status": "working",
+  "serial_number": "987654321",
+  "supplier": "Apple Philippines",
+  "reason": "This is so good",
+  "asset_description": "good"
+}]

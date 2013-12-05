@@ -1,6 +1,8 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import 'sass-bootstrap/lib/bootstrap';
+@import 'datepicker.scss';
+@import 'bootstrap-select.scss';
 
 .browsehappy {
     margin: 0.2em 0;
@@ -13,6 +15,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 body {
     padding-top: 20px;
     padding-bottom: 20px;
+    background-color: #efefef;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -70,7 +73,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
-        max-width: 730px;
+        max-width: 960px;
     }
 
     /* Remove the padding we set earlier */
@@ -88,4 +91,97 @@ body {
     .jumbotron {
         border-bottom: 0;
     }
+}
+
+/* GZAIS Defaults */
+$navbar-bg: #cef274;
+
+.main {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #fff;
+}
+
+.main-title {
+    font-weight: bold;
+}
+
+.header > .navbar {
+    background-color: $navbar-bg;
+    border: 1px solid #bada55;
+}
+
+.btn-add, .btn-edit, .btn-reset{
+  color: #ffffff;
+  font-weight: bold;
+  border-color: #ef5b00 !important;
+  background-color: #ef5b00 !important;
+  &:hover {
+    color: #ffffff;
+    background-color: #ef7a37 !important;
+  }
+}
+
+.btn-save {
+  color: #779b14 !important;
+  font-weight: bold;
+  border-color: #779b14 !important;
+  background-color: #CEF274 !important;
+  &:hover {
+    background-color: #bde064 !important;
+  }
+}
+
+.main-nav {
+    & > li {
+
+        &.active > a {
+            background-color: #CEF274 !important;
+            color: #779b14 !important;
+        }
+
+        & > a {
+            font-weight: bold;
+            color: #82ad14;
+        }
+    }
+}
+
+.employee-entry, .asset-entry {
+  button {
+    visibility: hidden;
+  }
+  &:hover {
+    & > td {
+      background-color: #eeffc4 !important;
+    }
+    button {
+      visibility: visible;
+    }
+  }
+}
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+    background-color: transparent;
+    color: #000000;
+    font-weight: bold;
+}
+
+#add-modal .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]) {
+    width: 250px;
+}
+
+.modal-header {
+  border-color: #779b14 !important;
+  background-color: #CEF274 !important;
+  color: #779b14;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  h3, h4 {
+    text-align: center;
+  }
+}
+
+.hidden {
+  visibility: hidden;
 }
