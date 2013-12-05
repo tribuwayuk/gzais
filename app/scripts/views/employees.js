@@ -20,10 +20,10 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
                 form = e.currentTarget,
                 newEmployee = {};
 
-            newEmployee.first_name = self.fieldValidation(form.first_name, /^[a-zA-Z]{1,30}$/);
+            newEmployee.first_name = self.fieldValidation(form.first_name, /^[a-zA-Z\s]{1,30}$/);
             newEmployee.middle_name = self.fieldValidation(form.middle_name, /^[a-zA-Z]{1,30}$/);
             newEmployee.last_name = self.fieldValidation(form.last_name, /^[a-zA-Z]{1,30}$/);
-            newEmployee.address = self.fieldValidation(form.address, /^[a-zA-Z]{1,60}$/);
+            newEmployee.address = self.fieldValidation(form.address, /^[a-zA-Z\s]{1,60}$/);
             newEmployee.email = self.fieldValidation(form.email, /^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/);
             newEmployee.gender = form.gender.value;
             newEmployee.date_of_birth = self.fieldValidation(form.date_of_birth, /^.{2,}$/);

@@ -27,12 +27,21 @@ define([
       var self = this;
       // Proper way to handle deletion through events
       self.listenTo(self.model, 'remove', function(index) {
-        return self.remove();
-      });
+        var options = options || {};
+        options.url = self.model.url() + '/' + self.model.get('_id');
 
+        options.success = function() {
+          return self.remove();
+        };
+        options.error = function() {
+          console.log('error');
+        };
+
+        self.model.collection.sync('delete', self.model, options);
+      });
     },
 
-    displayEditForm: function(e){
+    displayEditForm: function(e) {
       e.preventDefault();
       var self = this;
       console.log(this);
@@ -44,12 +53,31 @@ define([
 
 
     deleteAsset: function() {
-      var self = this;
+      var self  = this,
+        bootbox = window.bootbox;
+
       // for implementation to delete data from db.
-      if (confirm('Delete '+self.model.get('asset_name')+' ?')) {
-        // delete model.
-        return self.model.collection.remove(self.model);
-      }
+      bootbox.dialog({
+        message: 'Are you sure you want to delete ' + self.model.get('asset_name') + ' ?',
+        title: "Confirm Deletion",
+        buttons: {
+          default: {
+            label: " Cancel ",
+            className: "btn-default",
+            callback: function() {
+              // Do nothing
+            }
+          },
+          danger: {
+            label: " Yes ",
+            className: "btn-danger",
+            callback: function() {
+              // delete model.
+              return self.model.collection.remove(self.model);
+            }
+          }
+        }
+      });
     },
 
     render: function() {
