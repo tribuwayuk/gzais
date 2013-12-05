@@ -36,23 +36,23 @@ define([
 	    newEmployee.date_of_birth = self.fieldValidation(form.date_of_birth, /^.{2,}$/);
 	    newEmployee.date_employed = self.fieldValidation(form.date_employed, /^.{2,}$/);
 	    newEmployee.user_role = form.user_role.value;
+	    newEmployee.password = 'admin123';
 
 	    if (self.errorFields.length === 0) {
-		console.log(form);
 		self.ajaxRequestSave(form, newEmployee);
-		/*self.model.save($(form).serializeObject(), {
-		    success: function(inputData) {
-			alert('Save successfully!');
-		    }
-		});*/
-
-		//self.collection.add(newEmploye\e);
-		//form.reset();
 	    } else {
-
 		self.errorFields = [];
 	    }
-
+	},
+	ajaxRequestSave: function(form, data) {
+	    var self = this;
+	    $.post(self.collection.url, data).done(function(result) {
+		if (!result.errors) {
+		    self.collection.add(result);
+		    form.reset();
+		    $('#add-modal').modal('hide');
+		}
+	    });
 	},
 	editEmployee: function(e) {
 	    e.preventDefault();
@@ -84,10 +84,7 @@ define([
 	    self.listenTo(self.collection, 'add', self.onAdd);
 	    self.collection.fetch();
 	},
-	ajaxRequestSave: function() {
-	  con
-	  $('#add-modal').modal('hide');
-	},
+
 	onAdd: function(model) {
 	    var self = this;
 	    var employee = new EmployeeView({
