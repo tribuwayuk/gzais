@@ -65,14 +65,14 @@ define([
         form = e.currentTarget,
         editAsset = {};
 
-      editAsset.first_name = form.first_name.value;
-      editAsset.middle_name = form.middle_name.value;
-      editAsset.last_name = form.last_name.value;
-      editAsset.email = form.email.value;
-      editAsset.gender = form.gender.value;
-      editAsset.date_of_birth = form.date_of_birth.value;
-      editAsset.date_employed = form.date_employed.value;
-      editAsset.user_role = form.user_role.value;
+      editAsset.asset_name = form.asset_name.value;
+      editAsset.asset_type = form.asset_type.value;
+      editAsset.date_purchased = form.date_purchased.value;
+      editAsset.status = form.status.value;
+      editAsset.serial_number = form.serial_number.value;
+      editAsset.supplier = form.supplier.value;
+      editAsset.reason = form.reason.value;
+      editAsset.asset_description = form.asset_description.value;
 
 
       // to do: implement update collection.
