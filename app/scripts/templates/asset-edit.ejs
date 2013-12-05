@@ -25,7 +25,14 @@
                   <label for="date_purchased">Date Purchased</label>
                   <input type="text" id="date_purchased" class="form-control date-purchased" id="date_purchased" value="<%=model.get('date_purchased')%>">
                   <script>
-                  $('.date-purchased').datepicker();
+                    var nowTemp = new Date();
+                    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+   
+                    $('.date-purchased').datepicker({
+                      onRender: function(date) {
+                        return date.valueOf() > now.valueOf() ? 'disabled' : '';
+                      }
+                    });
                   </script>
                 </div>
               </div>
