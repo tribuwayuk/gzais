@@ -42,13 +42,22 @@ define([
       newAsset.asset_description = self.fieldValidation(form.asset_description, /^.{2,}$/);
 
       if (self.errorFields.length === 0) {
-        self.collection.add(newAsset);
-        form.reset();
-        $('#add-modal').modal('hide');
+	self.ajaxRequest(form, newAsset);
       } else {
         self.errorFields = [];
       }
 
+    },
+
+    ajaxRequest: function(form, data) {
+      var self = this;
+      $.post(self.collection.url, data).done(function(result) {
+	if (!result.errors) {
+	  self.collection.add(result);
+	  form.reset();
+	  $('#add-modal').modal('hide');
+	}
+      });
     },
 
     editAsset: function(e) {
