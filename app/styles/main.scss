@@ -168,7 +168,7 @@ $navbar-bg: #cef274;
     font-weight: bold;
 }
 
-#add-modal .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]) {
+#add-modal .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]), #edit-modal .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]) {
     width: 250px;
 }
 
@@ -185,12 +185,4 @@ $navbar-bg: #cef274;
 
 .hidden {
   visibility: hidden;
-}
-
-.break-word {
-   word-wrap: break-word;
-}
-
-.err {
-  border-color: #ff0000;
 }

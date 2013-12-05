@@ -24,6 +24,10 @@ require.config({
     selectpicker: {
       deps: ['jquery'],
       exports: 'selectpicker'
+    },
+    bootbox: {
+      deps: ['jquery', 'bootstrap'],
+      exports: 'bootbo'
     }
   },
   paths: {
@@ -32,6 +36,7 @@ require.config({
     underscore: '../bower_components/underscore/underscore',
     bootstrap: 'vendor/bootstrap',
     datepicker: 'vendor/bootstrap-datepicker',
+    bootbox: 'vendor/bootbox',
     selectpicker: 'vendor/bootstrap-select',
     AppModel: 'models/app',
     AppView: 'views/app',
@@ -55,7 +60,8 @@ require([
   'AppRouter',
   'bootstrap',
   'datepicker',
-  'selectpicker'
+  'selectpicker',
+  'bootbox'
 ], function(Backbone, AppModel, AppView, AppRouter) {
 
   var app = window.App = window.App || {};
