@@ -5,21 +5,38 @@ define([
 ], function(_, Backbone) {
   'use strict';
 
+  var _formatDate = function(d) {
+    var date = new Date(d),
+      _month = (date.getMonth() + 1 < 10) ? '0' + date.getMonth() : '' + date.getMonth(),
+      _date = (date.getDate() + 1 < 10) ? '0' + date.getDate() : '' + date.getDate(),
+      _year = date.getFullYear();
+    return _month + '/' + _date + '/' + _year;
+  };
+
   var EmployeeModel = Backbone.Model.extend({
 
     defaults: {
       assets: 0
     },
 
-    validate: function(attrs) {
-      if (!attrs.email) {
-        alert('Please fill email field.');
-      }
+    getDateOfBirth: function() {
 
-      if (!attrs.first_name) {
-        return 'Please fill feedback field.';
-      }
-    }
+      return _formatDate(this.get('date_of_birth'));
+
+    },
+
+    getDateEmployed: function() {
+
+      return _formatDate(this.get('date_employed'));
+
+    },
+
+    getFullName: function() {
+
+      return this.get('first_name') + ' ' + this.get('last_name');
+
+    },
+
   });
 
   return EmployeeModel;
