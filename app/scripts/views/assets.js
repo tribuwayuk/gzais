@@ -128,5 +128,5 @@ define([
 
     });
 
-    return AssetsView;
+  return AssetsView;
 });
