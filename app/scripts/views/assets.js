@@ -15,13 +15,25 @@ define([
 
     template: JST['app/scripts/templates/assets.ejs'],
 
+    errorFields: [],
+
     events: {
-      'submit form': 'newAsset',
-      'submit form#editForm': 'editAsset',
+      'submit form#add-form': 'newAsset',
+      'submit form#edit-form': 'editAsset',
       'click btn-add': 'newAsset'
     },
 
-    errorFields: [],
+    render: function() {
+      var self = this;
+      self.$el.html(self.template({}));
+      return self;
+    },
+
+    initialize: function() {
+      var self = this;
+      self.listenTo(self.collection, 'add', self.onAdd);
+      self.collection.fetch();
+    },
 
     newAsset: function(e) {
 
@@ -33,7 +45,7 @@ define([
 
 
       newAsset.asset_name = self.fieldValidation(form.asset_name, /^[a-zA-Z0-9\.\-\s]{2,15}$/);
-      newAsset.asset_type = self.fieldValidation(form.asset_type, /^[a-zA-Z0-9\s]{2, 15}$/);
+      newAsset.asset_type = self.fieldValidation(form.asset_type, /^[a-zA-Z0-9\s]{2,15}$/);
       newAsset.date_purchased = self.fieldValidation(form.date_purchased, /^[0-9]+\/+[0-9]+\/+[0-9]{4,}$/);
       newAsset.status = self.fieldValidation(form.status, /^(working|defective)$/);
       newAsset.serial_number = self.fieldValidation(form.serial_number, /^[a-zA-Z0-9-\s]{5,20}$/);
@@ -74,21 +86,8 @@ define([
       editAsset.supplier = form.supplier.value;
       editAsset.reason = form.reason.value;
       editAsset.asset_description = form.asset_description.value;
-
-
       // to do: implement update collection.
-    },
 
-    render: function() {
-      var self = this;
-      self.$el.html(self.template({}));
-      return self;
-    },
-
-    initialize: function() {
-      var self = this;
-      self.listenTo(self.collection, 'add', self.onAdd);
-      self.collection.fetch();
     },
 
     onAdd: function(model) {

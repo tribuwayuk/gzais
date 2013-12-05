@@ -1,11 +1,10 @@
-<td class="break-word"><%= model.get('asset_name') %></td>
-<td class="break-word"></td>
-<td class="break-word"><%= model.get('asset_type') %></td>
-<td class="break-word"><%= model.get('serial_number') %></td>
-<% var dp = new Date(model.get('date_purchased')) %>
-<td class="break-word"><%= dp.getMonth() + 1 + '/' + dp.getDate() + '/' + dp.getFullYear() %></td>
-<td class="break-word"><%= model.get('supplier') %></td>
-<td class="break-word"><%= model.get('status') %></td>
+<td><%= model.get('asset_name') %></td>
+<td></td>
+<td><%= model.get('asset_type') %></td>
+<td><%= model.get('serial_number') %></td>
+<td><%= model.getDatePurchased() %></td>
+<td><%= model.get('supplier') %></td>
+<td><%= model.get('status') %></td>
 <td>
   <button type="button" data-toggle="modal" data-target="#edit-modal" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip edit-asset" data-original-title="Edit">
     <span class="glyphicon glyphicon-edit"></span>
