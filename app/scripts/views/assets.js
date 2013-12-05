@@ -17,7 +17,8 @@ define([
     events: {
       'submit form': 'newAsset',
       'submit form#editForm': 'editAsset',
-      'click btn-add': 'newAsset'
+      'click btn-add': 'newAsset',
+      'click .btn-default': 'reset',
     },
 
     errorFields: [],
@@ -87,6 +88,13 @@ define([
         model: model
       });
       $('tbody.assets-list').prepend(asset.render().el);
+    },
+
+    reset: function(){
+      var self = this;
+      
+      self.render();
+      self.collection.fetch();
     },
 
     fieldValidation: function(field, regexp) {
