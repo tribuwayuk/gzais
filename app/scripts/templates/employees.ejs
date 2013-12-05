@@ -63,7 +63,14 @@
                   <label for="birthdate">Date of Birth</label>
                   <input type="text" class="form-control birthdate" id="date_of_birth">
                   <script>
-                  $('.birthdate').datepicker();
+                  var nowTemp = new Date();
+                  var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ 
+                  $('.birthdate').datepicker({
+                    onRender: function(date) {
+                      return date.valueOf() > now.valueOf() ? 'disabled' : '';
+                    }
+                  });
                   </script>
                 </div>
               </div>
@@ -83,7 +90,14 @@
                   <label for="employeddate">Date Employed</label>
                   <input type="text" class="form-control employeddate" id="date_employed">
                   <script>
-                  $('.employeddate').datepicker();
+                    var nowTemp = new Date();
+                    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+   
+                    $('.employeddate').datepicker({
+                      onRender: function(date) {
+                        return date.valueOf() > now.valueOf() ? 'disabled' : '';
+                      }
+                    });
                   </script>
                 </div>
               </div>
