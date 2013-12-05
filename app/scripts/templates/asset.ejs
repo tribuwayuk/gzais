@@ -7,7 +7,7 @@
 <td><%= model.get('supplier') %></td>
 <td><%= model.get('status') %></td>
 <td>
-  <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit" class="btn btn-default btn-xs tool-tip edit-asset">
+  <button type="button" data-toggle="modal" data-target="#edit-modal" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip edit-asset" data-original-title="Edit">
     <span class="glyphicon glyphicon-edit"></span>
   </button>
   <button type="button" data-toggle="tooltip" data-placement="bottom" title="Assign" class="btn btn-default btn-xs tool-tip assign-asset">
@@ -15,3 +15,6 @@
   </button>
   <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip delete-asset">&nbsp;x&nbsp;</button>
 </td>
+<script>
+	$('.tool-tip').tooltip();
+</script>

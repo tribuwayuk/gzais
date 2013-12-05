@@ -15,6 +15,7 @@ define([
     tagName: 'tr',
 
     template: JST['app/scripts/templates/asset.ejs'],
+    editTemplate: JST['app/scripts/templates/asset-edit.ejs'],
 
     events: {
       'click .delete-asset': 'deleteAsset',
@@ -31,13 +32,16 @@ define([
 
     },
 
-    render: function() {
+    displayEditForm: function(e){
+      e.preventDefault();
       var self = this;
-      self.$el.html(self.template({
-        model: self.model
+      console.log(this);
+      $('#edit-modal').empty();
+      $('#edit-modal').append(self.editTemplate({
+        model: this.model
       }));
-      return self;
     },
+
 
     deleteAsset: function() {
       var self = this;
@@ -46,6 +50,14 @@ define([
         // delete model.
         return self.model.collection.remove(self.model);
       }
+    },
+
+    render: function() {
+      var self = this;
+      self.$el.html(self.template({
+        model: self.model
+      }));
+      return self;
     }
 
   });

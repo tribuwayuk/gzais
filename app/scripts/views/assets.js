@@ -16,6 +16,7 @@ define([
 
     events: {
       'submit form': 'newAsset',
+      'submit form#editForm': 'editAsset',
       'click btn-add': 'newAsset'
     },
 
