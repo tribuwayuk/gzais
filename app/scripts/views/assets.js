@@ -18,8 +18,7 @@ define([
     events: {
       'submit form': 'newAsset',
       'submit form#editForm': 'editAsset',
-      'click btn-add': 'newAsset',
-      'focusout .form-control': 'isValid'
+      'click btn-add': 'newAsset'
     },
 
     errorFields: [],
@@ -33,14 +32,14 @@ define([
         newAsset = {};
 
 
-      newAsset.asset_name = self.fieldValidation(form.asset_name, /^.{2,}$/);
-      newAsset.asset_type = self.fieldValidation(form.asset_type, /^.{2,}$/);
-      newAsset.date_purchased = self.fieldValidation(form.date_purchased, /^.{2,}$/);
+      newAsset.asset_name = self.fieldValidation(form.asset_name, /^[a-zA-Z0-9\.\-]{2,}$/);
+      newAsset.asset_type = self.fieldValidation(form.asset_type, /^[a-zA-Z0-9]{2,}$/);
+      newAsset.date_purchased = self.fieldValidation(form.date_purchased, /^[0-9]+\/+[0-9]+\/+[0-9]{4,}$/);
       newAsset.status = self.fieldValidation(form.status, /^(working|defective)$/);
-      newAsset.serial_number = self.fieldValidation(form.serial_number, /^.{5,}$/);
-      newAsset.supplier = self.fieldValidation(form.supplier, /^.{2,}$/);
-      newAsset.reason = form.reason.value;
-      newAsset.asset_description = self.fieldValidation(form.asset_description, /^.{2,}$/);
+      newAsset.serial_number = self.fieldValidation(form.serial_number, /^[a-zA-Z0-9-]{5,}$/);
+      newAsset.supplier = self.fieldValidation(form.supplier, /^[a-zA-Z0-9]{3,}$/);
+      newAsset.reason = self.fieldValidation(form.reason, /^[a-zA-Z0-9]{5,}$/);
+      newAsset.asset_description = self.fieldValidation(form.asset_description, /^[a-zA-Z]{5,}$/);
 
       if (self.errorFields.length === 0) {
         self.ajaxRequest(form, newAsset);
@@ -110,21 +109,6 @@ define([
         this.errorFields.push(field.id);
         return $(field).parent().addClass('has-error');
       }
-    },
-
-    isValid: function(ev) {
-      var id = '#' + ev.currentTarget.id;
-      var str = ev.currentTarget.value;
-      var iChars = "~`!#$%^&*+=-[]\\\';,/{}|\":<>?";
-
-      for (var i = 0; i < str.length; i++) {
-        if (iChars.indexOf(str.charAt(i)) != -1) {
-          alert("File name has special characters ~`!#$%^&*+=-[]\\\';,/{}|\":<>? \nThese are not allowed\n");
-          $(id).focus();
-          return false;
-        }
-      }
-      return true;
     }
 
   });
