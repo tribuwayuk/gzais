@@ -1,7 +1,6 @@
 /*global define*/
 
 define([
-
   'jquery',
   'underscore',
   'backbone',
@@ -15,13 +14,13 @@ define([
 
     template: JST['app/scripts/templates/assets.ejs'],
 
-    errorFields: [],
-
     events: {
       'submit form#add-form': 'newAsset',
       'submit form#edit-form': 'editAsset',
       'click btn-add': 'newAsset'
     },
+
+    errorFields: [],
 
     render: function() {
       var self = this;

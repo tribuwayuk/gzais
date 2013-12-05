@@ -1,6 +1,6 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <form role="form" id="editForm">
+    <form role="form" id="edit-form">
       <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	<h4 class="modal-title" id="myModalLabel">Edit Employee</h4>
@@ -28,8 +28,10 @@
 	  <div class="col-xs-6">
 	    <label for="status">Gender</label>
 	    <select class="gender-picker" id="gender" >
-	      <option>Male</option>
-	      <option>Female</option>
+		    <% var male = model.get('gender') === 'male' ? 'selected' : '' %>
+		    <% var female = model.get('gender') === 'female' ? 'selected' : '' %>
+	      <option value="male" <%= male %>>Male</option>
+	      <option value="female" <%= female %>>Female</option>
 	    </select>
 	    <script>
 	      $('.gender-picker').selectpicker();
@@ -37,7 +39,7 @@
 	  </div>
 	  <div class="col-xs-6">
 	    <label for="birthdate">Date of Birth</label>
-	    <input type="text" class="form-control birthdate" id="date_of_birth" value="<%= model.get('date_of_birth') %>">
+	    <input type="text" class="form-control birthdate" id="date_of_birth" value="<%= model.getDateOfBirth() %>">
 	    <script>
 	      var nowTemp = new Date();
         var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
@@ -54,9 +56,12 @@
 	  <div class="col-xs-6">
 	    <label for="status">User Role</label>
 	    <select class="role-picker" id="user_role">
-	      <option>Admin</option>
-	      <option>Custodian</option>
-	      <option>Employee</option>
+	    	<% var admin = model.get('user_role') === 'admin' ? 'selected' : '' %>
+	    	<% var custodian = model.get('user_role') === 'custodian' ? 'selected' : '' %>
+	    	<% var employee = model.get('user_role') === 'employee' ? 'selected' : '' %>
+	      <option value="admin" <%= admin %>>Admin</option>
+	      <option value="custodian" <%= custodian %>>Custodian</option>
+	      <option value="employee" <%= employee %>>Employee</option>
 	    </select>
 	    <script>
 	    $('.role-picker').selectpicker();
@@ -64,7 +69,7 @@
 	  </div>
 	  <div class="col-xs-6">
 	    <label for="employeddate">Date Employed</label>
-	    <input type="text" class="form-control employeddate" id="date_employed" value="<%= model.get('date_employed') %>">
+	    <input type="text" class="form-control employeddate" id="date_employed" value="<%= model.getDateEmployed() %>">
 	    <script>
 	    	var nowTemp = new Date();
         var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);

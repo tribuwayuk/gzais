@@ -1,11 +1,9 @@
 <td><%= model.get('assets').length %></td>
-<td><%= model.get('first_name') + ' ' + model.get('last_name') %></td>
-<% var dob = new Date(model.get('date_of_birth')) %>
-<td><%= dob.getMonth() + 1 + '/' + dob.getDate() + '/' + dob.getFullYear() %></td>
+<td><%= model.getFullName() %></td>
+<td><%= model.getDateOfBirth() %></td>
+<td><%= model.getDateEmployed() %></td>
 <td><%= model.get('email') %></td>
 <td><%= model.get('user_role') %></td>
-<% var de = new Date(model.get('date_employed')) %>
-<td><%= de.getMonth() + 1 + '/' + de.getDate() + '/' + de.getFullYear() %></td>
 <td>
   <button type="button" data-toggle="tooltip" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip view-details" data-original-title="View Details">
     <span class="glyphicon glyphicon-search"></span>
