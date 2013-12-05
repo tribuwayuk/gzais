@@ -31,15 +31,14 @@ define([
         form = e.currentTarget,
         newAsset = {};
 
-
-      newAsset.asset_name = self.fieldValidation(form.asset_name, /^.{2,}$/);
-      newAsset.asset_type = self.fieldValidation(form.asset_type, /^.{2,}$/);
-      newAsset.date_purchased = self.fieldValidation(form.date_purchased, /^.{2,}$/);
+      newAsset.asset_name = self.fieldValidation(form.asset_name, /^[\w\.\-\s]{1,30}$/);
+      newAsset.asset_type = self.fieldValidation(form.asset_type, /^[\w\.\-\s]{1,10}$/);
+      newAsset.date_purchased = self.fieldValidation(form.date_purchased, /^.{8,}$/);
       newAsset.status = self.fieldValidation(form.status, /^(working|defective)$/);
-      newAsset.serial_number = self.fieldValidation(form.serial_number, /^.{5,}$/);
-      newAsset.supplier = self.fieldValidation(form.supplier, /^.{2,}$/);
-      newAsset.reason = form.reason.value;
-      newAsset.asset_description = self.fieldValidation(form.asset_description, /^.{2,}$/);
+      newAsset.serial_number = self.fieldValidation(form.serial_number, /^[\w\s\-]{5,}$/);
+      newAsset.supplier = self.fieldValidation(form.supplier, /^[\w\s\-]{2,}$/);
+      newAsset.reason = self.fieldValidation(form.reason, /^[\w\s\-]{2,}$/);
+      newAsset.asset_description = self.fieldValidation(form.asset_description, /^[\w\.\-\s]{2,}$/);
 
       if (self.errorFields.length === 0) {
         self.ajaxRequest(form, newAsset);
