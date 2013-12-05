@@ -24,6 +24,7 @@ define([
       e.preventDefault();
       var self = this,
         form = e.currentTarget,
+        dateToday = new Date(),
         newEmployee = {};
 
 
@@ -33,8 +34,8 @@ define([
       newEmployee.address = self.fieldValidation(form.address, /^[a-zA-Z]{1,30}$/);
       newEmployee.email = self.fieldValidation(form.email, /^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/);
       newEmployee.gender = form.gender.value;
-      newEmployee.date_of_birth = self.fieldValidation(form.date_of_birth, /^.{2,}$/);
-      newEmployee.date_employed = self.fieldValidation(form.date_employed, /^.{2,}$/);
+      newEmployee.date_of_birth = self.validDate(form.date_of_birth, dateToday);
+      newEmployee.date_employed = self.validDate(form.date_employed, dateToday);
       newEmployee.user_role = form.user_role.value;
 
       if (self.errorFields.length === 0) {
@@ -87,7 +88,6 @@ define([
     },
 
     fieldValidation: function(field, regexp) {
-      $(field).removeClass('error');
       if (field.value.match(regexp) !== null) {
         $(field).parent().removeClass('has-error');
         return field.value;
@@ -96,6 +96,21 @@ define([
         this.errorFields.push(field.id);
         return $(field).parent().addClass('has-error');
       }
+    },
+
+    validDate: function(field, date) {
+      var myDate = new Date(field.value);
+			console.log(date);
+			console.log(myDate);
+
+			if (date > myDate) {
+				$(field).parent().removeClass('has-error');
+				return myDate;
+      } else {
+				this.errorFields.pop(field.id);
+				this.errorFields.push(field.id);
+				return $(field).parent().addClass('has-error');
+			}
     }
 
   });
