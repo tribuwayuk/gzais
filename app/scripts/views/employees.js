@@ -11,8 +11,6 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
     events: {
       'submit form#add-form': 'newEmployee',
       'submit form#edit-form': 'editEmployee',
-      'click .btn-default': 'reset',
-      'click btn-add': 'newEmployee'
     },
 
     render: function() {
