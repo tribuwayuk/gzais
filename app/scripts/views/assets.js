@@ -46,19 +46,19 @@ define([
 
       e.preventDefault();
 
-      var self = this,
-        form = e.currentTarget,
-        newAsset = {};
+      var self    = this,
+        form      = e.currentTarget,
+        newAsset  = {};
 
 
-      newAsset.asset_name = self.fieldValidation(form.asset_name, /^[a-zA-Z0-9\.\-\s]{2,15}$/);
-      newAsset.asset_type = self.fieldValidation(form.asset_type, /^[a-zA-Z0-9\s]{2,15}$/);
-      newAsset.date_purchased = self.fieldValidation(form.date_purchased, /^\d{2}\/\d{2}\/\d{4}$/);
-      newAsset.status = self.fieldValidation(form.status, /^(working|defective)$/);
-      newAsset.serial_number = self.fieldValidation(form.serial_number, /^[a-zA-Z0-9-\s]{5,20}$/);
-      newAsset.supplier = self.fieldValidation(form.supplier, /^[a-zA-Z0-9\s]{3,20}$/);
-      newAsset.reason = self.fieldValidation(form.reason, /^[a-zA-Z0-9\s]{5,50}$/);
-      newAsset.asset_description = self.fieldValidation(form.asset_description, /^[a-zA-Z0-9\s]{5,160}$/);
+      newAsset.asset_name         = self.fieldValidation(form.asset_name, /^[a-zA-Z0-9\.\-\s]{2,15}$/);
+      newAsset.asset_type         = self.fieldValidation(form.asset_type, /^[a-zA-Z0-9\s]{2,15}$/);
+      newAsset.date_purchased     = self.fieldValidation(form.date_purchased, /^\d{2}\/\d{2}\/\d{4}$/);
+      newAsset.status             = self.fieldValidation(form.status, /^(working|defective)$/);
+      newAsset.serial_number      = self.fieldValidation(form.serial_number, /^[a-zA-Z0-9-\s]{5,20}$/);
+      newAsset.supplier           = self.fieldValidation(form.supplier, /^[a-zA-Z0-9\s]{3,20}$/);
+      newAsset.reason             = self.fieldValidation(form.reason, /^[a-zA-Z0-9\s]{5,50}$/);
+      newAsset.asset_description  = self.fieldValidation(form.asset_description, /^[a-zA-Z0-9\s]{5,160}$/);
 
       if (self.errorFields.length === 0) {
         self.ajaxRequest(form, newAsset);
@@ -81,17 +81,17 @@ define([
 
     editAsset: function(e) {
       e.preventDefault();
-      var self = this,
-        form = e.currentTarget,
-        editAsset = {};
+      var self      = this,
+          form      = e.currentTarget,
+          editAsset = {};
 
-      editAsset.asset_name = form.asset_name.value;
-      editAsset.asset_type = form.asset_type.value;
-      editAsset.date_purchased = form.date_purchased.value;
-      editAsset.status = form.status.value;
-      editAsset.serial_number = form.serial_number.value;
-      editAsset.supplier = form.supplier.value;
-      editAsset.reason = form.reason.value;
+      editAsset.asset_name        = form.asset_name.value;
+      editAsset.asset_type        = form.asset_type.value;
+      editAsset.date_purchased    = form.date_purchased.value;
+      editAsset.status            = form.status.value;
+      editAsset.serial_number     = form.serial_number.value;
+      editAsset.supplier          = form.supplier.value;
+      editAsset.reason            = form.reason.value;
       editAsset.asset_description = form.asset_description.value;
       // to do: implement update collection.
 
