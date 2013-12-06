@@ -17,6 +17,7 @@ define([
     events: {
       'submit form#add-form': 'newAsset',
       'submit form#edit-form': 'editAsset',
+      'click .btn-default': 'reset',
       'click btn-add': 'newAsset'
     },
 
@@ -26,6 +27,13 @@ define([
       var self = this;
       self.$el.html(self.template({}));
       return self;
+    },
+
+    reset: function(){
+      var self = this;
+
+      self.render();
+      self.collection.fetch();
     },
 
     initialize: function() {
