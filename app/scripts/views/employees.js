@@ -9,10 +9,10 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
     template: JST['app/scripts/templates/employees.ejs'],
 
     events: {
-      'submit form#add-form'      : 'newEmployee',
-      'submit form#edit-form'     : 'editEmployee',
-      'hide.bs.modal #edit-modal' : 'resetForm',
-      'hide.bs.modal #add-modal'  : 'resetForm'
+      'submit form#add-form': 'newEmployee',
+      'submit form#edit-form': 'editEmployee',
+      'hide.bs.modal #edit-modal': 'resetForm',
+      'hide.bs.modal #add-modal': 'resetForm'
     },
 
     render: function() {
@@ -21,7 +21,7 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
       return self;
     },
 
-    resetForm: function(e){
+    resetForm: function(e) {
       var form = e.currentTarget.querySelector('form');
       form.reset();
       $(form).find('.has-error').removeClass('has-error');
@@ -38,20 +38,20 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
     newEmployee: function(e) {
 
       e.preventDefault();
-      var self = this,
-        form = e.currentTarget,
+      var self      = this,
+        form        = e.currentTarget,
         newEmployee = {};
 
-      newEmployee.first_name = self.fieldValidation(form.first_name, /^[a-zA-Z\s]{1,30}$/);
-      newEmployee.middle_name = self.fieldValidation(form.middle_name, /^[a-zA-Z]{1,30}$/);
-      newEmployee.last_name = self.fieldValidation(form.last_name, /^[a-zA-Z]{1,30}$/);
-      newEmployee.address = self.fieldValidation(form.address, /^.{2,60}$/);
-      newEmployee.email = self.fieldValidation(form.email, /^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/);
-      newEmployee.gender = form.gender.value;
+      newEmployee.first_name    = self.fieldValidation(form.first_name, /^[a-zA-Z\s]{1,30}$/);
+      newEmployee.middle_name   = self.fieldValidation(form.middle_name, /^[a-zA-Z]{1,30}$/);
+      newEmployee.last_name     = self.fieldValidation(form.last_name, /^[a-zA-Z]{1,30}$/);
+      newEmployee.address       = self.fieldValidation(form.address, /^.{2,60}$/);
+      newEmployee.email         = self.fieldValidation(form.email, /^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/);
+      newEmployee.gender        = form.gender.value;
       newEmployee.date_of_birth = self.fieldValidation(form.date_of_birth, /^\d{2}\/\d{2}\/\d{4}$/);
       newEmployee.date_employed = self.fieldValidation(form.date_employed, /^\d{2}\/\d{2}\/\d{4}$/);
-      newEmployee.user_role = form.user_role.value;
-      newEmployee.password = 'admin123';
+      newEmployee.user_role     = form.user_role.value;
+      newEmployee.password      = 'admin123';
 
       if (self.errorFields.length === 0) {
         if (confirm('Do you want to save employee entry?')) {
@@ -75,18 +75,18 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
 
     editEmployee: function(e) {
       e.preventDefault();
-      var self = this,
-        form = e.currentTarget,
-        editEmployee = {};
+      var self        = this,
+        form          = e.currentTarget,
+        editEmployee  = {};
 
-      editEmployee.first_name = form.first_name.value;
-      editEmployee.middle_name = form.middle_name.value;
-      editEmployee.last_name = form.last_name.value;
-      editEmployee.email = form.email.value;
-      editEmployee.gender = form.gender.value;
-      editEmployee.date_of_birth = form.date_of_birth.value;
-      editEmployee.date_employed = form.date_employed.value;
-      editEmployee.user_role = form.user_role.value;
+      editEmployee.first_name     = form.first_name.value;
+      editEmployee.middle_name    = form.middle_name.value;
+      editEmployee.last_name      = form.last_name.value;
+      editEmployee.email          = form.email.value;
+      editEmployee.gender         = form.gender.value;
+      editEmployee.date_of_birth  = form.date_of_birth.value;
+      editEmployee.date_employed  = form.date_employed.value;
+      editEmployee.user_role      = form.user_role.value;
 
 
       // to do: implement update collection.
