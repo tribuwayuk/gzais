@@ -15,8 +15,11 @@ define([
     template: JST['app/scripts/templates/assets.ejs'],
 
     events: {
-      'submit form#add-form': 'newAsset',
-      'submit form#edit-form': 'editAsset'
+      'submit form#add-form'      : 'newAsset',
+      'submit form#edit-form'     : 'editAsset',
+      'hide.bs.modal #edit-modal' : 'resetForm',
+      'hide.bs.modal #add-modal'  : 'resetForm'
+
     },
 
     errorFields: [],
@@ -27,11 +30,10 @@ define([
       return self;
     },
 
-    reset: function(){
-      var self = this;
-
-      self.render();
-      self.collection.fetch();
+    resetForm: function(e){
+      var form = e.currentTarget.querySelector('form');
+      form.reset();
+      $(form).find('.has-error').removeClass('has-error');
     },
 
     initialize: function() {
