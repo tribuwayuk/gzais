@@ -16,9 +16,7 @@ define([
 
     events: {
       'submit form#add-form': 'newAsset',
-      'submit form#edit-form': 'editAsset',
-      'click .btn-default': 'reset',
-      'click btn-add': 'newAsset'
+      'submit form#edit-form': 'editAsset'
     },
 
     errorFields: [],
