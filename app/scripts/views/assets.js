@@ -18,6 +18,7 @@ define([
             'submit form#add-form': 'newAsset',
             'submit form#edit-form': 'editAsset',
             'click btn-add': 'newAsset',
+            'click .btn-default': 'reset',
             'click button[type="button"]': 'refreshForm'
         },
 
@@ -46,6 +47,13 @@ define([
             $('#reason').parent().removeClass('has-error');
             $('#status').parent().removeClass('has-error');
             $('#date_purchased').parent().removeClass('has-error');
+        },
+
+        reset: function(){
+          var self = this;
+
+          self.render();
+          self.collection.fetch();
         },
 
         render: function() {
