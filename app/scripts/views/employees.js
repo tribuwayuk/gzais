@@ -9,8 +9,10 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
     template: JST['app/scripts/templates/employees.ejs'],
 
     events: {
-      'submit form#add-form': 'newEmployee',
-      'submit form#edit-form': 'editEmployee',
+      'submit form#add-form'      : 'newEmployee',
+      'submit form#edit-form'     : 'editEmployee',
+      'hide.bs.modal #edit-modal' : 'resetForm',
+      'hide.bs.modal #add-modal'  : 'resetForm'
     },
 
     render: function() {
@@ -19,11 +21,10 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
       return self;
     },
 
-    reset: function(){
-      var self = this;
-
-      self.render();
-      self.collection.fetch();
+    resetForm: function(e){
+      var form = e.currentTarget.querySelector('form');
+      form.reset();
+      $(form).find('.has-error').removeClass('has-error');
     },
 
     initialize: function() {
