@@ -11,6 +11,7 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
     events: {
       'submit form#add-form': 'newEmployee',
       'submit form#edit-form': 'editEmployee',
+      'click .btn-default': 'reset',
       'click btn-add': 'newEmployee'
     },
 
@@ -18,6 +19,13 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
       var self = this;
       self.$el.html(self.template());
       return self;
+    },
+
+    reset: function(){
+      var self = this;
+
+      self.render();
+      self.collection.fetch();
     },
 
     initialize: function() {
