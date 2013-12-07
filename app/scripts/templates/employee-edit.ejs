@@ -45,6 +45,7 @@
         var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
         $('.birthdate').datepicker({
+          autoclose: true,
           onRender: function(date) {
             return date.valueOf() > now.valueOf() ? 'disabled' : '';
           }
@@ -75,6 +76,7 @@
         var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
         $('.employeddate').datepicker({
+          autoclose: true,
           onRender: function(date) {
             return date.valueOf() > now.valueOf() ? 'disabled' : '';
           }
