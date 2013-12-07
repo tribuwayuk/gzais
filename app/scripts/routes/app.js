@@ -25,19 +25,12 @@ define([
       self.app = window.App || {};
     },
 
-    checkIfLoggedIn: function() {
-      if (!window.App.view.model.get('user')) {
-        // if not logged in then redirect to /
-        window.location = '/';
-        return false;
-      }
-
-    },
-
     mountSubView: function(name, SubView, Collection) {
 
-      this.checkIfLoggedIn();
-
+      if (!window.App.view.model.get('user')) {
+        // if user is logged in then redirect
+        return window.App.router.navigate(window.App.view.model.get('/'), {trigger: true});
+      }
       /**
       * Mount Sub View
       */
