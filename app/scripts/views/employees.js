@@ -11,8 +11,8 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
     events: {
       'submit form#add-form': 'newEmployee',
       'submit form#edit-form': 'editEmployee',
-      'hide.bs.modal #edit-modal': 'resetForm',
-      'hide.bs.modal #add-modal': 'resetForm'
+      'hidden.bs.modal #edit-modal': 'resetForm',
+      'hidden.bs.modal #add-modal': 'resetForm'
     },
 
     render: function() {

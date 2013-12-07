@@ -15,19 +15,18 @@ define([
     template: JST['app/scripts/templates/assets.ejs'],
 
     events: {
-      'hide.bs.modal #edit-modal' : 'resetForm',
-      'hide.bs.modal #add-modal'  : 'resetForm',
-      'submit  #add-form'  : 'newAsset'
+      'submit  #add-form'  : 'newAsset',
+      'submit  #edit-form'  : 'editAsset',
+      'hidden.bs.modal #edit-modal' : 'resetForm',
+      'hidden.bs.modal #add-modal'  : 'resetForm'
     },
 
     errorFields: [],
 
     render: function() {
-
       var self = this;
       self.$el.html(self.template());
       return self;
-
     },
 
     resetForm: function(e){
