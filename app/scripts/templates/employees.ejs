@@ -65,7 +65,7 @@
                   <script>
                   var nowTemp = new Date();
                   var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 
+
                   $('.birthdate').datepicker({
                     onRender: function(date) {
                       return date.valueOf() > now.valueOf() ? 'disabled' : '';
@@ -92,7 +92,7 @@
                   <script>
                     var nowTemp = new Date();
                     var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-   
+
                     $('.employeddate').datepicker({
                       onRender: function(date) {
                         return date.valueOf() > now.valueOf() ? 'disabled' : '';
@@ -121,6 +121,9 @@
     </div>
     <!-- /.modal -->
   </div>
+</div>
+
+<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 </div>
 
 <!-- Reset Modal -->

@@ -34,7 +34,7 @@ define([
           return self.remove();
         };
         options.error = function() {
-          console.log('error');
+          console.error('error');
         };
 
         self.model.collection.sync('delete', self.model, options);
@@ -42,15 +42,25 @@ define([
     },
 
     displayEditForm: function(e) {
+
       e.preventDefault();
       var self = this;
-      console.log(this);
       $('#edit-modal').empty();
       $('#edit-modal').append(self.editTemplate({
         model: this.model
       }));
+
+      // now let's bind to form's submit event
+      $('#edit-modal form').submit(self.saveChanges);
+
     },
 
+    saveChanges: function(e) {
+
+      e.preventDefault();
+      console.log(e.currentTarget);
+
+    },
 
     deleteAsset: function() {
       var self  = this,

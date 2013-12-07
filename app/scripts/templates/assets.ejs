@@ -48,7 +48,7 @@
                   <script>
                     var nowTemp = new Date();
                     var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-   
+
                     $('.date-purchased').datepicker({
                       onRender: function(date) {
                         return date.valueOf() > now.valueOf() ? 'disabled' : '';
@@ -99,17 +99,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <!-- <div class="modal-dialog">
-    <div class="modal-content"> -->
-  <!-- FORM -->
 
-  <!-- FORM END -->
-  <!-- </div> -->
-  <!-- /.modal-content -->
-  <!-- </div> -->
-  <!-- /.modal-dialog -->
-</div>
 <hr>
 <table class="table table-striped">
   <thead>
@@ -128,3 +118,5 @@
 <script>
 $('.tool-tip').tooltip();
 </script>
+<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
