@@ -72,10 +72,10 @@ require([
   // Init AppView
   app.view = new AppView({
     model: new AppModel({
-      baseUrl: '/assets'
+      baseUrl: '/assets',
+      user: JSON.parse(window.localStorage.getItem('user')) || undefined
     })
   });
-
 
   /**
    * An awesome way to handle click events with pushState

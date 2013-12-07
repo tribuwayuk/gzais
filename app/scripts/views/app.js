@@ -149,9 +149,12 @@ define([
       if (emailField.value === 'admin@admin.com' && passwordField.value === 'admin123') {
 
         self.model.set('user', {
-          email: emailField,
-          password: passwordField
+          email: emailField.value,
+          password: passwordField.value
         });
+
+        var user = self.model.get('user');
+        window.localStorage.setItem('user', JSON.stringify(user));
 
       }
 
@@ -159,10 +162,11 @@ define([
 
     doLogOut: function(e) {
       e.preventDefault();
-      // let's check if it's currently logged in
+
       if (this.model.get('user')) {
         this.model.set('user', null);
-        window.location = '/';
+        window.localStorage.removeItem('user');
+        window.App.router.navigate('/', {trigger: true});
       }
 
     }
