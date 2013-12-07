@@ -76,12 +76,16 @@ define([
 
     renderCurrentContent: function() {
 
-      var self = this;
-      var contentSectionDiv = self.model.get('contentSectionDiv');
-      // let's render
+      var self = this,
+          currentContent = self.model.get('currentContent'),
+          contentSectionDiv = self.model.get('contentSectionDiv');
+
+      // re-delegate events on the current view
+      currentContent.delegateEvents();
+
       $(contentSectionDiv)
-        .hide()
-        .html(self.model.get('currentContent').render().el).fadeIn(400);
+      .empty()
+      .html(currentContent.render().el).fadeIn(400);
 
       // handle .main-nav tabs
       self.handleMainNav();

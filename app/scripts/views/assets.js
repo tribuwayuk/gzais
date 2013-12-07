@@ -15,19 +15,19 @@ define([
     template: JST['app/scripts/templates/assets.ejs'],
 
     events: {
-      'submit form#add-form'      : 'newAsset',
-      'submit form#edit-form'     : 'editAsset',
       'hide.bs.modal #edit-modal' : 'resetForm',
-      'hide.bs.modal #add-modal'  : 'resetForm'
-
+      'hide.bs.modal #add-modal'  : 'resetForm',
+      'submit  #add-form'  : 'newAsset'
     },
 
     errorFields: [],
 
     render: function() {
+
       var self = this;
-      self.$el.html(self.template({}));
+      self.$el.html(self.template());
       return self;
+
     },
 
     resetForm: function(e){
@@ -46,9 +46,9 @@ define([
 
       e.preventDefault();
 
-      var self    = this,
-        form      = e.currentTarget,
-        newAsset  = {};
+      var self      = this,
+          form      = e.currentTarget,
+          newAsset  = {};
 
 
       newAsset.asset_name         = self.fieldValidation(form.asset_name, /^[a-zA-Z0-9\.\-\s]{2,15}$/);
