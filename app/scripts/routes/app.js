@@ -27,7 +27,7 @@ define([
       self.app = window.App || {};
     },
 
-    mountSubView: function(name, SubView, Collection) {
+    mountSubView: function(name, subView) {
 
       if (!window.App.view.model.get('user')) {
         // if user is logged in then redirect
@@ -37,11 +37,12 @@ define([
       /**
       * Mount Sub View
       */
-      var appSubViews       = window.App.view.subViews,
-          subView           = Collection === undefined ? SubView : new SubView({collection: new Collection()});
+      var appSubViews       = window.App.view.subViews;
           appSubViews[name] = appSubViews[name] ? appSubViews[name] : subView;
 
       window.App.view.model.set('currentContent', appSubViews[name]);
+
+      return subView;
 
     },
 
@@ -59,17 +60,16 @@ define([
     },
 
     assets: function() {
-      this.mountSubView('assetsView', AssetsView, AssetsCollection);
+      this.mountSubView('assetsView', new AssetsView({collection: new AssetsCollection()}));
     },
 
     assetDetails: function(id) {
-      console.log(window.App.view.model);
       var model = window.App.view.model.get('currentContent').collection.get(id);
-      this.mountSubView('assetDetailsView', new AssetDetailsView({model: model}));
+      this.mountSubView(id, new AssetDetailsView({model: model}));
     },
 
     employees: function() {
-      this.mountSubView('employeesView', EmployeesView, EmployeesCollection);
+      this.mountSubView('employeesView', new EmployeesView({collection: new EmployeesCollection()}));
     },
 
     inventoryReports: function() {

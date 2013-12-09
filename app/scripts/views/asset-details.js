@@ -14,7 +14,7 @@ define([
 
         className: 'asset-details',
 
-        render: function() {
+        render: function(model) {
           var self = this;
           self.$el.html(self.template({model: self.model}));
           return self;
