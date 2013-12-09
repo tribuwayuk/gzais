@@ -53,6 +53,9 @@ define([
         return window.App.router.navigate(window.App.view.model.get('baseUrl'), {trigger: true});
       }
 
+      // reset SubViews
+      window.App.view.subViews = {};
+
     },
 
     assets: function() {
