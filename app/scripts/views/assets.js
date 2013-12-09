@@ -16,7 +16,6 @@ define([
 
     events: {
       'submit  #add-form'  : 'newAsset',
-      'submit  #edit-form'  : 'editAsset',
       'hidden.bs.modal #edit-modal' : 'resetForm',
       'hidden.bs.modal #add-modal'  : 'resetForm'
     },
@@ -76,24 +75,6 @@ define([
           $('#add-modal').modal('hide');
         }
       });
-    },
-
-    editAsset: function(e) {
-      e.preventDefault();
-      var self      = this,
-          form      = e.currentTarget,
-          editAsset = {};
-
-      editAsset.asset_name        = form.asset_name.value;
-      editAsset.asset_type        = form.asset_type.value;
-      editAsset.date_purchased    = form.date_purchased.value;
-      editAsset.status            = form.status.value;
-      editAsset.serial_number     = form.serial_number.value;
-      editAsset.supplier          = form.supplier.value;
-      editAsset.reason            = form.reason.value;
-      editAsset.asset_description = form.asset_description.value;
-      // to do: implement update collection.
-
     },
 
     onAdd: function(model) {
