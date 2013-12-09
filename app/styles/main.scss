@@ -187,3 +187,14 @@ $navbar-bg: #cef274;
     display: none;
   }
 }
+
+.asset-entry, .employee-entry {
+  .btn {
+    border-bottom: 1px solid #333;
+  }
+  &:hover {
+    td {
+      background-color: #def79e !important;
+    }
+  }
+}
