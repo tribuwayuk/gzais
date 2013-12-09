@@ -47,6 +47,7 @@ require.config({
     EmployeeModel: 'models/employee',
     AssetsView: 'views/assets',
     AssetView: 'views/asset',
+    AssetDetailsView: 'views/asset-details',
     AssetModel: 'models/asset',
     AssetsCollection: 'collections/assets',
     InventoryReportsView: 'views/inventory-reports'

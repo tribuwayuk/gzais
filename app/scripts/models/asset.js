@@ -9,6 +9,8 @@ define([
 
     defaults: {},
 
+    idAttribute: '_id',
+
     getDatePurchased: function() {
 
       var date   = new Date(this.get('date_purchased')),

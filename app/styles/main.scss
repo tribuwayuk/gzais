@@ -148,19 +148,6 @@ $navbar-bg: #cef274;
     }
 }
 
-.employee-entry, .asset-entry {
-  button {
-    visibility: hidden;
-  }
-  &:hover {
-    & > td {
-      background-color: #eeffc4 !important;
-    }
-    button {
-      visibility: visible;
-    }
-  }
-}
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
     background-color: transparent;

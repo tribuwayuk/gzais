@@ -88,7 +88,6 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
       editEmployee.date_employed  = form.date_employed.value;
       editEmployee.user_role      = form.user_role.value;
 
-
       // to do: implement update collection.
     },
 

@@ -28,7 +28,7 @@ define([
       // Proper way to handle deletion through events
       self.listenTo(self.model, 'remove', function(index) {
         var options = options || {};
-        options.url = self.model.url() + '/' + self.model.get('_id');
+        options.url = self.model.url();
 
         options.success = function() {
           return self.remove();
@@ -49,24 +49,19 @@ define([
       $('#edit-modal').append(self.editTemplate({
         model: this.model
       }));
-
       // now let's bind to form's submit event
       $('#edit-modal form').submit(self.saveChanges);
 
     },
 
     saveChanges: function(e) {
-
       e.preventDefault();
-      console.log(e.currentTarget);
-
     },
 
     deleteAsset: function() {
       var self  = this,
         bootbox = window.bootbox;
 
-      // for implementation to delete data from db.
       bootbox.dialog({
         message: 'Are you sure you want to delete ' + self.model.get('asset_name') + ' ?',
         title: "Confirm Deletion",

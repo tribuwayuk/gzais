@@ -18,8 +18,8 @@ define([
     editTemplate: JST['app/scripts/templates/employee-edit.ejs'],
 
     events: {
-      'click .delete-employee': 'deleteEmployee',
-      'click .edit-employee': 'displayEditForm'
+      'click .delete-employee' : 'deleteEmployee',
+      'click .edit-employee'   : 'displayEditForm'
     },
 
     initialize: function() {
@@ -76,7 +76,7 @@ define([
         }
       });
     },
-    
+
     render: function() {
       var self = this;
       self.$el.html(self.template({
