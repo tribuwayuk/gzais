@@ -12,6 +12,8 @@ define([
 
         template: JST['app/scripts/templates/asset-details.ejs'],
 
+        className: 'asset-details',
+
         render: function() {
           var self = this;
           self.$el.html(self.template({model: self.model}));

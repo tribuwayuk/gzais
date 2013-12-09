@@ -84,8 +84,9 @@ define([
       currentContent.delegateEvents();
 
       $(contentSectionDiv)
+      .hide()
       .empty()
-      .html(currentContent.render().el).fadeIn(400);
+      .html(currentContent.render().el).fadeIn("slow");
 
       // handle .main-nav tabs
       self.handleMainNav();
@@ -98,17 +99,18 @@ define([
       $('.main-nav > li.active').removeClass('active');
 
       // check pathname
-      switch (Backbone.history.location.pathname) {
-        case "/assets":
-          $('.main-nav > li.assets').addClass('active');
-          break;
-        case "/employees":
-          $('.main-nav > li.employees').addClass('active');
-          break;
-        case "/inventory-reports":
-          $('.main-nav > li.reports').addClass('active');
-          break;
+      var pathName = Backbone.history.location.pathname;
 
+      if (pathName.match(/^\/assets/)) {
+        return $('.main-nav > li.assets').addClass('active');
+      }
+
+      if (pathName.match(/^\/employees/)) {
+        return $('.main-nav > li.employees').addClass('active');
+      }
+
+      if (pathName.match(/^\/inventory-reports/)) {
+        return $('.main-nav > li.reports').addClass('active');
       }
 
     },
