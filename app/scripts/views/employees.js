@@ -63,12 +63,28 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
 
     ajaxRequestSave: function(form, data) {
       var self = this;
+
+      $('input, button').prop('disabled', true);
+      $('.btns').addClass('loading');
+
       $.post(self.collection.url, data).done(function(result) {
-        if (!result.errors) {
+	if (result._id) {
           self.collection.add(result);
           form.reset();
-          $('#add-modal').modal('hide');
+	  return $('#add-modal').modal('hide');
+	}
+	if (result.err && result.err.match(/email/)) {
+	  $(form.email).parent().addClass('has-error error');
         }
+	if (result.errors) {
+	  Object.keys(result.errors).forEach(function(key){
+	    $(form[key]).addClass('hass-error');
+	  });
+	}
+
+	$('input, button').prop('disabled', false);
+	$('.btns').removeClass('loading');
+
       });
     },
 

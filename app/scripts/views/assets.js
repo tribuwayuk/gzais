@@ -69,10 +69,17 @@ define([
     ajaxRequest: function(form, data) {
       var self = this;
       $.post(self.collection.url, data).done(function(result) {
-        if (!result.errors) {
+	if (result._id) {
+
           self.collection.add(result);
           form.reset();
-          $('#add-modal').modal('hide');
+	  return $('#add-modal').modal('hide');
+
+	}
+	if (result.errors) {
+	  Object.keys(result.errors).forEach(function(key){
+	    $(form[key]).addClass('hass-error');
+	  });
         }
       });
     },
