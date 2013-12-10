@@ -57,14 +57,15 @@ define([
           var form        = e.currentTarget,
             editEmployee  = self.model;
           
-          editEmployee.set({'first_name':form.first_name.value});
-          editEmployee.set({'middle_name':form.middle_name.value});
-          editEmployee.set({'last_name':form.last_name.value});
-          editEmployee.set({'email':form.email.value});
-          editEmployee.set({'gender':form.gender.value});
-          editEmployee.set({'date_of_birth':form.date_of_birth.value});
-          editEmployee.set({'date_employed':form.date_employed.value});
-          editEmployee.set({'user_role':form.user_role.value});
+          editEmployee.set({'first_name'    : self.fieldValidation(form.first_name.value    , /^[a-zA-Z\s]{1,30}$/)                        });
+          editEmployee.set({'middle_name'   : self.fieldValidation(form.middle_name.value   , /^[a-zA-Z]{1,30}$/)                          });
+          editEmployee.set({'last_name'     : self.fieldValidation(form.last_name.value     , /^[a-zA-Z]{1,30}$/)                          });
+          editEmployee.set({'address'       : self.fieldValidation(form.address.value       , /^.{2,60}$/)                                 });
+          editEmployee.set({'email'         : self.fieldValidation(form.email.value         , /^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/) });
+          editEmployee.set({'gender'        : self.fieldValidation(form.gender.value        , /^(male|female)$/)                           });
+          editEmployee.set({'date_of_birth' : self.fieldValidation(form.date_of_birth.value , /^\d{2}\/\d{2}\/\d{4}$/)                     });
+          editEmployee.set({'date_employed' : self.fieldValidation(form.date_employed.value , /^\d{2}\/\d{2}\/\d{4}$/)                     });
+          editEmployee.set({'user_role'     : self.fieldValidation(form.user_role.value     , /^(admin|custodian|employee)$/)              });
 
           if (self.errorFields.length === 0) {
               self.updateEmployee(editEmployee);
