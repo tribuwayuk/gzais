@@ -10,7 +10,6 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
 
     events: {
       'submit form#add-form': 'newEmployee',
-      'submit form#edit-form': 'editEmployee',
       'hidden.bs.modal #edit-modal': 'resetForm',
       'hidden.bs.modal #add-modal': 'resetForm'
     },
@@ -54,8 +53,9 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
       newEmployee.password = 'admin123';
 
       if (self.errorFields.length === 0) {
+        if (confirm('Do you want to save employee entry?')) {
           self.ajaxRequestSave(form, newEmployee);
-        
+        }
       } else {
         self.errorFields = [];
       }
@@ -63,47 +63,13 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
 
     ajaxRequestSave: function(form, data) {
       var self = this;
-
-      $('input, button').prop('disabled', true);
-      $('.btns').addClass('loading');
-
       $.post(self.collection.url, data).done(function(result) {
-	if (result._id) {
+        if (!result.errors) {
           self.collection.add(result);
           form.reset();
-	  return $('#add-modal').modal('hide');
-	}
-	if (result.err && result.err.match(/email/)) {
-	  $(form.email).parent().addClass('has-error error');
+          $('#add-modal').modal('hide');
         }
-	if (result.errors) {
-	  Object.keys(result.errors).forEach(function(key){
-	    $(form[key]).addClass('hass-error');
-	  });
-	}
-
-	$('input, button').prop('disabled', false);
-	$('.btns').removeClass('loading');
-
       });
-    },
-
-    editEmployee: function(e) {
-      e.preventDefault();
-      var self        = this,
-        form          = e.currentTarget,
-        editEmployee  = {};
-
-      editEmployee.first_name     = form.first_name.value;
-      editEmployee.middle_name    = form.middle_name.value;
-      editEmployee.last_name      = form.last_name.value;
-      editEmployee.email          = form.email.value;
-      editEmployee.gender         = form.gender.value;
-      editEmployee.date_of_birth  = form.date_of_birth.value;
-      editEmployee.date_employed  = form.date_employed.value;
-      editEmployee.user_role      = form.user_role.value;
-
-      // to do: implement update collection.
     },
 
     onAdd: function(model) {

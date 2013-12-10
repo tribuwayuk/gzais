@@ -14,6 +14,8 @@ define([
 
     tagName: 'tr',
 
+    errorFields : [],
+
     template: JST['app/scripts/templates/employee.ejs'],
     editTemplate: JST['app/scripts/templates/employee-edit.ejs'],
 
@@ -24,6 +26,8 @@ define([
 
     initialize: function() {
       var self = this;
+
+      self.listenTo(self.model, 'change', self.render);
       // Proper way to handle deletion through events
       self.listenTo(self.model, 'remove', function(index) {
         var options = options || {};
@@ -47,6 +51,44 @@ define([
       $('#edit-modal').append(self.editTemplate({
         model: this.model
       }));
+
+      $('#edit-form').submit(function (e) {
+        e.preventDefault();
+          var form        = e.currentTarget,
+            editEmployee  = self.model;
+          
+          editEmployee.set({'first_name':form.first_name.value});
+          editEmployee.set({'middle_name':form.middle_name.value});
+          editEmployee.set({'last_name':form.last_name.value});
+          editEmployee.set({'email':form.email.value});
+          editEmployee.set({'gender':form.gender.value});
+          editEmployee.set({'date_of_birth':form.date_of_birth.value});
+          editEmployee.set({'date_employed':form.date_employed.value});
+          editEmployee.set({'user_role':form.user_role.value});
+
+          if (self.errorFields.length === 0) {
+              self.updateEmployee(editEmployee);
+          } else {
+            self.errorFields = [];
+          }
+      });
+    },
+
+    updateEmployee: function(employee) {         
+      var self = this;
+      var id = self.model.get('_id');
+      
+      employee.unset('_id');
+
+      employee.save({_id:id},{
+        url: self.model.url() + '/' + id,
+        method: 'put',
+        wait: true,
+        success: function () {
+          $('#edit-modal').modal('hide');
+        }
+
+      });
     },
 
     deleteEmployee: function() {
