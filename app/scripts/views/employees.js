@@ -53,22 +53,40 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
       newEmployee.password = 'admin123';
 
       if (self.errorFields.length === 0) {
-        if (confirm('Do you want to save employee entry?')) {
-          self.ajaxRequestSave(form, newEmployee);
-        }
+        self.ajaxRequestSave(form, newEmployee);
       } else {
         self.errorFields = [];
       }
     },
 
     ajaxRequestSave: function(form, data) {
+
       var self = this;
+
+      $('.has-error').removeClass('has-error');
+      $('error').removeClass('error');
+      $('input, button, option').prop('disabled', true);
+      $('.btns').addClass('loading');
+
       $.post(self.collection.url, data).done(function(result) {
-        if (!result.errors) {
+
+        $('input, button, option').prop('disabled', false);
+        $('.btns').removeClass('loading');
+
+        if (result._id) {
+
           self.collection.add(result);
           form.reset();
-          $('#add-modal').modal('hide');
+          return $('#add-modal').modal('hide');
+
         }
+
+        if (result.err && result.err.match(/email/)) {
+
+          return $(form['email']).parent().addClass('has-error error');
+
+        }
+
       });
     },
 
