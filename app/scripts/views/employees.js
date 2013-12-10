@@ -54,9 +54,8 @@ define(['jquery', 'underscore', 'backbone', 'templates', 'EmployeeView'], functi
       newEmployee.password = 'admin123';
 
       if (self.errorFields.length === 0) {
-        if (confirm('Do you want to save employee entry?')) {
           self.ajaxRequestSave(form, newEmployee);
-        }
+        
       } else {
         self.errorFields = [];
       }
