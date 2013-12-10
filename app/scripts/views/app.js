@@ -97,6 +97,8 @@ define([
 
       // removed currently active li element
       $('.main-nav > li.active').removeClass('active');
+      $('.modal-backdrop').remove();
+      $('.datepicker').remove();
 
       // check pathname
       var pathName = Backbone.history.location.pathname;
