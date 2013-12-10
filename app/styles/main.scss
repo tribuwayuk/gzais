@@ -177,7 +177,7 @@ $navbar-bg: #cef274;
 .btns {
   &.loading {
     .btn-add.btn-load {
-      display: block;
+      display: inline;
     }
     .btn-add {
       display: none;
@@ -203,4 +203,15 @@ $navbar-bg: #cef274;
   small {
     color: #aaa;
   }
+}
+
+label span.email-error {
+  display: none;
+  color: red;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.error span.email-error {
+  display: inline;
 }
