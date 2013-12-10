@@ -51,9 +51,10 @@
 
                     $('.date-purchased').datepicker({
                       autoclose: true,
-                      onRender: function(date) {
-                        return date.valueOf() > now.valueOf() ? 'disabled' : '';
-                      }
+                      endDate: new Date
+                      // onRender: function(date) {
+                      //   return date.valueOf() > now.valueOf() ? 'disabled' : '';
+                      // }
                     });
                   </script>
                 </div>
