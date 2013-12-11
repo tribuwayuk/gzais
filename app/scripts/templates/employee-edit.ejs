@@ -9,25 +9,25 @@
 	<div class="form-group row">
 	  <div class="col-xs-4">
 	    <label for="first_name">First Name</label>
-	    <input type="text" class="form-control" id="first_name" value="<%= model.get('first_name') %>" required>
+	    <input type="text" class="form-control" id="first_name" value="<%= model.get('first_name') %>">
 	  </div>
 	  <div class="col-xs-4">
 	    <label for="middle_name">Middle Name</label>
-	    <input type="text" class="form-control" id="middle_name" value="<%= model.get('middle_name') %>" required>
+	    <input type="text" class="form-control" id="middle_name" value="<%= model.get('middle_name') %>">
 	  </div>
 	  <div class="col-xs-4">
 	    <label for="last_name">Last Name</label>
-	    <input type="text" class="form-control" id="last_name" value="<%= model.get('last_name') %>" required>
+	    <input type="text" class="form-control" id="last_name" value="<%= model.get('last_name') %>">
 	  </div>
 	</div>
 	<div class="form-group">
 	  <label for="description">Address</label>
-	  <input type="text" class="form-control" id="address" value="<%= model.get('address') %>" required>
+	  <input type="text" class="form-control" id="address" value="<%= model.get('address') %>">
 	</div>
 	<div class="form-group row">
 	  <div class="col-xs-6">
 	    <label for="status">Gender</label>
-	    <select class="gender-picker" id="gender" required>
+	    <select class="gender-picker" id="gender">
 		    <% var male = model.get('gender') === 'male' ? 'selected' : '' %>
 		    <% var female = model.get('gender') === 'female' ? 'selected' : '' %>
 	      <option value="male" <%= male %>>Male</option>
@@ -39,7 +39,7 @@
 	  </div>
 	  <div class="col-xs-6">
 	    <label for="birthdate">Date of Birth</label>
-	    <input type="text" class="form-control birthdate" id="date_of_birth" value="<%= model.getDateOfBirth() %>" required>
+	    <input type="text" class="form-control birthdate" id="date_of_birth" value="<%= model.getDateOfBirth() %>">
 	    <script>
 	      var nowTemp = new Date();
         var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
@@ -56,7 +56,7 @@
 	<div class="form-group row">
 	  <div class="col-xs-6">
 	    <label for="status">User Role</label>
-	    <select class="role-picker" id="user_role" required>
+	    <select class="role-picker" id="user_role">
 	    	<% var admin = model.get('user_role') === 'admin' ? 'selected' : '' %>
 	    	<% var custodian = model.get('user_role') === 'custodian' ? 'selected' : '' %>
 	    	<% var employee = model.get('user_role') === 'employee' ? 'selected' : '' %>
@@ -70,7 +70,7 @@
 	  </div>
 	  <div class="col-xs-6">
 	    <label for="employeddate">Date Employed</label>
-	    <input type="text" class="form-control employeddate" id="date_employed" value="<%= model.getDateEmployed() %>" required>
+	    <input type="text" class="form-control employeddate" id="date_employed" value="<%= model.getDateEmployed() %>">
 	    <script>
 	    	var nowTemp = new Date();
         var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
@@ -86,7 +86,7 @@
 	</div>
 	<div class="form-group">
 	  <label for="email">Email Address</label>
-	  <input type="email" class="form-control" id="email" placeholder="name@globalzeal.net" value="<%= model.get('email') %>" required>
+	  <input type="email" class="form-control" id="email" placeholder="name@globalzeal.net" value="<%= model.get('email') %>">
 	</div>
       </div>
       <div class="modal-footer">
