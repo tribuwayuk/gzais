@@ -5,9 +5,9 @@
 <td><%= model.get('email') %></td>
 <td><%= model.get('user_role') %></td>
 <td style="text-align:center">
-  <button type="button" data-toggle="tooltip" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip view-details" data-original-title="View Details">
+  <a href="/employees/<%= model.get('_id') %>" data-toggle="tooltip" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip view-details" data-original-title="View Details">
     <span class="glyphicon glyphicon-search"></span>
-  </button>
+  </a>
   <button type="button" data-toggle="modal" data-target="#edit-modal" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip edit-employee" data-original-title="Edit">
     <span class="glyphicon glyphicon-edit"></span>
   </button>

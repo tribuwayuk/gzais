@@ -7,9 +7,10 @@ define([
   'AssetsView',
   'InventoryReportsView',
   'EmployeesCollection',
+	'EmployeeDetailsView',
   'AssetsCollection',
   'AssetDetailsView'
-], function($, Backbone, EmployeesView, AssetsView, InventoryReportsView, EmployeesCollection, AssetsCollection, AssetDetailsView) {
+], function($, Backbone, EmployeesView, AssetsView, InventoryReportsView, EmployeesCollection, EmployeeDetailsView, AssetsCollection, AssetDetailsView) {
   'use strict';
 
   var MainRouter = Backbone.Router.extend({
@@ -19,6 +20,7 @@ define([
       'assets': 'assets',
       'assets/:id': 'assetDetails',
       'employees': 'employees',
+			'employees/:id': 'employeeDetails',
       'inventory-reports': 'inventoryReports'
     },
 
@@ -49,7 +51,7 @@ define([
     home: function() {
 
       var self = this;
-      if (window.App.view.model.get('user')) {
+      if (!window.App.view.model.get('user')) {
         // if user is logged in then redirect
         return window.App.router.navigate(window.App.view.model.get('baseUrl'), {trigger: true});
       }
@@ -63,7 +65,7 @@ define([
       this.mountSubView('assetsView', new AssetsView({collection: new AssetsCollection()}));
     },
 
-    assetDetails: function(id) {
+    assetDetails: function(id) {      
       var model = window.App.view.model.get('currentContent').collection.get(id);
       this.mountSubView(id, new AssetDetailsView({model: model}));
     },
@@ -71,6 +73,11 @@ define([
     employees: function() {
       this.mountSubView('employeesView', new EmployeesView({collection: new EmployeesCollection()}));
     },
+
+		employeeDetails: function(id) {
+      var model = window.App.view.model.get('currentContent').collection.get(id);
+      this.mountSubView(id, new  EmployeeDetailsView({model: model}));
+		},
 
     inventoryReports: function() {
       this.mountSubView('inventoryReportsView', new InventoryReportsView());

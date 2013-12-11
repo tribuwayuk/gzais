@@ -27,7 +27,7 @@ require.config({
     },
     bootbox: {
       deps: ['jquery', 'bootstrap'],
-      exports: 'bootbo'
+      exports: 'bootbox'
     }
   },
   paths: {
@@ -44,6 +44,7 @@ require.config({
     EmployeesView: 'views/employees',
     EmployeesCollection: 'collections/employees',
     EmployeeView: 'views/employee',
+    EmployeeDetailsView: 'views/employee-details',
     EmployeeModel: 'models/employee',
     AssetsView: 'views/assets',
     AssetView: 'views/asset',
