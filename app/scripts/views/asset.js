@@ -58,14 +58,25 @@ define([
             $('#edit-form').submit(function(e) {
                 e.preventDefault();
 
-                var asset_name = self.fieldValidation(e.currentTarget.asset_name, /^[a-zA-Z0-9\.\-\,\'\s]{2,15}$/g);
-                var asset_type = self.fieldValidation(e.currentTarget.asset_type, /^[a-zA-Z0-9\.\-\,\'\s]{2,15}$/);
-                var asset_description = e.currentTarget.asset_description.value;
-                var date_purchased = e.currentTarget.date_purchased.value;
-                var status = e.currentTarget.status.value;
-                var serial_number = self.fieldValidation(e.currentTarget.serial_number, /^[a-zA-Z0-9\.\-\,\'\s]{2,15}$/);
-                var supplier = self.fieldValidation(e.currentTarget.supplier, /^[a-zA-Z0-9\.\-\,\'\s]{2,15}$/);
-                var reason = e.currentTarget.reason.value;
+                /*
+        newAsset.asset_name         = self.fieldValidation(form.asset_name, /^[a-zA-Z0-9\.\-\,\''\s]{5,30}$/);
+      newAsset.asset_type         = self.fieldValidation(form.asset_type, /^[a-zA-Z0-9\s]{5,30}$/);
+      newAsset.date_purchased     = self.fieldValidation(form.date_purchased, /^\d{2}\/\d{2}\/\d{4}$/);
+      newAsset.status             = self.fieldValidation(form.status, /^(working|defective)$/);
+      newAsset.serial_number      = self.fieldValidation(form.serial_number, /^[a-zA-Z0-9-\s]{5,30}$/);
+      newAsset.supplier           = self.fieldValidation(form.supplier, /^[a-zA-Z0-9\s]{5,160}$/);
+      newAsset.reason             = self.fieldValidation(form.reason, /^.{20,160}$/);
+      newAsset.asset_description  = self.fieldValidation(form.asset_description, /^.{5,160}$/);
+                */
+
+                var asset_name = self.fieldValidation(e.currentTarget.asset_name, /^[a-zA-Z\.\-\,\''\s]{5,30}$/);
+                var asset_type = self.fieldValidation(e.currentTarget.asset_type, /^[a-zA-Z\s]{5,30}$/);
+                var asset_description = self.fieldValidation(e.currentTarget.asset_description, /^.{5,160}$/);
+                var date_purchased = self.fieldValidation(e.currentTarget.date_purchased, /^\d{2}\/\d{2}\/\d{4}$/);
+                var status = self.fieldValidation(e.currentTarget.status, /^(working|defective)$/);
+                var serial_number = self.fieldValidation(e.currentTarget.serial_number, /^[a-zA-Z0-9\.\-\,\\s]{2,15}$/);
+                var supplier = self.fieldValidation(e.currentTarget.supplier, /^[a-zA-Z0-9\s]{5,160}$/);
+                var reason = self.fieldValidation(e.currentTarget.reason, /^.{20,160}$/);
 
                 self.model.set('asset_name', asset_name);
                 self.model.set('asset_type', asset_type);
