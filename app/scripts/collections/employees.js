@@ -10,6 +10,7 @@ define([
     var EmployeesCollection = Backbone.Collection.extend({
         model: EmployeeModel,
         url: 'http://gzais-api.herokuapp.com/employees'
+        //url: 'http://localhost:3000/employees'
     });
 
     return EmployeesCollection;
