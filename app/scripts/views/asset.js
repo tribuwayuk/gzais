@@ -21,7 +21,7 @@ define( [
 
         events: {
             'click .delete-asset': 'deleteAsset',
-            'click .edit-asset':   'displayEditForm'
+            'click .edit-asset': 'displayEditForm'
         },
 
         initialize: function( ) {
@@ -44,7 +44,7 @@ define( [
         },
 
         displayEditForm: function( e ) {
-			e.preventDefault();
+            e.preventDefault( );
 
             var self = this;
             $( '#edit-modal' ).empty( );
@@ -52,7 +52,7 @@ define( [
                 model: self.model
             } ) );
 
-            $( '#edit-form' ).submit( self.updateAsset.bind(self) );
+            $( '#edit-form' ).submit( self.updateAsset.bind( self ) );
 
         },
 
@@ -74,17 +74,17 @@ define( [
 
             if ( self.errorFields.length === 0 ) {
 
-				$( 'input, button, option, textarea' ).prop( 'disabled', true );
-				$( '.btns' ).addClass( 'loading' );
+                $( 'input, button, option, textarea' ).prop( 'disabled', true );
+                $( '.btns' ).addClass( 'loading' );
 
                 self.model.save( data, {
-                    success: function( model ) {
+                    success: function( ) {
                         self.render( );
                         $( '#edit-modal' ).modal( 'hide' );
-						$( 'input, button, option, textarea' ).prop( 'disabled', false );
-						$( '.btns' ).removeClass( 'loading' );
+                        $( 'input, button, option, textarea' ).prop( 'disabled', false );
+                        $( '.btns' ).removeClass( 'loading' );
                     },
-                    error: function( model, xhr, options ) {
+                    error: function( ) {
                         $( '#edit-modal' ).modal( 'hide' );
                     }
                 } );
@@ -99,7 +99,7 @@ define( [
 
         deleteAsset: function( ) {
 
-            var self    = this;
+            var self = this;
             var bootbox = window.bootbox;
 
             bootbox.dialog( {
