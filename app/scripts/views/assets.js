@@ -73,13 +73,13 @@ define([
 
           self.collection.add(result);
           form.reset();
-	  return $('#add-modal').modal('hide');
+					return $('#add-modal').modal('hide');
 
 	}
 	if (result.errors) {
-	  Object.keys(result.errors).forEach(function(key){
-	    $(form[key]).addClass('hass-error');
-	  });
+		Object.keys(result.errors).forEach(function(key){
+			$(form[key]).addClass('hass-error');
+		});
         }
       });
     },
