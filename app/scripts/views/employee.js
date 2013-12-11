@@ -21,7 +21,8 @@ define([
 
     events: {
       'click .delete-employee' : 'deleteEmployee',
-      'click .edit-employee'   : 'displayEditForm'
+      'click .edit-employee'   : 'displayEditForm',
+      'click .reset-password'  : 'displayResetForm'
     },
 
     initialize: function() {
@@ -41,6 +42,46 @@ define([
         };
 
         self.model.collection.sync('delete', self.model, options);
+      });
+    },
+
+    displayResetForm: function() {
+      var self = this,
+        bootbox = window.bootbox;
+
+      // for implementation to delete data from db.
+      bootbox.dialog({
+        message: 'Do you want to reset password of ' + self.model.get('first_name') + ' ' + self.model.get('last_name') + ' ?',
+        title: "Confirm Reset Password",
+        buttons: {
+          default: {
+            label: " Cancel ",
+            className: "btn-default",
+            callback: function() {
+              // Do nothing
+            }
+          },
+          danger: {
+            label: " Yes ",
+            className: "btn-danger",
+            callback: function() {
+              // delete model.
+              return self.resetPassword(self);// execute sending email.
+            }
+          }
+        }
+      });
+    },
+    resetPassword: function(self) {
+      var urlRoot = self.model.collection.urlRoot + "/resetPassword/" + self.model.get('_id');
+
+      $.ajax(
+      {
+        'type'     : "POST",
+        'url'      : urlRoot,
+        'success'  : function() {
+          console.log('success!');
+        },
       });
     },
 
