@@ -51,7 +51,7 @@ define([
     home: function() {
 
       var self = this;
-      if (!window.App.view.model.get('user')) {
+      if (window.App.view.model.get('user')) {
         // if user is logged in then redirect
         return window.App.router.navigate(window.App.view.model.get('baseUrl'), {trigger: true});
       }
