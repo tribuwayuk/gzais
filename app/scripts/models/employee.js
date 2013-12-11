@@ -19,6 +19,8 @@ define([
       assets: 0
     },
 
+    idAttribute: '_id',
+
     getDateOfBirth: function() {
 
       return _formatDate(this.get('date_of_birth'));
