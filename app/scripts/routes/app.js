@@ -1,89 +1,107 @@
-/*global define*/
+define( [
+    'jquery',
+    'backbone',
+    'EmployeesView',
+    'AssetsView',
+    'InventoryReportsView',
+    'EmployeesCollection',
+    'EmployeeDetailsView',
+    'AssetsCollection',
+    'AssetDetailsView'
+], function( $, Backbone, EmployeesView, AssetsView, InventoryReportsView, EmployeesCollection, EmployeeDetailsView, AssetsCollection, AssetDetailsView ) {
 
-define([
-  'jquery',
-  'backbone',
-  'EmployeesView',
-  'AssetsView',
-  'InventoryReportsView',
-  'EmployeesCollection',
-	'EmployeeDetailsView',
-  'AssetsCollection',
-  'AssetDetailsView'
-], function($, Backbone, EmployeesView, AssetsView, InventoryReportsView, EmployeesCollection, EmployeeDetailsView, AssetsCollection, AssetDetailsView) {
-  'use strict';
+    'use strict';
 
-  var MainRouter = Backbone.Router.extend({
+    var MainRouter = Backbone.Router.extend( {
 
-    routes: {
-      '': 'home',
-      'assets': 'assets',
-      'assets/:id': 'assetDetails',
-      'employees': 'employees',
-			'employees/:id': 'employeeDetails',
-      'inventory-reports': 'inventoryReports'
-    },
+        routes: {
+            '':						'home',
+            'assets':				'assets',
+            'assets/:id':			'assetDetails',
+            'employees':			'employees',
+            'employees/:id':		'employeeDetails',
+            'inventory-reports':	'inventoryReports'
+        },
 
-    initialize: function() {
-      var self = this;
-      self.app = window.App || {};
-    },
+        initialize: function( ) {
 
-    mountSubView: function(name, subView) {
+            var self = this;
+            self.app = window.App || {};
 
-      if (!window.App.view.model.get('user')) {
-        // if user is logged in then redirect
-        return window.App.router.navigate(window.App.view.model.get('/'), {trigger: true});
-      }
+        },
 
-      /**
-      * Mount Sub View
-      */
-      var appSubViews       = window.App.view.subViews;
-          appSubViews[name] = appSubViews[name] ? appSubViews[name] : subView;
+        mountSubView: function( name, subView ) {
 
-      window.App.view.model.set('currentContent', appSubViews[name]);
+            if ( !window.App.view.model.get( 'user' ) ) {
+                return window.App.router.navigate( window.App.view.model.get( '/' ), {
+                    trigger: true
+                } );
+            }
 
-      return subView;
+            var appSubViews = window.App.view.subViews;
+            appSubViews[ name ] = appSubViews[ name ] ? appSubViews[ name ] : subView;
+            window.App.view.model.set( 'currentContent', appSubViews[ name ] );
+            return subView;
 
-    },
+        },
 
-    home: function() {
+        home: function( ) {
 
-      var self = this;
-      if (window.App.view.model.get('user')) {
-        // if user is logged in then redirect
-        return window.App.router.navigate(window.App.view.model.get('baseUrl'), {trigger: true});
-      }
+            var self = this;
+            if ( window.App.view.model.get( 'user' ) ) {
 
-      // reset SubViews
-      window.App.view.subViews = {};
+                return window.App.router.navigate( window.App.view.model.get( 'baseUrl' ), {
+                    trigger: true
+                } );
+                
+            }
 
-    },
+            // reset SubViews
+            window.App.view.subViews = {};
 
-    assets: function() {
-      this.mountSubView('assetsView', new AssetsView({collection: new AssetsCollection()}));
-    },
+        },
 
-    assetDetails: function(id) {      
-      var model = window.App.view.model.get('currentContent').collection.get(id);
-      this.mountSubView(id, new AssetDetailsView({model: model}));
-    },
+        assets: function( ) {
 
-    employees: function() {
-      this.mountSubView('employeesView', new EmployeesView({collection: new EmployeesCollection()}));
-    },
+            this.mountSubView( 'assetsView', new AssetsView( {
+                collection: new AssetsCollection( )
+            } ) );
 
-		employeeDetails: function(id) {
-      var model = window.App.view.model.get('currentContent').collection.get(id);
-      this.mountSubView(id, new  EmployeeDetailsView({model: model}));
-		},
+        },
 
-    inventoryReports: function() {
-      this.mountSubView('inventoryReportsView', new InventoryReportsView());
-    }
+        assetDetails: function( id ) {
 
-  });
+            var model = window.App.view.model.get( 'currentContent' ).collection.get( id );
+            this.mountSubView( id, new AssetDetailsView( {
+                model: model
+            } ) );
 
-  return MainRouter;
-});
+        },
+
+        employees: function( ) {
+
+            this.mountSubView( 'employeesView', new EmployeesView( {
+                collection: new EmployeesCollection( )
+            } ) );
+
+        },
+
+        employeeDetails: function( id ) {
+
+            var model = window.App.view.model.get( 'currentContent' ).collection.get( id );
+            this.mountSubView( id, new EmployeeDetailsView( {
+                model: model
+            } ) );
+
+        },
+
+        inventoryReports: function( ) {
+
+            this.mountSubView( 'inventoryReportsView', new InventoryReportsView( ) );
+
+        }
+
+    } );
+
+    return MainRouter;
+} );
