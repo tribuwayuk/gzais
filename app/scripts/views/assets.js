@@ -70,12 +70,12 @@ define( [
 
             var self = this;
 
-            $( 'input, button, option' ).prop( 'disabled', true );
+            $( 'input, button, option, textarea' ).prop( 'disabled', true );
             $( '.btns' ).addClass( 'loading' );
 
             $.post( self.collection.url, data ).done( function( result ) {
 
-				$( 'input, button, option' ).prop( 'disabled', false );
+				$( 'input, button, option, textarea' ).prop( 'disabled', false );
 				$( '.btns' ).removeClass( 'loading' );
 
                 if ( result._id ) {

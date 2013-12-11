@@ -51,22 +51,20 @@ define( [
 
             // for implementation to delete data from db.
             bootbox.dialog( {
-                message: 'Do you want to reset password of ' + self.model.get( 'first_name' ) + ' ' + self.model.get( 'last_name' ) + ' ?',
+                message: 'Do you want to reset password for ' + self.model.get( 'first_name' ) + ' ' + self.model.get( 'last_name' ) + ' ?',
                 title: "Confirm Reset Password",
                 buttons: {
                     default: {
                         label: " Cancel ",
                         className: "btn-default",
                         callback: function( ) {
-                            // Do nothing
                         }
                     },
                     danger: {
                         label: " Yes ",
                         className: "btn-danger",
                         callback: function( ) {
-                            // delete model.
-                            return self.resetPassword( self ); // execute sending email.
+                            return self.resetPassword( self );
                         }
                     }
                 }
@@ -89,67 +87,48 @@ define( [
             var self = this;
             $( '#edit-modal' ).empty( );
             $( '#edit-modal' ).append( self.editTemplate( {
-                model: this.model
+                model: self.model
             } ) );
 
-            $( '#edit-form' ).submit( function( e ) {
-                e.preventDefault( );
-                var form = e.currentTarget,
-                    editEmployee = self.model;
-
-                editEmployee.set( {
-                    'first_name': self.fieldValidation( form.first_name, /^[a-zA-Z\s]{1,30}$/ )
-                } );
-                editEmployee.set( {
-                    'middle_name': self.fieldValidation( form.middle_name, /^[a-zA-Z\s]{1,30}$/ )
-                } );
-                editEmployee.set( {
-                    'last_name': self.fieldValidation( form.last_name, /^[a-zA-Z\s]{1,30}$/ )
-                } );
-                editEmployee.set( {
-                    'address': self.fieldValidation( form.address, /^.{2,60}$/ )
-                } );
-                editEmployee.set( {
-                    'email': self.fieldValidation( form.email, /^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/ )
-                } );
-                editEmployee.set( {
-                    'gender': self.fieldValidation( form.gender, /^(male|female)$/ )
-                } );
-                editEmployee.set( {
-                    'date_of_birth': self.fieldValidation( form.date_of_birth, /^\d{2}\/\d{2}\/\d{4}$/ )
-                } );
-                editEmployee.set( {
-                    'date_employed': self.fieldValidation( form.date_employed, /^\d{2}\/\d{2}\/\d{4}$/ )
-                } );
-                editEmployee.set( {
-                    'user_role': self.fieldValidation( form.user_role, /^(admin|custodian|employee)$/ )
-                } );
-
-                if ( self.errorFields.length === 0 ) {
-                    self.updateEmployee( editEmployee );
-                } else {
-                    self.errorFields = [ ];
-                }
-            } );
+            $( '#edit-form' ).submit( self.updateEmployee.bind( self ) );
         },
 
-        updateEmployee: function( employee ) {
+        updateEmployee: function( e ) {
+            e.preventDefault( );
+
             var self = this;
-            var id = self.model.get( '_id' );
+            var form = e.currentTarget;
+            var data = {};
 
-            employee.unset( '_id' );
+            data.first_name    = self.fieldValidation( form.first_name, /^[a-zA-Z\s]{1,30}$/ );
+            data.middle_name   = self.fieldValidation( form.middle_name, /^[a-zA-Z\s]{1,30}$/ );
+            data.last_name     = self.fieldValidation( form.last_name, /^[a-zA-Z\s]{1,30}$/ );
+            data.address       = self.fieldValidation( form.address, /^.{2,60}$/ );
+            data.email         = self.fieldValidation( form.email, /^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/ );
+            data.gender        = self.fieldValidation( form.gender, /^(male|female)$/ );
+            data.date_of_birth = self.fieldValidation( form.date_of_birth, /^\d{2}\/\d{2}\/\d{4}$/ );
+            data.date_employed = self.fieldValidation( form.date_employed, /^\d{2}\/\d{2}\/\d{4}$/ );
+            data.user_role     = self.fieldValidation( form.user_role, /^(admin|custodian|employee)$/ );
 
-            employee.save( {
-                _id: id
-            }, {
-                url: self.model.url( ) + '/' + id,
-                method: 'put',
-                wait: true,
-                success: function( ) {
-                    $( '#edit-modal' ).modal( 'hide' );
-                }
+            if ( self.errorFields.length === 0 ) {
+                $( 'input, button, option, textarea' ).prop( 'disabled', true );
+                $( '.btns' ).addClass( 'loading' );
 
-            } );
+                self.model.save( data, {
+                    success: function( ) {
+                        self.render( );
+                        $( '#edit-modal' ).modal( 'hide' );
+                        $( 'input, button, option, textarea' ).prop( 'disabled', false );
+                        $( '.btns' ).removeClass( 'loading' );
+                    },
+                    error: function( ) {
+                        $( '#edit-modal' ).modal( 'hide' );
+                    }
+                } );
+
+            } else {
+                self.errorFields = [ ];
+            }
         },
 
         deleteEmployee: function( ) {
@@ -162,18 +141,17 @@ define( [
                 title: "Confirm Deletion",
                 buttons: {
                     default: {
-                        label: " Cancel ",
+                        label:     " Cancel ",
                         className: "btn-default",
-                        callback: function( ) {
+                        callback:  function( ) {
                             // Do nothing
                         }
                     },
                     danger: {
-                        label: " Yes ",
+                        label:     " Yes ",
                         className: "btn-danger",
-                        callback: function( ) {
-                            // delete model.
-                            return self.model.collection.remove( self.model );
+                        callback:  function( ) {
+                            self.model.collection.remove( self.model );
                         }
                     }
                 }
@@ -181,7 +159,9 @@ define( [
         },
 
         fieldValidation: function( field, regexp ) {
+
             $( field ).removeClass( 'error' );
+
             if ( field.value.match( regexp ) !== null ) {
                 $( field ).parent( ).removeClass( 'has-error' );
                 return field.value;
@@ -190,15 +170,20 @@ define( [
                 this.errorFields.push( field.id );
                 return $( field ).parent( ).addClass( 'has-error' );
             }
+
         },
 
         render: function( ) {
+
             var self = this;
+
             self.$el.html( self.template( {
                 model: self.model
             } ) );
+            
             return self;
         }
+
     } );
 
     return EmployeeView;
