@@ -69,8 +69,8 @@ define([
       newAsset.asset_description  = self.fieldValidation(form.asset_description, /^.{5,160}$/);
                 */
 
-                var asset_name = self.fieldValidation(e.currentTarget.asset_name, /^[a-zA-Z\.\-\,\''\s]{5,30}$/);
-                var asset_type = self.fieldValidation(e.currentTarget.asset_type, /^[a-zA-Z\s]{5,30}$/);
+                var asset_name = self.fieldValidation(e.currentTarget.asset_name, /^[a-zA-Z0-9\.\-\,\''\s]{5,30}$/);
+                var asset_type = self.fieldValidation(e.currentTarget.asset_type, /^[a-zA-Z0-9\s]{5,30}$/);
                 var asset_description = self.fieldValidation(e.currentTarget.asset_description, /^.{5,160}$/);
                 var date_purchased = self.fieldValidation(e.currentTarget.date_purchased, /^\d{2}\/\d{2}\/\d{4}$/);
                 var status = self.fieldValidation(e.currentTarget.status, /^(working|defective)$/);
