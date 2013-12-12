@@ -2,126 +2,126 @@
 <h2>Manage Assets</h2>
 <hr>
 <div class="row">
-  <div class="col-xs-12 col-md-8">
-    <div class="filters">
-      <select class="assets-filter">
-        <option value="all">View All</option>
-        <option value="assigned">View Assigned</option>
-        <option value="not-assigned">View Not Assigned</option>
-      </select>
-      <script>
-      $('.assets-filter').selectpicker();
-      </script>
-    </div>
-  </div>
-  <div class="col-xs-6 col-md-4">
-    <button class="btn btn-add pull-right" data-toggle="modal" data-target="#add-modal">
-      <span class="glyphicon glyphicon-plus-sign"></span> New Asset </button>
-    <!-- Modal -->
-    <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <!-- FORM -->
-          <form role="form" id="add-form">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">Add New Asset</h4>
-            </div>
-            <div class="modal-body">
-
-              <div class="form-group">
-                <label for="asset_name">Name</label>
-                <input type="text" class="form-control" id="asset_name" maxlength="30">
-              </div>
-              <div class="form-group">
-                <label for="asset_description">Description</label>
-                <textarea class="form-control" id="asset_description" maxlength="160"></textarea>
-              </div>
-              <div class="form-group row">
-                <div class="col-xs-6">
-                  <label for="asset_type">Type</label>
-                  <input type="text" class="form-control" id="asset_type" placeholder="e.g., Printer, Laptop" maxlength="30">
-                </div>
-                <div class="col-xs-6">
-                  <label for="date_purchased">Date Purchased</label>
-                  <input type="text" id="date_purchased" class="form-control date-purchased">
-                  <script>
-                    var nowTemp = new Date();
-                    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-
-                    $('.date-purchased').datepicker({
-                      autoclose: true,
-                      endDate: new Date
-                      // onRender: function(date) {
-                      //   return date.valueOf() > now.valueOf() ? 'disabled' : '';
-                      // }
-                    });
-                  </script>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-xs-6">
-                  <label for="status">Status</label>
-                  <select id="status" class="status-picker" id="status">
-                    <option value="working">Working</option>
-                    <option value="defective">Defective</option>
-                  </select>
-                  <script>
-                  $('.status-picker').selectpicker();
-                  </script>
-                </div>
-                <div class="col-xs-6">
-                  <label for="serial_number">Serial Number</label>
-                  <input type="text" class="form-control" id="serial_number" maxlength="30">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="supplier">Supplier</label>
-                <input type="text" class="form-control" id="supplier" maxlength="160">
-              </div>
-              <div class="form-group">
-                <label for="reason">Reason for Purchase?</label>
-                <textarea class="form-control" id="reason" maxlength="160"></textarea>
-              </div>
-
-            </div>
-            <div class="modal-footer">
-            	<div class="btns">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-					<button type="submit" class="btn btn-add">
-					<span class="glyphicon glyphicon-ok-sign"></span> Add Asset </button>
-					<button type="submit" class="btn btn-add btn-load" disabled>Please wait..</button>
-            	</div>
-            </div>
-          </form>
-          <!-- FORM END -->
+    <div class="col-xs-12 col-md-8">
+        <div class="filters">
+            <select class="assets-filter">
+                <option value="all">View All</option>
+                <option value="assigned">View Assigned</option>
+                <option value="not-assigned">View Not Assigned</option>
+            </select>
+            <script>
+            	$('.assets-filter').selectpicker();
+            </script>
         </div>
-        <!-- /.modal-content -->
-      </div>
-      <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal -->
-  </div>
+    <div class="col-xs-6 col-md-4">
+        <button class="btn btn-add pull-right" data-toggle="modal" data-target="#add-modal">
+            <span class="glyphicon glyphicon-plus-sign"></span> New Asset </button>
+        <!-- Modal -->
+        <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- FORM -->
+                    <form role="form" id="add-form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Add New Asset</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="asset_name">Name</label>
+                                <input type="text" class="form-control" id="asset_name" maxlength="30">
+                            </div>
+                            <div class="form-group">
+                                <label for="asset_description">Description</label>
+                                <textarea class="form-control" id="asset_description" maxlength="160"></textarea>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-6">
+                                    <label for="asset_type">Type</label>
+                                    <input type="text" class="form-control" id="asset_type" placeholder="e.g., Printer, Laptop" maxlength="30">
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="date_purchased">Date Purchased</label>
+                                    <input type="text" id="date_purchased" class="form-control date-purchased">
+                                    <script>
+                                    var nowTemp = new Date();
+                                    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+                                    $('.date-purchased').datepicker({
+                                        autoclose: true,
+                                        endDate: new Date
+                                        // onRender: function(date) {
+                                        //   return date.valueOf() > now.valueOf() ? 'disabled' : '';
+                                        // }
+                                    });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-6">
+                                    <label for="status">Status</label>
+                                    <select id="status" class="status-picker" id="status">
+                                        <option value="working">Working</option>
+                                        <option value="defective">Defective</option>
+                                    </select>
+                                    <script>
+                                    	$('.status-picker').selectpicker();
+                                    </script>
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="serial_number">Serial Number</label>
+                                    <input type="text" class="form-control" id="serial_number" maxlength="30">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="supplier">Supplier</label>
+                                <input type="text" class="form-control" id="supplier" maxlength="160">
+                            </div>
+                            <div class="form-group">
+                                <label for="reason">Reason for Purchase?</label>
+                                <textarea class="form-control" id="reason" maxlength="160"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btns">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
+                                <button type="submit" class="btn btn-add">
+                                    <span class="glyphicon glyphicon-ok-sign"></span> Add Asset </button>
+                                <button type="submit" class="btn btn-add btn-load" disabled> Please wait... </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- FORM END -->
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    </div>
 </div>
 
 
 <hr>
 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th class="col-sm-1">Status</th>
-      <th class="col-sm-3">Item Name</th>
-      <th class="col-sm-2">Date Purchased</th>
-      <th class="col-sm-2">Assigned To</th>
-      <th class="col-sm-2">Serial Number</th>
-      <th class="col-sm-2" style="text-align:center"> Actions </th>
-    </tr>
-  </thead>
-  <tbody class="assets-list">
-  </tbody>
+    <thead>
+        <tr>
+            <th class="col-sm-1">Status</th>
+            <th class="col-sm-3">Item Name</th>
+            <th class="col-sm-2">Date Purchased</th>
+            <th class="col-sm-2">Assigned To</th>
+            <th class="col-sm-2">Serial Number</th>
+            <th class="col-sm-2" style="text-align:center">Actions</th>
+        </tr>
+    </thead>
+    <tbody class="assets-list">
+    </tbody>
 </table>
 <script>
-$('.tool-tip').tooltip();
+	$('.tool-tip').tooltip();
 </script>
 <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 </div>
