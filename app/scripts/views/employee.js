@@ -179,7 +179,7 @@ define( [
             self.$el.html( self.template( {
                 model: self.model
             } ) );
-            
+
             return self;
         }
 
