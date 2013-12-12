@@ -53,7 +53,7 @@ define( [
             newAsset.status            = self.fieldValidation( form.status, /^(working|defective)$/ );
             newAsset.serial_number     = self.fieldValidation( form.serial_number, /^[a-zA-Z0-9-\s]{5,30}$/ );
             newAsset.supplier          = self.fieldValidation( form.supplier, /^[a-zA-Z0-9\s]{5,160}$/ );
-            newAsset.reason            = self.fieldValidation( form.reason, /^.{20,160}$/ );
+            newAsset.reason            = self.fieldValidation( form.reason, /^.{5,160}$/ );
             newAsset.asset_description = self.fieldValidation( form.asset_description, /^.{5,160}$/ );
 
             if ( self.errorFields.length === 0 ) {

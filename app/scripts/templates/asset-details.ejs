@@ -1,71 +1,88 @@
 <hr />
 <div class="row">
-  <div class="col-sm-6">
-    <a href="/assets" class="btn btn-default btn-sm pull-left"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back to List </a>
-  </div>
-  <div class="col-sm-6">
-    <div class=" pull-right">
-      <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit </button>
-      <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-circle"></span> Delete </button>
+    <div class="col-sm-6">
+        <a href="/assets" class="btn btn-default btn-sm pull-left">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span> Back to List </a>
     </div>
-  </div>
+    <div class="col-sm-6">
+        <div class=" pull-right">
+            <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-edit"></span> Edit </button>
+            <button type="button" class="btn btn-danger btn-sm">
+                <span class="glyphicon glyphicon-remove-circle"></span> Delete </button>
+        </div>
+    </div>
 </div>
 <div class="row-fluid">
-  <br />
-  <div class="col-sm-12">
-    <h3><%= model.get('asset_name') %></h3>
-    <small>ASSET NAME</small>
+    <br />
+    <div class="col-sm-12">
+        <h3>
+            <%= model.get('asset_name') %>
+        </h3>
+        <small>ASSET NAME</small>
+        <hr>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="col-sm-12">
+        <h4>
+            <%= model.get('asset_description') %>
+        </h4>
+        <small>DESCRIPTION</small>
+        <hr>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="col-sm-3">
+        <h4>
+            <%= model.get('serial_number') %>
+        </h4>
+        <small>SERIAL NUMBER</small>
+    </div>
+    <div class="col-sm-3">
+        <h4>
+            <%= model.get('supplier') %>
+        </h4>
+        <small>SUPPLIER</small>
+    </div>
+    <div class="col-sm-3">
+        <h4>
+            <%= model.getDatePurchased() %>
+        </h4>
+        <small>DATE PURCHASED</small>
+    </div>
+    <div class="col-sm-3">
+        <h4>
+            <%= model.get('status') %>
+        </h4>
+        <small>STATUS</small>
+    </div>
+</div>
+<div class="row-fluid">
+    <br>&nbsp;
     <hr>
-  </div>
 </div>
 <div class="row-fluid">
-  <div class="col-sm-12">
-    <h4><%= model.get('asset_description') %></h4>
-    <small>DESCRIPTION</small>
+    <div class="col-sm-6">
+        <h4>
+            <%= model.get('asset_type') %>
+        </h4>
+        <small>ASSET TYPE</small>
+    </div>
+    <div class="col-sm-6">
+        <h4>None</h4>
+        <small>ASSIGNED TO</small>
+    </div>
+</div>
+<div class="row-fluid">
+    <br>&nbsp;
     <hr>
-  </div>
 </div>
 <div class="row-fluid">
-  <div class="col-sm-3">
-    <h4><%= model.get('serial_number') %></h4>
-    <small>SERIAL NUMBER</small>
-  </div>
-  <div class="col-sm-3">
-    <h4><%= model.get('supplier') %></h4>
-    <small>SUPPLIER</small>
-  </div>
-  <div class="col-sm-3">
-    <h4><%= model.getDatePurchased() %></h4>
-    <small>DATE PURCHASED</small>
-  </div>
-  <div class="col-sm-3">
-    <h4><%= model.get('status') %></h4>
-    <small>STATUS</small>
-  </div>
-</div>
-<div class="row-fluid">
-  <br>
-  &nbsp;
-  <hr>
-</div>
-<div class="row-fluid">
-  <div class="col-sm-6">
-    <h4><%= model.get('asset_type') %></h4>
-    <small>ASSET TYPE</small>
-  </div>
-  <div class="col-sm-6">
-    <h4>None</h4>
-    <small>ASSIGNED TO</small>
-  </div>
-</div>
-<div class="row-fluid">
-  <br>
-  &nbsp;
-  <hr>
-</div>
-<div class="row-fluid">
-  <div class="col-sm-12">
-    <h4><%= model.get('reason') %></h4>
-    <small>REASONS FOR PURCHASE</small>
-  </div>
+    <div class="col-sm-12">
+        <h4>
+            <%= model.get('reason') %>
+        </h4>
+        <small>REASONS FOR PURCHASE</small>
+    </div>
 </div>

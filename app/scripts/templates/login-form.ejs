@@ -1,30 +1,37 @@
 <div class="col-sm-8 col-sm-offset-2">
-  <div class="panel panel-default">
-    <div class="panel-heading"><h4>User Login</h4></div>
-    <div class="panel-body">
-      <form action="/" method="POST" class="form-horizontal login-form" role="form">
-      <div class="alert alert-danger hidden">
-        Wrong <strong>username</strong> or <strong>password</strong>! Please try again.
-      </div>
-      <div class="form-group">
-        <label for="email" class="col-sm-12">Email</label>
-        <div class="col-sm-12">
-          <input type="text" class="form-control" id="email">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>User Login</h4>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="password" class="col-sm-12">Password <a href="/reset-password">(Forgot Password)</a></label>
-        <div class="col-sm-12">
-          <input type="password" class="form-control" id="password">
+        <div class="panel-body">
+            <form action="/" method="POST" class="form-horizontal login-form" role="form">
+                <div class="alert alert-danger hidden">
+                    Wrong
+                    <strong>username</strong>or
+                    <strong>password</strong>! Please try again.
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-12">Email</label>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" id="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-12">Password <a href="/reset-password">(Forgot Password)</a>
+                    </label>
+                    <div class="col-sm-12">
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12 btns">
+                        <button type="submit" class="btn btn-add"> Log In
+                            <span class="glyphicon glyphicon-circle-arrow-right"> </span>
+                        </button>
+                        <button type="submit" class="btn btn-add btn-load" disabled> Please wait... </button>
+                    </div>
+                </div>
+            </form>
         </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-12 btns">
-          <button type="submit" class="btn btn-add">Log In <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
-          <button type="submit" class="btn btn-add btn-load" disabled>Please wait...</button>
-        </div>
-      </div>
-      </form>
     </div>
-  </div>
 </div>

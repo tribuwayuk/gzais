@@ -1,78 +1,78 @@
 <div class="modal-dialog">
-  <div class="modal-content">
-    <!-- FORM -->
-    <form action="/" role="form" id="edit-form">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Edit Asset</h4>
-      </div>
-      <div class="modal-body">
+    <div class="modal-content">
+        <!-- FORM -->
+        <form action="/" role="form" id="edit-form">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Edit Asset</h4>
+            </div>
+            <div class="modal-body">
 
-        <div class="form-group">
-          <label for="asset_name">Name</label>
-          <input type="text" class="form-control" id="asset_name" maxlength="30" value="<%=model.get('asset_name')%>">
-        </div>
-        <div class="form-group">
-          <label for="asset_description">Description</label>
-          <textarea class="form-control" id="asset_description" maxlength="160"><%=model.get('asset_description')%></textarea>
-        </div>
-        <div class="form-group row">
-          <div class="col-xs-6">
-            <label for="asset_type">Type</label>
-            <input type="text" class="form-control" id="asset_type" placeholder="e.g., Printer, Laptop" maxlength="30" value="<%=model.get('asset_type')%>">
-          </div>
-          <div class="col-xs-6">
-            <label for="date_purchased">Date Purchased</label>
-            <input type="text" id="date_purchased" class="form-control date-purchased" value="<%=model.getDatePurchased()%>">
-            <script>
-            var nowTemp = new Date();
-            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+                <div class="form-group">
+                    <label for="asset_name">Name</label>
+                    <input type="text" class="form-control" id="asset_name" maxlength="30" value="<%= model.get('asset_name') %>">
+                </div>
+                <div class="form-group">
+                    <label for="asset_description">Description</label>
+                    <textarea class="form-control" id="asset_description" maxlength="160"><%= model.get('asset_description') %></textarea>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-6">
+                        <label for="asset_type">Type</label>
+                        <input type="text" class="form-control" id="asset_type" placeholder="e.g., Printer, Laptop" maxlength="30" value="<%= model.get('asset_type') %>">
+                    </div>
+                    <div class="col-xs-6">
+                        <label for="date_purchased">Date Purchased</label>
+                        <input type="text" id="date_purchased" class="form-control date-purchased" value="<%= model.getDatePurchased() %>">
+                        <script>
+                        var nowTemp = new Date();
+                        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
-            $('.date-purchased').datepicker({
-              autoclose: true,
-              endDate: new Date
-            });
-            </script>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-xs-6">
-            <label for="status">Status</label>
-            <select id="status" class="status-picker" id="status">
-              <% var defective  = model.get('status') === 'defective' ? 'selected' : '' %>
-              <% var working    = model.get('status') === 'working' ? 'selected' : '' %>
-              <option value="working" <%= working %>>Working</option>
-              <option value="defective" <%= defective %>>Defective</option>
-            </select>
-            <script>
-            $('.status-picker').selectpicker();
-            </script>
-          </div>
-          <div class="col-xs-6">
-            <label for="serial_number">Serial Number</label>
-            <input type="text" class="form-control" id="serial_number" maxlength="30" value="<%=model.get('serial_number')%>">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="supplier">Supplier</label>
-          <input type="text" class="form-control" id="supplier" maxlength="30" value="<%=model.get('supplier')%>">
-        </div>
-        <div class="form-group">
-          <label for="reason">Reason for Purchase?</label>
-          <textarea class="form-control" id="reason" maxlength="160"><%=model.get('reason')%></textarea>
-        </div>
+                        $('.date-purchased').datepicker({
+                            autoclose: true,
+                            endDate: new Date
+                        });
+                        </script>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-6">
+                        <label for="status">Status</label>
+                        <select id="status" class="status-picker" id="status">
+                            <% var defective= model.get('status')==='defective' ? 'selected' : ''  %>
+                            <% var working= model.get('status')==='working' ? 'selected' : ''  %>
+                            <option value="working" <%= working  %>>Working</option>
+                            <option value="defective" <%= defective  %>>Defective</option>
+                        </select>
+                        <script>
+                        $('.status-picker').selectpicker();
+                        </script>
+                    </div>
+                    <div class="col-xs-6">
+                        <label for="serial_number">Serial Number</label>
+                        <input type="text" class="form-control" id="serial_number" maxlength="30" value="<%= model.get('serial_number') %>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="supplier">Supplier</label>
+                    <input type="text" class="form-control" id="supplier" maxlength="30" value="<%= model.get('supplier') %>">
+                </div>
+                <div class="form-group">
+                    <label for="reason">Reason for Purchase?</label>
+                    <textarea class="form-control" id="reason" maxlength="160"><%= model.get('reason') %></textarea>
+                </div>
 
-      </div>
-      <div class="modal-footer">
-      	<div class="btns">
-	        <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
-	        <button type="submit" class="btn btn-add" id="save_btn">
-	          <span class="glyphicon glyphicon-ok-sign"></span> Save Changes </button>
-	        <button type="submit" class="btn btn-add btn-load" disabled> Saving Changes... </button>
-      	</div>
-      </div>
-    </form>
-    <!-- FORM END -->
-  </div>
-  <!-- /.modal-content -->
+            </div>
+            <div class="modal-footer">
+                <div class="btns">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
+                    <button type="submit" class="btn btn-add" id="save_btn">
+                        <span class="glyphicon glyphicon-ok-sign"></span> Save Changes </button>
+                    <button type="submit" class="btn btn-add btn-load" disabled> Saving Changes... </button>
+                </div>
+            </div>
+        </form>
+        <!-- FORM END -->
+    </div>
+    <!-- /.modal-content -->
 </div>

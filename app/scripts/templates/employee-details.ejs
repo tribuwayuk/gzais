@@ -1,193 +1,213 @@
 <hr />
 <div class="row">
-  <div class="col-sm-6">
-    <a href="/employees" class="btn btn-default btn-sm pull-left"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back to List </a>
-  </div>
-  <div class="col-sm-6">
-    <div class=" pull-right">
-      <button type="button" data-toggle="modal" data-target="#edit-modal" data-placement="bottom" title="" class="btn btn-default btn-sm edit-employee"><span class="glyphicon glyphicon-edit"></span> Edit </button>
-      <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove-circle"></span> Delete </button>
+    <div class="col-sm-6">
+        <a href="/employees" class="btn btn-default btn-sm pull-left">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span> Back to List </a>
     </div>
-  </div>
+    <div class="col-sm-6">
+        <div class=" pull-right">
+            <button type="button" data-toggle="modal" data-target="#edit-modal" data-placement="bottom" title="" class="btn btn-default btn-sm edit-employee">
+                <span class="glyphicon glyphicon-edit"></span> Edit </button>
+            <button type="button" class="btn btn-danger btn-sm">
+                <span class="glyphicon glyphicon-remove-circle"></span> Delete </button>
+        </div>
+    </div>
 </div>
 <div class="row-fluid">
-  <br />
-  <div class="col-sm-4">
-    <h3><%= model.get('first_name') %></h3>
-    <small>FIRST NAME</small>
-  </div>
-  <div class="col-sm-4">
-    <h3><%= model.get('middle_name') %></h3>
-    <small>MIDDLE NAME</small>
-  </div>
-  <div class="col-sm-4">
-    <h3><%= model.get('last_name') %></h3>
-    <small>LAST NAME</small>
-  </div>
+    <br />
+    <div class="col-sm-4">
+        <h3>
+            <%= model.get('first_name') %>
+        </h3>
+        <small>FIRST NAME</small>
+    </div>
+    <div class="col-sm-4">
+        <h3>
+            <%= model.get('middle_name') %>
+        </h3>
+        <small>MIDDLE NAME</small>
+    </div>
+    <div class="col-sm-4">
+        <h3>
+            <%= model.get('last_name') %>
+        </h3>
+        <small>LAST NAME</small>
+    </div>
 </div>
 <div class="row-fluid">
-  <br>
-  &nbsp;
-  <hr>
+    <br>&nbsp;
+    <hr>
 </div>
 <div class="row-flui">
-  <div class="col-sm-12">
-    <h3><%= model.get('email') %></h3>
-    <small>EMAIL</small>
+    <div class="col-sm-12">
+        <h3>
+            <%= model.get('email') %>
+        </h3>
+        <small>EMAIL</small>
+        <hr>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="col-sm-12">
+        <h4>
+            <%= model.get('address') %>
+        </h4>
+        <small>ADDRESS</small>
+        <hr>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="col-sm-6">
+        <h4>
+            <%= model.get('gender') %>
+        </h4>
+        <small>GENDER</small>
+    </div>
+    <div class="col-sm-6">
+        <h4>
+            <%= model.getDateOfBirth() %>
+        </h4>
+        <small>BIRTHDAY</small>
+    </div>
+</div>
+<div class="row-fluid">
+    <br>&nbsp;
     <hr>
-  </div>
 </div>
 <div class="row-fluid">
-  <div class="col-sm-12">
-    <h4><%= model.get('address') %></h4>
-    <small>ADDRESS</small>
+    <div class="col-sm-6">
+        <h4>
+            <%= model.get('user_role') %>
+        </h4>
+        <small>USER ROLE</small>
+    </div>
+    <div class="col-sm-6">
+        <h4>
+            <%= model.getDateEmployed() %>
+        </h4>
+        <small>DATE EMPLOYED</small>
+    </div>
+</div>
+<div class="row-fluid">
+    <br>&nbsp;
     <hr>
-  </div>
 </div>
 <div class="row-fluid">
-  <div class="col-sm-6">
-    <h4><%= model.get('gender') %></h4>
-    <small>GENDER</small>
-  </div>
-  <div class="col-sm-6">
-    <h4><%= model.getDateOfBirth() %></h4>
-    <small>BIRTHDAY</small>
-  </div>
-</div>
-<div class="row-fluid">
-  <br>
-  &nbsp;
-  <hr>
-</div>
-<div class="row-fluid">
-  <div class="col-sm-6">
-    <h4><%= model.get('user_role') %></h4>
-    <small>USER ROLE</small>
-  </div>
-  <div class="col-sm-6">
-    <h4><%= model.getDateEmployed() %></h4>
-    <small>DATE EMPLOYED</small>
-  </div>
-</div>
-<div class="row-fluid">
-  <br>
-  &nbsp;
-  <hr>
-</div>
-<div class="row-fluid">
-  <div class="col-sm-12">
-    <h4>None</h4>
-    <small>ASSETS</small>
-    <hr>
-  </div>
+    <div class="col-sm-12">
+        <h4>None</h4>
+        <small>ASSETS</small>
+        <hr>
+    </div>
 </div>
 <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- FORM -->
-      <form role="form" id="edit-form">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Edit Employee</h4>
-        </div>
-        <div class="modal-body">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- FORM -->
+            <form role="form" id="edit-form">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Employee</h4>
+                </div>
+                <div class="modal-body">
 
-          <div class="form-group row">
-            <div class="col-xs-4">
-              <label for="first_name">First Name</label>
-              <input type="text" class="form-control" id="first_name" value="<%= model.get('first_name') %>">
-            </div>
-            <div class="col-xs-4">
-              <label for="middle_name">Middle Name</label>
-              <input type="text" class="form-control" id="middle_name" value="<%= model.get('middle_name') %>">
-            </div>
-            <div class="col-xs-4">
-              <label for="last_name">Last Name</label>
-              <input type="text" class="form-control" id="last_name" value="<%= model.get('last_name') %>">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="description">Address</label>
-            <input type="text" class="form-control" id="address" value="<%= model.get('address') %>">
-          </div>
-          <div class="form-group row">
-            <div class="col-xs-6">
-              <label for="status">Gender</label>
-              <select class="gender-picker" id="gender">
-                <% var male = model.get('gender') === 'male' ? 'selected' : '' %>
-                <% var female = model.get('gender') === 'female' ? 'selected' : '' %>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-              <script>
-              $('.gender-picker').selectpicker();
-              </script>
-            </div>
-            <div class="col-xs-6">
-              <label for="birthdate">Date of Birth</label>
-              <input type="text" class="form-control birthdate" id="date_of_birth" value="<%= model.getDateOfBirth() %>">
-              <script>
-                var nowTemp = new Date();
-                var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+                    <div class="form-group row">
+                        <div class="col-xs-4">
+                            <label for="first_name">First Name</label>
+                            <input type="text" class="form-control" id="first_name" value="<%= model.get('first_name') %>">
+                        </div>
+                        <div class="col-xs-4">
+                            <label for="middle_name">Middle Name</label>
+                            <input type="text" class="form-control" id="middle_name" value="<%= model.get('middle_name') %>">
+                        </div>
+                        <div class="col-xs-4">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" value="<%= model.get('last_name') %>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Address</label>
+                        <input type="text" class="form-control" id="address" value="<%= model.get('address') %>">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-6">
+                            <label for="status">Gender</label>
+                            <select class="gender-picker" id="gender">
+                                <% var male =model.get('gender') === 'male' ? 'selected' : '' %>
+                                <% var female =model.get('gender') === 'female' ? 'selected' : '' %>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                            <script>
+                            $('.gender-picker').selectpicker();
+                            </script>
+                        </div>
+                        <div class="col-xs-6">
+                            <label for="birthdate">Date of Birth</label>
+                            <input type="text" class="form-control birthdate" id="date_of_birth" value="<%= model.getDateOfBirth() %>">
+                            <script>
+                            var nowTemp = new Date();
+                            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
-                $('.birthdate').datepicker({
-                  autoclose: true,
-                  onRender: function(date) {
-                    return date.valueOf() > now.valueOf() ? 'disabled' : '';
-                  }
-                });
-              </script>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-xs-6">
-              <label for="status">User Role</label>
-              <select class="role-picker" id="user_role">
-                <% var admin = model.get('user_role') === 'admin' ? 'selected' : '' %>
-                <% var custodian = model.get('user_role') === 'custodian' ? 'selected' : '' %>
-                <% var employee = model.get('user_role') === 'employee' ? 'selected' : '' %>
-                <option value="admin" <%= admin %>>Admin</option>
-                <option value="custodian" <%= custodian %>>Custodian</option>
-                <option value="employee" <%= employee %>>Employee</option>
-              </select>
-              <script>
-              $('.role-picker').selectpicker();
-              </script>
-            </div>
-            <div class="col-xs-6">
-              <label for="employeddate">Date Employed</label>
-              <input type="text" class="form-control employeddate" id="date_employed" value="<%= model.getDateEmployed() %>">
-              <script>
-                var nowTemp = new Date();
-                var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+                            $('.birthdate').datepicker({
+                                autoclose: true,
+                                onRender: function(date) {
+                                    return date.valueOf() > now.valueOf() ? 'disabled' : '';
+                                }
+                            });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-6">
+                            <label for="status">User Role</label>
+                            <select class="role-picker" id="user_role">
+                                <% var admin = model.get('user_role') === 'admin' ? 'selected' : '' %>
+	                            <% var custodian = model.get('user_role') === 'custodian' ? 'selected' : '' %>
+                                <% var employee = model.get('user_role') === 'employee' ? 'selected' : '' %>
+	                            <option value="admin" <%= admin %>>Admin</option>
+	                            <option value="custodian" <%= custodian %>>Custodian</option>
+	                            <option value="employee" <%= employee %>>Employee</option>
+                            </select>
+                            <script>
+	                            $('.role-picker').selectpicker();
+                            </script>
+                        </div>
+                        <div class="col-xs-6">
+                            <label for="employeddate">Date Employed</label>
+                            <input type="text" class="form-control employeddate" id="date_employed" value="<%= model.getDateEmployed() %>">
+                            <script>
+                            var nowTemp = new Date();
+                            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
-                $('.employeddate').datepicker({
-                  autoclose: true,
-                  onRender: function(date) {
-                    return date.valueOf() > now.valueOf() ? 'disabled' : '';
-                  }
-                });
-              </script>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address <span class="email-error">- email address is taken!</span></label>
-            <input type="email" class="form-control" id="email" placeholder="name@globalzeal.net" value="<%= model.get('email') %>">
-          </div>
+                            $('.employeddate').datepicker({
+                                autoclose: true,
+                                onRender: function(date) {
+                                    return date.valueOf() > now.valueOf() ? 'disabled' : '';
+                                }
+                            });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address
+                            <span class="email-error">- email address is taken!</span>
+                        </label>
+                        <input type="email" class="form-control" id="email" placeholder="name@globalzeal.net" value="<%= model.get('email') %>">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="btns">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
+                        <button type="submit" class="btn btn-add">
+                            <span class="glyphicon glyphicon-ok-sign"></span> Save Changes
+                        </button>
+                        <button type="submit" class="btn btn-add btn-load" disabled> Please wait.. </button>
+                    </div>
+                </div>
+            </form>
+            <!-- FORM END -->
         </div>
-        <div class="modal-footer">
-          <div class="btns">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-add">
-              <span class="glyphicon glyphicon-ok-sign"></span> Save Changes
-            </button>
-            <button type="submit" class="btn btn-add btn-load" disabled>Please wait..</button>
-          </div>
-        </div>
-      </form>
-      <!-- FORM END -->
+        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
+    <!-- /.modal-dialog -->
 </div>
