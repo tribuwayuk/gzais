@@ -31,7 +31,7 @@ define( [
             // Proper way to handle deletion through events
             self.listenTo( self.model, 'remove', function( index ) {
                 var options = options || {};
-                options.url = self.model.url( ) + '/' + self.model.get( '_id' );
+                options.url = self.model.url( );
 
                 options.success = function( ) {
                     return self.remove( );
