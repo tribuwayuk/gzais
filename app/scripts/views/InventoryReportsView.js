@@ -10,7 +10,7 @@ define([
 
     var InventoryReportsView = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/inventory-reports.ejs'],
+        template : JST['app/scripts/templates/inventory-reports.ejs'],
 
         render: function() {
           var self = this;
@@ -19,7 +19,6 @@ define([
         }
 
     });
-
 
     return InventoryReportsView;
 });

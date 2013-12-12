@@ -3,14 +3,16 @@
 define([
     'underscore',
     'backbone',
-    'models/asset'
-], function (_, Backbone, AssetModel) {
+    'models/Asset'
+], function (_, Backbone, Asset) {
     'use strict';
 
-    var AssetsCollection = Backbone.Collection.extend({
-        model: AssetModel,
-        url: 'http://gzais-api.herokuapp.com/assets'
+    var Assets = Backbone.Collection.extend({
+
+        model : Asset,
+        url   : 'http://gzais-api.herokuapp.com/assets'
+
     });
 
-    return AssetsCollection;
+    return Assets;
 });

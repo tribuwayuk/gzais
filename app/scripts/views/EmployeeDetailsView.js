@@ -10,22 +10,16 @@ define( [
 
     var EmployeeDetailsView = Backbone.View.extend( {
 
-        template: JST[ 'app/scripts/templates/employee-details.ejs' ],
-
-        className: 'employee-details',
-
-		errorFields: [ ],
-
-		events: {
+        template	: JST[ 'app/scripts/templates/employee-details.ejs' ],
+        className	: 'employee-details',
+		errorFields : [ ],
+		events      : {
             'submit form#edit-form': 'updateEmployee'
 		},
 
-        initialize: function( ) {},
+		updateEmployee : function( e ) {
 
-		updateEmployee: function( e ) {
             e.preventDefault( );
-
-            console.log(e);
 
             var self = this;
             var form = e.currentTarget;
@@ -42,6 +36,7 @@ define( [
             data.user_role     = self.fieldValidation( form.user_role, /^(admin|custodian|employee)$/ );
 
             if ( self.errorFields.length === 0 ) {
+
                 $( 'input, button, option, textarea' ).prop( 'disabled', true );
                 $( '.btns' ).addClass( 'loading' );
 
@@ -63,7 +58,7 @@ define( [
 
         },
 
-        fieldValidation: function( field, regexp ) {
+        fieldValidation : function( field, regexp ) {
 
             $( field ).removeClass( 'error' );
 
@@ -78,12 +73,12 @@ define( [
 
         },
 
-        render: function( ) {
+        render : function( ) {
 
             var self = this;
 
             self.$el.html( self.template( {
-                model: self.model
+                model : self.model
             } ) );
 
             return self;

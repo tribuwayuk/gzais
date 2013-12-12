@@ -1,33 +1,26 @@
 /*global define*/
-define([
-  'underscore',
-  'backbone'
-], function(_, Backbone) {
-  'use strict';
+define( [
+    'underscore',
+    'backbone'
+], function( _, Backbone ) {
 
-  var AppModel = Backbone.Model.extend({
+    'use strict';
 
-    defaults: {
-      title: 'Global Zeal AIS',
-      company: {
-        name: 'Global Zeal',
-        url: 'http://www.globalzeal.net'
-      },
-      team: {
-        name: 'Tribu Wayuk',
-        url: 'http://tribuwayuk.com'
-      }
-    },
+    var App = Backbone.Model.extend( {
 
-    doLogin: function() {
-      // TODO: do login implementation
-    },
+        defaults : {
+            title   : 'Global Zeal AIS',
+            company : {
+                name : 'Global Zeal',
+                url  : 'http://www.globalzeal.net'
+            },
+            team	: {
+                name : 'Tribu Wayuk',
+                url  : 'http://tribuwayuk.com'
+            }
+        }
 
-    doLogout: function() {
-      // TODO: do logout implementation
-    }
+    } );
 
-  });
-
-  return AppModel;
-});
+    return App;
+} );

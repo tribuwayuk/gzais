@@ -3,15 +3,17 @@
 define([
     'underscore',
     'backbone',
-    'models/employee'
-], function (_, Backbone, EmployeeModel) {
+    'models/Employee'
+], function (_, Backbone, Employee) {
     'use strict';
 
-    var EmployeesCollection = Backbone.Collection.extend({
-        model: EmployeeModel,
-        url: 'http://gzais-api.herokuapp.com/employees',
-        urlRoot: 'http://gzais-api.herokuapp.com'
+    var Employees = Backbone.Collection.extend({
+
+        model   : Employee,
+        url     : 'http://gzais-api.herokuapp.com/employees',
+        urlRoot : 'http://gzais-api.herokuapp.com'
+
     });
 
-    return EmployeesCollection;
+    return Employees;
 });

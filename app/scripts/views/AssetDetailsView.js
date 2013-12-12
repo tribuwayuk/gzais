@@ -10,18 +10,14 @@ define([
 
     var AssetDetailsView = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/asset-details.ejs'],
+        template  : JST['app/scripts/templates/asset-details.ejs'],
+        className : 'asset-details',
 
-        className: 'asset-details',
-
-        render: function(model) {
+        render : function(model) {
           var self = this;
           self.$el.html(self.template({model: self.model}));
           return self;
         },
-
-        initialize: function() {
-        }
 
     });
 

@@ -5,18 +5,17 @@ define( [
 ], function( _, Backbone ) {
     'use strict';
 
-    var AssetModel = Backbone.Model.extend( {
+    var Asset = Backbone.Model.extend( {
 
-        defaults: {},
+        defaults         : {},
+        idAttribute      : '_id',
 
-        idAttribute: '_id',
+        getDatePurchased : function( ) {
 
-        getDatePurchased: function( ) {
-
-            var date = new Date( this.get( 'date_purchased' ) );
+            var date   = new Date( this.get( 'date_purchased' ) );
             var _month = ( date.getMonth( ) + 1 < 10 ) ? '0' + ( date.getMonth( ) + 1 ) : '' + ( date.getMonth( ) + 1 );
-            var _date = ( date.getDate( ) < 10 ) ? '0' + date.getDate( ) : '' + date.getDate( );
-            var _year = date.getFullYear( );
+            var _date  = ( date.getDate( ) < 10 ) ? '0' + date.getDate( ) : '' + date.getDate( );
+            var _year  = date.getFullYear( );
 
             return _month + '/' + _date + '/' + _year;
 
@@ -24,5 +23,5 @@ define( [
 
     } );
 
-    return AssetModel;
+    return Asset;
 } );
