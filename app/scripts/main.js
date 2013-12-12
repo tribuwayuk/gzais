@@ -13,75 +13,67 @@ require.config( {
             exports: 'Backbone'
         },
         bootstrap: {
-            deps:    [ 'jquery' ],
+            deps: [ 'jquery' ],
             exports: 'jquery'
         },
         datepicker: {
-            deps:    [ 'jquery' ],
+            deps: [ 'jquery' ],
             exports: 'datepicker'
         },
         selectpicker: {
-            deps:    [ 'jquery' ],
+            deps: [ 'jquery' ],
             exports: 'selectpicker'
         },
         bootbox: {
-            deps:    [ 'jquery', 'bootstrap' ],
+            deps: [ 'jquery', 'bootstrap' ],
             exports: 'bootbox'
         }
     },
     paths: {
-        jquery:               '../bower_components/jquery/jquery',
-        backbone:             '../bower_components/backbone/backbone',
-        underscore:           '../bower_components/underscore/underscore',
-        bootstrap:            'vendor/bootstrap',
-        datepicker:           'vendor/bootstrap-datepicker',
-        bootbox:              'vendor/bootbox',
-        selectpicker:         'vendor/bootstrap-select',
-        AppModel:             'models/app',
-        AppView:              'views/app',
-        AppRouter:            'routes/app',
-        EmployeesView:        'views/employees',
-        EmployeesCollection:  'collections/employees',
-        EmployeeView:         'views/employee',
-        EmployeeDetailsView:  'views/employee-details',
-        EmployeeModel:        'models/employee',
-        AssetsView:           'views/assets',
-        AssetView:            'views/asset',
-        AssetDetailsView:     'views/asset-details',
-        AssetModel:           'models/asset',
-        AssetsCollection:     'collections/assets',
-        InventoryReportsView: 'views/inventory-reports'
+        jquery               : '../bower_components/jquery/jquery',
+        backbone             : '../bower_components/backbone/backbone',
+        underscore           : '../bower_components/underscore/underscore',
+        bootstrap            : 'vendor/bootstrap',
+        datepicker           : 'vendor/bootstrap-datepicker',
+        bootbox              : 'vendor/bootbox',
+        selectpicker         : 'vendor/bootstrap-select',
+        App                  : 'models/App',
+        AppView              : 'views/AppView',
+        MainRouter           : 'routes/MainRouter',
+        Employees            : 'collections/Employees',
+        Employee             : 'models/Employee',
+        EmployeesView        : 'views/Employeesview',
+        EmployeeView         : 'views/EmployeeView',
+        EmployeeDetailsView  : 'views/EmployeeDetailsView',
+        Assets               : 'collections/Assets',
+        Asset                : 'models/Asset',
+        AssetsView           : 'views/AssetsView',
+        AssetView            : 'views/AssetView',
+        AssetDetailsView     : 'views/AssetDetailsView',
+        InventoryReportsView : 'views/InventoryReportsView'
     }
 } );
 
 require( [
     'backbone',
-    'AppModel',
+    'App',
     'AppView',
-    'AppRouter',
+    'MainRouter',
     'bootstrap',
     'datepicker',
     'selectpicker',
     'bootbox'
-], function( Backbone, AppModel, AppView, AppRouter ) {
+], function( Backbone, App, AppView, MainRouter ) {
 
-    var app = window.App = window.App || {};
-
-    // Init AppRouter
-    app.router = new AppRouter( );
-
-    // Init AppView
-    app.view = new AppView( {
-        model: new AppModel( {
-            baseUrl: '/assets',
-            user: JSON.parse( window.localStorage.getItem( 'user' ) ) || undefined
+    var app		= window.App = window.App || {};
+    app.router	= new MainRouter( );
+    app.view	= new AppView( {
+        model: new App( {
+            baseUrl : '/assets',
+            user    : JSON.parse( window.localStorage.getItem( 'user' ) ) || undefined
         } )
     } );
 
-    /**
-     * An awesome way to handle click events with pushState
-     * source: http://artsy.github.io/blog/2012/06/25/replacing-hashbang-routes-with-pushstate/
-     **/
     $( document ).on( 'click', 'a[href^="/"]', function( e ) {
 
         var href = $( e.currentTarget ).attr( 'href' );
@@ -90,7 +82,6 @@ require( [
 
             e.preventDefault( );
 
-            // Remove leading slashes and hash bangs (backward compatablility)
             var url = href.replace( /^\//, '' ).replace( '#\/', '' );
             app.router.navigate( url, {
                 trigger: true
@@ -101,11 +92,6 @@ require( [
 
     } );
 
-    //if (window.location.hash.indexOf('#') > -1) {
-    //window.location = window.location.hash.substring(1);
-    //}
-
-    // Init Backbone.history
     Backbone.history.start( {
         pushState: true
     } );

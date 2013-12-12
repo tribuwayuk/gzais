@@ -1,5 +1,3 @@
-/*global define*/
-
 define( [
     'jquery',
     'underscore',
@@ -12,41 +10,41 @@ define( [
 
     var AssetsView = Backbone.View.extend( {
 
-        template: JST[ 'app/scripts/templates/assets.ejs' ],
-
-        events: {
-            'submit  #add-form':           'newAsset',
-            'hidden.bs.modal #edit-modal': 'resetForm',
-            'hidden.bs.modal #add-modal':  'resetForm'
+        template    : JST[ 'app/scripts/templates/assets.ejs' ],
+        errorFields : [ ],
+        events      : {
+            'submit  #add-form'           : 'newAsset',
+            'hidden.bs.modal #edit-modal' : 'resetForm',
+            'hidden.bs.modal #add-modal'  : 'resetForm'
         },
 
-        errorFields: [ ],
-
-        render: function( ) {
+        render : function( ) {
             var self = this;
             self.$el.html( self.template( ) );
             return self;
         },
 
-        resetForm: function( e ) {
+        resetForm : function( e ) {
             var form = e.currentTarget.querySelector( 'form' );
             form.reset( );
             $( form ).find( '.has-error' ).removeClass( 'has-error' );
         },
 
-        initialize: function( ) {
+        initialize : function( ) {
+
             var self = this;
             self.listenTo( self.collection, 'add', self.onAdd );
             self.collection.fetch( );
+
         },
 
-        newAsset: function( e ) {
+        newAsset : function( e ) {
 
             e.preventDefault( );
 
-            var self = this,
-                form = e.currentTarget,
-                newAsset = {};
+            var self     = this;
+            var form     = e.currentTarget;
+            var newAsset = {};
 
 
             newAsset.asset_name        = self.fieldValidation( form.asset_name, /^[a-zA-Z0-9\.\-\,\''\s]{3,30}$/ );
@@ -66,7 +64,7 @@ define( [
 
         },
 
-        ajaxRequest: function( form, data ) {
+        ajaxRequest : function( form, data ) {
 
             var self = this;
 
@@ -88,15 +86,15 @@ define( [
                 }
                 if ( result.errors ) {
                     Object.keys( result.errors ).forEach( function( key ) {
-                        $( form[ key ] ).addClass( 'hass-error' );
+                        $( form[ key ] ).addClass( 'has-error' );
                     } );
                 }
             } );
         },
 
-        onAdd: function( model ) {
+        onAdd : function( model ) {
 
-            var self = this;
+            var self  = this;
             var asset = new AssetView( {
                 model: model
             } );
@@ -105,7 +103,7 @@ define( [
 
         },
 
-        fieldValidation: function( field, regexp ) {
+        fieldValidation : function( field, regexp ) {
 
             $( field ).removeClass( 'error' );
 

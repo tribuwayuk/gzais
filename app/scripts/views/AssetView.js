@@ -10,27 +10,24 @@ define( [
 
     var AssetView = Backbone.View.extend( {
 
-        className: 'asset-entry',
+        className           : 'asset-entry',
+        tagName             : 'tr',
+        errorFields         : [ ],
+        template            : JST[ 'app/scripts/templates/asset.ejs' ],
+        editTemplate        : JST[ 'app/scripts/templates/asset-edit.ejs' ],
+        assignAssetTemplate : JST[ 'app/scripts/templates/asset-assign.ejs' ],
 
-        tagName: 'tr',
-
-        errorFields: [ ],
-
-        template: JST[ 'app/scripts/templates/asset.ejs' ],
-        editTemplate: JST[ 'app/scripts/templates/asset-edit.ejs' ],
-        assignAssetTemplate: JST[ 'app/scripts/templates/asset-assign.ejs' ],
-
-        events: {
+        events              : {
             'click .delete-asset' : 'deleteAsset',
-            'click .edit-asset' : 'displayEditForm',
-            'click .glyphicon-hand-up' : 'assignItemToUser'
+            'click .edit-asset'   : 'displayEditForm',
         },
 
-        initialize: function( ) {
+        initialize : function( ) {
 
             var self = this;
-            // Proper way to handle deletion through events
+
             self.listenTo( self.model, 'remove', function( index ) {
+
                 var options = options || {};
                 options.url = self.model.url( );
 
@@ -43,16 +40,15 @@ define( [
 
                 self.model.collection.sync( 'delete', self.model, options );
             } );
+
         },
 
-        assignItemToUser: function() {
-            
-        },
+        displayEditForm : function( e ) {
 
-        displayEditForm: function( e ) {
             e.preventDefault( );
 
             var self = this;
+
             $( '#edit-modal' ).empty( );
             $( '#edit-modal' ).append( self.editTemplate( {
                 model: self.model
@@ -62,7 +58,8 @@ define( [
 
         },
 
-        updateAsset: function( e ) {
+        updateAsset : function( e ) {
+
             e.preventDefault( );
 
             var self = this;
@@ -103,9 +100,9 @@ define( [
 
         },
 
-        deleteAsset: function( ) {
+        deleteAsset : function( ) {
 
-            var self = this;
+            var self    = this;
             var bootbox = window.bootbox;
 
             bootbox.dialog( {
@@ -113,17 +110,15 @@ define( [
                 title: "Confirm Deletion",
                 buttons: {
                     default: {
-                        label: " Cancel ",
-                        className: "btn-default",
-                        callback: function( ) {
-                            // Do nothing
+                        label     : " Cancel ",
+                        className : "btn-default",
+                        callback  : function( ) {
                         }
                     },
                     danger: {
-                        label: " Yes ",
-                        className: "btn-danger",
-                        callback: function( ) {
-                            // delete model.
+                        label     : " Yes ",
+                        className : "btn-danger",
+                        callback  : function( ) {
                             return self.model.collection.remove( self.model );
                         }
                     }

@@ -6,41 +6,41 @@ define( [ 'jquery', 'underscore', 'backbone', 'templates', 'EmployeeView' ], fun
 
     var EmployeesView = Backbone.View.extend( {
 
-        template: JST[ 'app/scripts/templates/employees.ejs' ],
-
-        events: {
-            'submit form#add-form': 'newEmployee',
-            'hidden.bs.modal #edit-modal': 'resetForm',
-            'hidden.bs.modal #add-modal': 'resetForm'
+        template    : JST[ 'app/scripts/templates/employees.ejs' ],
+        errorFields : [ ],
+        events      : {
+            'submit form#add-form'        : 'newEmployee',
+            'hidden.bs.modal #edit-modal' : 'resetForm',
+            'hidden.bs.modal #add-modal'  : 'resetForm'
         },
 
-        render: function ( ) {
+        render : function ( ) {
             var self = this;
             self.$el.html( self.template( ) );
             return self;
         },
 
-        resetForm: function ( e ) {
+        resetForm : function ( e ) {
             var form = e.currentTarget.querySelector( 'form' );
             form.reset( );
             $( form ).find( '.has-error' ).removeClass( 'has-error' );
             $( form ).find( '.error' ).removeClass( 'error' );
         },
 
-        initialize: function ( ) {
+        initialize : function ( ) {
             var self = this;
             self.listenTo( self.collection, 'add', self.onAdd );
             self.collection.fetch( );
         },
 
-        errorFields: [ ],
 
-        newEmployee: function ( e ) {
+        newEmployee : function ( e ) {
 
             e.preventDefault( );
-            var self = this,
-                form = e.currentTarget,
-                newEmployee = {};
+
+            var self        = this;
+            var form        = e.currentTarget;
+            var newEmployee = {};
 
             newEmployee.first_name    = self.fieldValidation( form.first_name, /^[a-zA-Z\s]{1,30}$/ );
             newEmployee.middle_name   = self.fieldValidation( form.middle_name, /^[a-zA-Z]{1,30}$/ );
@@ -60,7 +60,7 @@ define( [ 'jquery', 'underscore', 'backbone', 'templates', 'EmployeeView' ], fun
             }
         },
 
-        ajaxRequestSave: function ( form, data ) {
+        ajaxRequestSave : function ( form, data ) {
 
             var self = this;
 
@@ -87,27 +87,25 @@ define( [ 'jquery', 'underscore', 'backbone', 'templates', 'EmployeeView' ], fun
 
                 if ( result.err && result.err.match( /email/ ) ) {
 
-                    $( form[ 'email' ] )
-                        .parent( )
-                        .addClass( 'has-error error' );
+                    $( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
 
                 }
 
             } );
         },
 
-        onAdd: function ( model ) {
+        onAdd : function ( model ) {
 
             var self     = this;
             var employee = new EmployeeView( {
-                model: model
+                model : model
             } );
 
             $( 'tbody.employees-list' ).prepend( employee.render( ).el );
 
         },
 
-        fieldValidation: function ( field, regexp ) {
+        fieldValidation : function ( field, regexp ) {
 
             $( field ).removeClass( 'error' );
 
