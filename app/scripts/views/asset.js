@@ -18,10 +18,12 @@ define( [
 
         template: JST[ 'app/scripts/templates/asset.ejs' ],
         editTemplate: JST[ 'app/scripts/templates/asset-edit.ejs' ],
+        assignAssetTemplate: JST[ 'app/scripts/templates/asset-assign.ejs' ],
 
         events: {
-            'click .delete-asset': 'deleteAsset',
-            'click .edit-asset': 'displayEditForm'
+            'click .delete-asset' : 'deleteAsset',
+            'click .edit-asset' : 'displayEditForm',
+            'click .glyphicon-hand-up' : 'assignItemToUser'
         },
 
         initialize: function( ) {
@@ -41,6 +43,10 @@ define( [
 
                 self.model.collection.sync( 'delete', self.model, options );
             } );
+        },
+
+        assignItemToUser: function() {
+            
         },
 
         displayEditForm: function( e ) {
