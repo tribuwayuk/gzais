@@ -28,7 +28,6 @@ define( [
         initialize: function( ) {
             var self = this;
 
-            self.listenTo( self.model, 'change', self.render );
             // Proper way to handle deletion through events
             self.listenTo( self.model, 'remove', function( index ) {
                 var options = options || {};
