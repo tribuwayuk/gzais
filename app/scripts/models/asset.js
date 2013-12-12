@@ -1,28 +1,28 @@
 /*global define*/
-define([
-  'underscore',
-  'backbone'
-], function(_, Backbone) {
-  'use strict';
+define( [
+    'underscore',
+    'backbone'
+], function( _, Backbone ) {
+    'use strict';
 
-  var AssetModel = Backbone.Model.extend({
+    var AssetModel = Backbone.Model.extend( {
 
-    defaults: {},
+        defaults: {},
 
-    idAttribute: '_id',
+        idAttribute: '_id',
 
-    getDatePurchased: function() {
+        getDatePurchased: function( ) {
 
-      var date   = new Date(this.get('date_purchased')),
-          _month = (date.getMonth() + 1 < 10) ? '0' + date.getMonth() + 1: '' + date.getMonth() + 1,
-          _date  = (date.getDate() + 1 < 10) ? '0' + date.getDate() + 1: '' + date.getDate() + 1,
-          _year  = date.getFullYear();
+            var date = new Date( this.get( 'date_purchased' ) );
+            var _month = ( date.getMonth( ) + 1 < 10 ) ? '0' + ( date.getMonth( ) + 1 ) : '' + ( date.getMonth( ) + 1 );
+            var _date = ( date.getDate( ) < 10 ) ? '0' + date.getDate( ) : '' + date.getDate( );
+            var _year = date.getFullYear( );
 
-      return _month + '/' + _date + '/' + _year;
+            return _month + '/' + _date + '/' + _year;
 
-    }
+        }
 
-  });
+    } );
 
-  return AssetModel;
-});
+    return AssetModel;
+} );
