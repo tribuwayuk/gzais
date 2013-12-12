@@ -63,8 +63,8 @@ define( [
             var form = e.currentTarget;
             var data = {};
 
-            data.asset_name        = self.fieldValidation( form.asset_name, /^[a-zA-Z0-9\.\-\,\''\s]{5,30}$/ );
-            data.asset_type        = self.fieldValidation( form.asset_type, /^[a-zA-Z0-9\s]{5,30}$/ );
+            data.asset_name        = self.fieldValidation( form.asset_name, /^[a-zA-Z0-9\.\-\,\''\s]{3,30}$/ );
+            data.asset_type        = self.fieldValidation( form.asset_type, /^[a-zA-Z0-9\s]{3,30}$/ );
             data.asset_description = self.fieldValidation( form.asset_description, /^.{5,160}$/ );
             data.date_purchased    = self.fieldValidation( form.date_purchased, /^\d{2}\/\d{2}\/\d{4}$/ );
             data.status            = self.fieldValidation( form.status, /^(working|defective)$/ );
