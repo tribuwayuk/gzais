@@ -103,7 +103,7 @@ define( [
             data.middle_name   = self.fieldValidation( form.middle_name, /^[a-zA-Z\s]{1,30}$/ );
             data.last_name     = self.fieldValidation( form.last_name, /^[a-zA-Z\s]{1,30}$/ );
             data.address       = self.fieldValidation( form.address, /^.{2,60}$/ );
-            data.email         = self.fieldValidation( form.email, /^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/ );
+            data.email         = self.fieldValidation( form.email, /^[a-z]+\.[a-z]+@globalzeal\.net$/ );
             data.gender        = self.fieldValidation( form.gender, /^(male|female)$/ );
             data.date_of_birth = self.fieldValidation( form.date_of_birth, /^\d{2}\/\d{2}\/\d{4}$/ );
             data.date_employed = self.fieldValidation( form.date_employed, /^\d{2}\/\d{2}\/\d{4}$/ );
