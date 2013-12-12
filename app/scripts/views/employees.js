@@ -24,6 +24,7 @@ define( [ 'jquery', 'underscore', 'backbone', 'templates', 'EmployeeView' ], fun
             var form = e.currentTarget.querySelector( 'form' );
             form.reset( );
             $( form ).find( '.has-error' ).removeClass( 'has-error' );
+            $( form ).find( '.error' ).removeClass( 'error' );
         },
 
         initialize: function( ) {
