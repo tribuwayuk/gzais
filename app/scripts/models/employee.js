@@ -7,7 +7,7 @@ define([
 
   var _formatDate = function(d) {
     var date = new Date(d),
-      _month = (date.getMonth() + 1 < 10) ? '0' + date.getMonth() : '' + date.getMonth(),
+      _month = (date.getMonth() + 1 < 10) ? '0' + date.getMonth() + 1 : '' + date.getMonth() + 1,
       _date = (date.getDate() + 1 < 10) ? '0' + date.getDate() : '' + date.getDate(),
       _year = date.getFullYear();
     return _month + '/' + _date + '/' + _year;

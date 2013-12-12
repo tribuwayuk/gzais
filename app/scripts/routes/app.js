@@ -38,9 +38,9 @@ define( [
                 } );
             }
 
-            var appSubViews = window.App.view.subViews;
-            
+            var appSubViews		= window.App.view.subViews;
             appSubViews[ name ] = appSubViews[ name ] ? appSubViews[ name ] : subView;
+
             window.App.view.model.set( 'currentContent', appSubViews[ name ] );
             return subView;
 
