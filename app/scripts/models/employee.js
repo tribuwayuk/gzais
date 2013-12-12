@@ -1,45 +1,48 @@
 /*global define*/
-define([
-  'underscore',
-  'backbone'
-], function(_, Backbone) {
-  'use strict';
+define( [
+    'underscore',
+    'backbone'
+], function( _, Backbone ) {
+    'use strict';
 
-  var _formatDate = function(d) {
-    var date = new Date(d),
-      _month = (date.getMonth() + 1 < 10) ? '0' + date.getMonth() + 1 : '' + date.getMonth() + 1,
-      _date = (date.getDate() + 1 < 10) ? '0' + date.getDate() : '' + date.getDate(),
-      _year = date.getFullYear();
-    return _month + '/' + _date + '/' + _year;
-  };
+    var _formatDate = function( d ) {
 
-  var EmployeeModel = Backbone.Model.extend({
+        var date   = new Date( d );
+        var _month = ( date.getMonth( ) + 1 < 10 ) ? '0' + ( date.getMonth( ) + 1 ) : '' + ( date.getMonth( ) + 1 );
+        var _date  = ( date.getDate( ) < 10 ) ? '0' + date.getDate( ) : '' + date.getDate( );
+        var _year  = date.getFullYear( );
+        
+        return _month + '/' + _date + '/' + _year;
 
-    defaults: {
-      assets: 0
-    },
+    };
 
-    idAttribute: '_id',
+    var EmployeeModel = Backbone.Model.extend( {
 
-    getDateOfBirth: function() {
+        defaults: {
+            assets: 0
+        },
 
-      return _formatDate(this.get('date_of_birth'));
+        idAttribute: '_id',
 
-    },
+        getDateOfBirth: function( ) {
 
-    getDateEmployed: function() {
+            return _formatDate( this.get( 'date_of_birth' ) );
 
-      return _formatDate(this.get('date_employed'));
+        },
 
-    },
+        getDateEmployed: function( ) {
 
-    getFullName: function() {
+            return _formatDate( this.get( 'date_employed' ) );
 
-      return this.get('first_name') + ' ' + this.get('last_name');
+        },
 
-    },
+        getFullName: function( ) {
 
-  });
+            return this.get( 'first_name' ) + ' ' + this.get( 'last_name' );
 
-  return EmployeeModel;
-});
+        },
+
+    } );
+
+    return EmployeeModel;
+} );
