@@ -8,11 +8,12 @@ define( [
 
     var AppView = Backbone.View.extend( {
 
-        el            : $( '#app' ),
-        subViews      : { },
-        template      : JST[ 'app/scripts/templates/app.ejs' ],
-        loginTemplate : JST[ 'app/scripts/templates/login-form.ejs' ],
-        mainTemplate  : JST[ 'app/scripts/templates/app-main.ejs' ],
+        el                     : $( '#app' ),
+        subViews               : { },
+        template               : JST[ 'app/scripts/templates/app.ejs' ],
+        loginTemplate          : JST[ 'app/scripts/templates/login-form.ejs' ],
+        forgotPasswordTemplate : JST[ 'app/scripts/templates/forgot-password.ejs' ],
+        mainTemplate           : JST[ 'app/scripts/templates/app-main.ejs' ],
 
         initialize : function( ) {
 
@@ -27,7 +28,8 @@ define( [
 
         events : {
             'submit form.login-form' : 'doLogin',
-            'click a.logout'         : 'doLogOut'
+            'click a.logout'         : 'doLogOut',
+            'click .forgot-password' : 'forgotPassword'
         },
 
         render : function( ) {
@@ -98,6 +100,28 @@ define( [
             }
 
         },
+        
+        forgotPassword : function ( e ) {
+			var self = this;
+			$( self.model.get( 'containerDiv' ) ).html( self.forgotPasswordTemplate( ) );
+
+			$('.forgot-form').submit( self.requestForgotPassword.bind ( self ) );
+        },
+		
+		requestForgotPassword: function ( e ) {
+			e.preventDefault ( );
+			var self          = this,
+				form          = e.currentTarget,
+				emailField    = form.email;
+
+			$.ajax( {
+                'type'    : "POST",
+                'url'     : self.model.get('dbURL') + "forgotPassword/" + emailField.value,
+                'success' : function( ) {
+                    console.log( 'success!' );
+                },
+            } );
+		},
 
         doLogin : function( e ) {
 
