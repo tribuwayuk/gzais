@@ -87,7 +87,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email Address</label>
+                    <label for="email">Email Address
+                        <span class="email-error">- email address is taken!</span>
+                    </label>
                     <input type="email" class="form-control" id="email" placeholder="name@globalzeal.net" value="<%= model.get('email') %>">
                 </div>
             </div>

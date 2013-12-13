@@ -126,8 +126,13 @@ define( [
                         $( 'input, button, option, textarea' ).prop( 'disabled', false );
                         $( '.btns' ).removeClass( 'loading' );
                     },
-                    error: function( ) {
-                        $( '#edit-modal' ).modal( 'hide' );
+                    error: function( res, err ) {
+
+                        if ( JSON.stringify( err ) && JSON.stringify( err ).match( /email/ ) ) {
+							$( 'input, button, option' ).prop( 'disabled', false );
+							$( '.btns' ).removeClass( 'loading' );
+							$( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
+						}
                     }
                 } );
 
