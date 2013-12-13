@@ -209,9 +209,21 @@ button.selectpicker {
   }
 }
 
-.asset-details {
+.action-cols {
+	text-align: center !important;
+    width: 20% !important;
+}
+
+.asset-details, .employee-details {
   small {
     color: #aaa;
+  }
+  h3, h4 {
+  	word-wrap: break-word;
+  }
+  .row-details {
+  	display: block;
+  	clear: both;
   }
 }
 
