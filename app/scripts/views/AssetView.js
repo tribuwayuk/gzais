@@ -71,7 +71,7 @@ define( [
             data.date_purchased    = self.fieldValidation( form.date_purchased, /^\d{2}\/\d{2}\/\d{4}$/ );
             data.status            = self.fieldValidation( form.status, /^(working|defective)$/ );
             data.serial_number     = self.fieldValidation( form.serial_number, /^[a-zA-Z0-9-\s]{5,30}$/ );
-            data.supplier          = self.fieldValidation( form.supplier, /^[a-zA-Z0-9\s]{5,160}$/ );
+            data.supplier          = self.fieldValidation( form.supplier, /^[a-zA-Z0-9\-\.\,\&\s]{5,160}$/ );
             data.reason            = self.fieldValidation( form.reason, /^.{5,160}$/ );
             data.asset_description = self.fieldValidation( form.asset_description, /^.{5,160}$/ );
 
