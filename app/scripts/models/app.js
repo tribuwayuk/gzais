@@ -17,7 +17,8 @@ define( [
             team	: {
                 name : 'Tribu Wayuk',
                 url  : 'http://tribuwayuk.com'
-            }
+            },
+            dbURL : 'http://gzais-api.herokuapp.com/'
         }
 
     } );

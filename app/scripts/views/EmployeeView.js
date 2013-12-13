@@ -120,6 +120,7 @@ define( [
                 $( '.btns' ).addClass( 'loading' );
 
                 self.model.save( data, {
+					wait: true,
                     success: function( ) {
                         self.render( );
                         $( '#edit-modal' ).modal( 'hide' );
