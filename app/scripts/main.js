@@ -6,27 +6,24 @@ require.config( {
             exports: '_'
         },
         backbone: {
-            deps: [
-                'underscore',
-                'jquery'
-            ],
-            exports: 'Backbone'
+            deps    : [ 'underscore', 'jquery' ],
+            exports : 'Backbone'
         },
         bootstrap: {
-            deps: [ 'jquery' ],
-            exports: 'jquery'
+            deps    : [ 'jquery' ],
+            exports : 'jquery'
         },
         datepicker: {
-            deps: [ 'jquery' ],
-            exports: 'datepicker'
+            deps    : [ 'jquery' ],
+            exports : 'datepicker'
         },
         selectpicker: {
-            deps: [ 'jquery' ],
-            exports: 'selectpicker'
+            deps    : [ 'jquery' ],
+            exports : 'selectpicker'
         },
         bootbox: {
-            deps: [ 'jquery', 'bootstrap' ],
-            exports: 'bootbox'
+            deps    : [ 'jquery', 'bootstrap' ],
+            exports : 'bootbox'
         }
     },
     paths: {
@@ -65,9 +62,9 @@ require( [
     'bootbox'
 ], function( Backbone, App, AppView, MainRouter ) {
 
-    var app		= window.App = window.App || {};
-    app.router	= new MainRouter( );
-    app.view	= new AppView( {
+    var app    = window.App = window.App || {};
+    app.router = new MainRouter( );
+    app.view   = new AppView( {
         model: new App( {
             baseUrl : '/assets',
             user    : JSON.parse( window.localStorage.getItem( 'user' ) ) || undefined
@@ -75,11 +72,9 @@ require( [
     } );
 
     $( document ).on( 'click', 'a[href^="/"]', function( e ) {
-
         var href = $( e.currentTarget ).attr( 'href' );
 
         if ( !e.altKey && !e.ctrlKey && !e.metaKey && !e.shiftKey ) {
-
             e.preventDefault( );
 
             var url = href.replace( /^\//, '' ).replace( '#\/', '' );
