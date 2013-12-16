@@ -26,15 +26,19 @@ define( [
         displaySearchName : function( e ) {
             var self = this;
             e.preventDefault( );
-            var divid = '#div' + self.model.id;
-            $( divid ).show( );
+            var searchDivID = '#div' + self.model.id;
+            var assigneeTDID = '#assignee_' + this.model.id;
 
-            $( divid ).on(" change ", function( e ) {
+            $( searchDivID ).show( );
+
+            $( searchDivID ).on(" change ", function( e ) {
+                var name = e.val;
                 var assigned_to = e.added['_id'];
 
                  self.model.save( { assignee : assigned_to }, {
-                    success : function( ) {
-                        self.render( );
+                    success : function( data ) {
+                        $(assigneeTDID).html(name);
+                        $( searchDivID ).hide( );
                     },
                     error : function( ) {
 
@@ -150,6 +154,7 @@ define( [
 
         render: function( ) {
             var self = this;
+
             self.$el.html( self.template( {
                 model: self.model
             } ) );

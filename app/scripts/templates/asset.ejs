@@ -1,15 +1,15 @@
 <td>
-    <%= model.get( 'status') %>
+    <%= model.get( 'status' ) %>
 </td>
 <td>
-    <%= model.get( 'asset_name') %>
+    <%= model.get( 'asset_name' ) %>
 </td>
 <td>
-    <%= model.getDatePurchased() %>
+    <%= model.getDatePurchased( ) %>
 </td>
-<td><%= model.get( 'assignee') %></td>
+<td id="assignee_<%= model.get( '_id' ) %>"><%= model.get( 'assignee' ).first_name + " " + model.get( 'assignee' ).last_name %></td>
 <td>
-    <%= model.get( 'serial_number') %>
+    <%= model.get( 'serial_number' ) %>
 </td>
 <td style="text-align:center">
     <a href="/assets/<%= model.get('_id') %>" data-toggle="tooltip" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip view-details" data-original-title="View Details">
