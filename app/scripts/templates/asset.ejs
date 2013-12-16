@@ -8,15 +8,14 @@
     <%= model.getDatePurchased( ) %>
 </td>
 
-<% if(model.get( 'assignee' ) == undefined) { 
-        var full_name = '';
+<% if( model.get( 'assignee' ) == undefined ) { 
+        var fullName = '';
     } else {
-        var full_name = model.get( 'assignee' ).first_name + " " + model.get( 'assignee' ).last_name;
-        console.log(model.get( 'assignee' ));
+        var fullName = model.get( 'assignee' ).first_name + " " + model.get( 'assignee' ).last_name;
     } 
 %>
 
-<td id="assignee_<%= model.get( '_id' ) %>"><%= full_name %></td>
+<td id="assignee_<%= model.get( '_id' ) %>"><%= fullName %></td>
 <td>
     <%= model.get( 'serial_number' ) %>
 </td>
@@ -37,9 +36,9 @@
         <input type="hidden" class="bigdrop" id="search2" style="width:150px;" />
     </div>
     <script type="text/javascript">
-        $('#search2').nameSearch("<%= model.searchURL %>");
+        $( '#search2' ).nameSearch( "<%= model.searchURL %>" );
     </script>
 </td>
 <script>
-	$('.tool-tip').tooltip();
+	$( '.tool-tip' ).tooltip( );
 </script>
