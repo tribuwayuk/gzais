@@ -3,7 +3,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'datepicker.scss';
 @import 'bootstrap-select.scss';
-@import '../scripts/vendor/select2/select2.css';
+@import 'select2.scss';
 
 .browsehappy {
     margin: 0.2em 0;
