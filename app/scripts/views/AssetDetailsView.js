@@ -18,6 +18,27 @@ define( [
             'click .delete-asset': 'deleteAsset'
         },
 
+	initialize : function( ) {
+
+	    var self = this;
+
+	    self.listenTo( self.model, 'remove', function( index ) {
+
+		var options = options || {};
+		options.url = self.model.url( );
+
+		options.success = function( ) {
+		    window.App.router.navigate( '/assets', true );
+		    return self.remove( );
+		};
+		options.error = function( ) {
+		    console.error( 'error' );
+		};
+
+		self.model.collection.sync( 'delete', self.model, options );
+	    } );
+
+	},
 
         updateAsset: function ( e ) {
 
@@ -80,6 +101,32 @@ define( [
             } ) );
             return self;
         },
+
+	deleteAsset : function( ) {
+
+	    var self    = this;
+	    var bootbox = window.bootbox;
+
+	    bootbox.dialog( {
+		message: 'Are you sure you want to delete ' + self.model.get( 'asset_name' ) + ' ?',
+		title: "Confirm Deletion",
+		buttons: {
+		    default: {
+			label     : " Cancel ",
+			className : "btn-default",
+			callback  : function( ) {
+			}
+		    },
+		    danger: {
+			label     : " Yes ",
+			className : "btn-danger",
+			callback  : function( ) {
+			    return self.model.collection.remove( self.model );
+			}
+		    }
+		}
+	    } );
+	},
 
     } );
 
