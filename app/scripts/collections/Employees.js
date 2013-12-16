@@ -8,9 +8,8 @@ define([
     var Employees = Backbone.Collection.extend({
 
         model   : Employee,
-        //url     : 'http://gzais-api.herokuapp.com/employees',
-        //urlRoot : 'http://gzais-api.herokuapp.com'
-        url     : 'http://localhost:3000/employees'
+        url     : 'http://gzais-api.herokuapp.com/employees',
+        urlRoot : 'http://gzais-api.herokuapp.com'
 
     });
 

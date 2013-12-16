@@ -24,10 +24,24 @@ define( [
         },
 
         displaySearchName : function( e ) {
+            var self = this;
             e.preventDefault( );
-            var divid = '#div'+this.model.id;
-            console.log('Div ID:' + divid);
-            $(divid).show();
+            var divid = '#div' + self.model.id;
+            $( divid ).show( );
+
+            $( divid ).on(" change ", function( e ) {
+                var assigned_to = e.added['_id'];
+
+                 self.model.save( { assignee : assigned_to }, {
+                    success : function( ) {
+                        self.render( );
+                    },
+                    error : function( ) {
+
+                    }
+                } );
+
+            });
         },
 
         initialize : function( ) {
