@@ -20,6 +20,32 @@ define( [
         events              : {
             'click .delete-asset' : 'deleteAsset',
             'click .edit-asset'   : 'displayEditForm',
+            'click .assign-asset' : 'displaySearchName',
+        },
+
+        displaySearchName : function( e ) {
+            var self = this;
+            e.preventDefault( );
+            var searchDivID = '#div' + self.model.id;
+            var assigneeTDID = '#assignee_' + this.model.id;
+
+            $( searchDivID ).show( );
+
+            $( searchDivID ).on(" change ", function( e ) {
+                var name = e.val;
+                var assigned_to = e.added['_id'];
+
+                 self.model.save( { assignee : assigned_to }, {
+                    success : function( data ) {
+                        $(assigneeTDID).html(name);
+                        $( searchDivID ).hide( );
+                    },
+                    error : function( ) {
+
+                    }
+                } );
+
+            });
         },
 
         initialize : function( ) {
@@ -45,7 +71,7 @@ define( [
 
         displayEditForm : function( e ) {
 
-            e.preventDefault( );
+     
 
             var self = this;
 
@@ -128,6 +154,7 @@ define( [
 
         render: function( ) {
             var self = this;
+
             self.$el.html( self.template( {
                 model: self.model
             } ) );
