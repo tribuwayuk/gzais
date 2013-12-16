@@ -26,7 +26,7 @@ define( [
 
             var self = this;
 
-            self.listenTo( self.model, 'remove', function( index ) {
+			self.listenTo( self.model, 'remove', function( index ) {
                 var options = options || {};
                 options.url = self.model.url( );
 
@@ -88,6 +88,10 @@ define( [
 
             var self = this;
 
+            if(self.model){
+				self.model.fetch();
+			}
+
             $( '#edit-modal' ).empty( );
             $( '#edit-modal' ).append( self.editTemplate( {
                 model: self.model
@@ -119,20 +123,28 @@ define( [
                 $( 'input, button, option, textarea' ).prop( 'disabled', true );
                 $( '.btns' ).addClass( 'loading' );
 
-                self.model.save( data, {
+				self.model.save( data, {
 					wait: true,
-                    success: function( ) {
-                        self.render( );
-                        $( '#edit-modal' ).modal( 'hide' );
-                        $( 'input, button, option, textarea' ).prop( 'disabled', false );
-                        $( '.btns' ).removeClass( 'loading' );
-                    },
-                    error: function( res, err ) {
-
-                        if ( JSON.stringify( err ) && JSON.stringify( err ).match( /email/ ) ) {
+                    success: function( model, xhr, options) {
+						if ( JSON.stringify( xhr ) && JSON.stringify( xhr ).match( /email/ ) ) {
+							console.log(self.model.previousAttributes());
 							$( 'input, button, option' ).prop( 'disabled', false );
-							$( '.btns' ).removeClass( 'loading' );
+							$( '.btns' ).removeClass( 'error loading' );
 							$( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
+							model.set(model.previousAttributes(),{silent: true});					// if error, reset modal value
+						} else {
+							self.render( );
+							$( '#edit-modal' ).modal( 'hide' );
+							$( 'input, button, option, textarea' ).prop( 'disabled', false );
+							$( '.btns' ).removeClass( 'loading' );
+						}
+                    },
+                    error: function( model, xhr, options) {
+						if ( JSON.stringify( xhr ) && JSON.stringify( xhr ).match( /email/ ) ) {
+							$( 'input, button, option' ).prop( 'disabled', false );
+							$( '.btns' ).removeClass( 'error loading' );
+							$( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
+							model.set(model.previousAttributes(),{silent: true});					// if error, reset modal value
 						}
                     }
                 } );
