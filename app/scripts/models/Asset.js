@@ -8,6 +8,7 @@ define( [
 
         defaults         : {},
         idAttribute      : '_id',
+        searchURL        : 'http://gzais-api.herokuapp.com/employees/search/',
 
         getDatePurchased : function( ) {
 

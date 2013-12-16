@@ -34,11 +34,10 @@
     <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip delete-asset">&nbsp;x&nbsp;</button>
 
     <div class="searchBox" style='display:none;' id=<%= "div"+ model.get( '_id' ) %>>
-        <input type="hidden" class="bigdrop" id="<%= model.get( 'serial_number') %>" style="width:150px;" />
+        <input type="hidden" class="bigdrop" id="search2" style="width:150px;" />
     </div>
     <script type="text/javascript">
-        var id = <%= model.get( 'serial_number') %>
-        $('#'+id).nameSearch("http://localhost:3000/employees/search/");
+        $('#search2').nameSearch("<%= model.searchURL %>");
     </script>
 </td>
 <script>
