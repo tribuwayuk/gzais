@@ -31,13 +31,13 @@ define( [
 
             $( searchDivID ).show( );
 
-            $( searchDivID ).on(" change ", function( e ) {
+            $( searchDivID ).on( "change", function( e ) {
                 var name = e.val;
-                var assigned_to = e.added['_id'];
+                var assigned_to = e.added[ '_id' ];
 
                  self.model.save( { assignee : assigned_to }, {
                     success : function( data ) {
-                        $(assigneeTDID).html(name);
+                        $( assigneeTDID ).html( name );
                         $( searchDivID ).hide( );
                     },
                     error : function( ) {
