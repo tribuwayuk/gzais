@@ -1,3 +1,5 @@
+/*global define*/
+
 define([
     'underscore',
     'backbone',
@@ -9,7 +11,7 @@ define([
 
         model : Asset,
         url   : 'http://gzais-api.herokuapp.com/assets'
-
+     
     });
 
     return Assets;

@@ -1,15 +1,24 @@
 <td>
-    <%= model.get( 'status') %>
+    <%= model.get( 'status' ) %>
 </td>
 <td>
-    <%= model.get( 'asset_name') %>
+    <%= model.get( 'asset_name' ) %>
 </td>
 <td>
-    <%= model.getDatePurchased() %>
+    <%= model.getDatePurchased( ) %>
 </td>
-<td></td>
+
+<% if(model.get( 'assignee' ) == undefined) { 
+        var full_name = '';
+    } else {
+        var full_name = model.get( 'assignee' ).first_name + " " + model.get( 'assignee' ).last_name;
+        console.log(model.get( 'assignee' ));
+    } 
+%>
+
+<td id="assignee_<%= model.get( '_id' ) %>"><%= full_name %></td>
 <td>
-    <%= model.get( 'serial_number') %>
+    <%= model.get( 'serial_number' ) %>
 </td>
 <td style="text-align:center">
     <a href="/assets/<%= model.get('_id') %>" data-toggle="tooltip" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip view-details" data-original-title="View Details">
@@ -21,7 +30,15 @@
     <button type="button" data-toggle="tooltip" data-placement="bottom" title="Assign" class="btn btn-default btn-xs tool-tip assign-asset">
         <span class="glyphicon glyphicon-hand-up"></span>
     </button>
+        
     <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip delete-asset">&nbsp;x&nbsp;</button>
+
+    <div class="searchBox" style='display:none;' id=<%= "div"+ model.get( '_id' ) %>>
+        <input type="hidden" class="bigdrop" id="search2" style="width:150px;" />
+    </div>
+    <script type="text/javascript">
+        $('#search2').nameSearch("<%= model.searchURL %>");
+    </script>
 </td>
 <script>
 	$('.tool-tip').tooltip();
