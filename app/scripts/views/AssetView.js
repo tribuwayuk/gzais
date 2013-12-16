@@ -20,6 +20,14 @@ define( [
         events              : {
             'click .delete-asset' : 'deleteAsset',
             'click .edit-asset'   : 'displayEditForm',
+            'click .assign-asset' : 'displaySearchName',
+        },
+
+        displaySearchName : function( e ) {
+            e.preventDefault( );
+            var divid = '#div'+this.model.id;
+            console.log('Div ID:' + divid);
+            $(divid).show();
         },
 
         initialize : function( ) {
@@ -45,7 +53,7 @@ define( [
 
         displayEditForm : function( e ) {
 
-            e.preventDefault( );
+     
 
             var self = this;
 

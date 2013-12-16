@@ -17,6 +17,10 @@ require.config( {
             deps    : [ 'jquery' ],
             exports : 'datepicker'
         },
+        gzaisSearch: {
+            deps: [ 'jquery', 'select2' ],
+            exports: 'gzaisSearch'
+        },
         selectpicker: {
             deps    : [ 'jquery' ],
             exports : 'selectpicker'
@@ -34,6 +38,8 @@ require.config( {
         datepicker           : 'vendor/bootstrap-datepicker',
         bootbox              : 'vendor/bootbox',
         selectpicker         : 'vendor/bootstrap-select',
+        select2              : 'vendor/select2/select2', 
+        gzaisSearch          : 'vendor/jquery-gzais-search', 
         App                  : 'models/App',
         AppView              : 'views/AppView',
         MainRouter           : 'routes/MainRouter',
@@ -59,7 +65,8 @@ require( [
     'bootstrap',
     'datepicker',
     'selectpicker',
-    'bootbox'
+    'bootbox',
+    'gzaisSearch'
 ], function( Backbone, App, AppView, MainRouter ) {
 
     var app    = window.App = window.App || {};
