@@ -3,19 +3,19 @@ define( [
     'underscore',
     'backbone',
     'templates'
-], function( $, _, Backbone, JST ) {
+], function ( $, _, Backbone, JST ) {
     'use strict';
 
     var AppView = Backbone.View.extend( {
 
-        el                     : $( '#app' ),
-        subViews               : { },
-        template               : JST[ 'app/scripts/templates/app.ejs' ],
-        loginTemplate          : JST[ 'app/scripts/templates/login-form.ejs' ],
-        forgotPasswordTemplate : JST[ 'app/scripts/templates/forgot-password.ejs' ],
-        mainTemplate           : JST[ 'app/scripts/templates/app-main.ejs' ],
+	el: $( '#app' ),
+	subViews: {},
+	template: JST[ 'app/scripts/templates/app.ejs' ],
+	loginTemplate: JST[ 'app/scripts/templates/login-form.ejs' ],
+	forgotPasswordTemplate: JST[ 'app/scripts/templates/forgot-password.ejs' ],
+	mainTemplate: JST[ 'app/scripts/templates/app-main.ejs' ],
 
-        initialize : function( ) {
+	initialize: function ( ) {
 
             var self = this;
 
@@ -26,13 +26,13 @@ define( [
 
         },
 
-        events : {
-            'submit form.login-form' : 'doLogin',
-            'click a.logout'         : 'doLogOut',
-            'click .forgot-password' : 'forgotPassword'
+	events: {
+	    'submit form.login-form': 'doLogin',
+	    'click a.logout': 'doLogOut',
+	    'click .forgot-password': 'forgotPassword'
         },
 
-        render : function( ) {
+	render: function ( ) {
 
             var self = this;
 
@@ -62,10 +62,10 @@ define( [
 
         },
 
-        renderCurrentContent : function( ) {
+	renderCurrentContent: function ( ) {
 
-            var self              = this;
-            var currentContent    = self.model.get( 'currentContent' );
+	    var self = this;
+	    var currentContent = self.model.get( 'currentContent' );
             var contentSectionDiv = self.model.get( 'contentSectionDiv' );
 
             currentContent.delegateEvents( );
@@ -79,7 +79,7 @@ define( [
 
         },
 
-        handleMainNav : function( ) {
+	handleMainNav: function ( ) {
 
             $( '.main-nav > li.active' ).removeClass( 'active' );
             $( '.modal-backdrop' ).remove( );
@@ -100,36 +100,98 @@ define( [
             }
 
         },
-        
-        forgotPassword : function ( e ) {
-			var self = this;
-			$( self.model.get( 'containerDiv' ) ).html( self.forgotPasswordTemplate( ) );
 
-			$('.forgot-form').submit( self.requestForgotPassword.bind ( self ) );
+	forgotPassword: function ( e ) {
+	    var self = this;
+	    $( self.model.get( 'containerDiv' ) ).html( self.forgotPasswordTemplate( ) );
+
+	    $( '.forgot-form' ).submit( self.requestForgotPassword.bind( self ) );
+	    $( '.btn-back' ).click( self.render.bind( self ) );
+	},
+
+	requestForgotPassword: function ( e ) {
+	    e.preventDefault( );
+	    var self = this,
+		form = e.currentTarget,
+		bootbox = window.bootbox,
+		emailField = form.email;
+
+	    var urlRoot = emailField.value.length > 0 ? self.model.get( 'dbURL' ) + "/resetPassword" : '';
+	    $( 'input, button, option, textarea' ).prop( 'disabled', true );
+	    $( '.btns' ).addClass( 'loading' );
+
+	    if ( urlRoot.length > 0 ) {
+
+		$.ajax( {
+		    'type': "POST",
+		    'url': urlRoot,
+		    'data': {
+			'email': emailField.value
+		    }
+		} )
+		    .complete( function ( data ) {
+			var result = JSON.parse( data.responseText );
+			if ( result.error ) {
+			    bootbox.dialog( {
+				message: 'Sorry, email not found!',
+				title: "Forgot Password Error",
+				buttons: {
+				    default: {
+					label: " OK",
+					className: "btn-default",
+					callback: function ( ) {
+											$( 'input, button, option' ).prop( 'disabled', false );
+											$( '.btns' ).removeClass( 'error loading' );
+											$( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
+					}
+				    }
+				}
+			    } );
+			} else {
+			    bootbox.dialog( {
+				message: 'Your password has been reset. Please check your email.',
+				title: "Forgot Password Successful",
+				buttons: {
+				    default: {
+					label: " OK",
+					className: "btn-default",
+					callback: function ( ) {
+											self.render( );
+											$( 'input, button, option, textarea' ).prop( 'disabled', false );
+											$( '.btns' ).removeClass( 'loading' );
+					}
+				    }
+				}
+			    } );
+			}
+		    } );
+
+	    } else {
+		bootbox.dialog( {
+		    message: 'Sorry but I need your email to reset your password.',
+		    title: "Forgot Password Error",
+		    buttons: {
+			default: {
+			    label: " OK",
+			    className: "btn-default",
+			    callback: function ( ) {
+								$( 'input, button, option' ).prop( 'disabled', false );
+								$( '.btns' ).removeClass( 'error loading' );
+								$( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
+			    }
+			}
+		    }
+		} );
+	    }
         },
-		
-		requestForgotPassword: function ( e ) {
-			e.preventDefault ( );
-			var self          = this,
-				form          = e.currentTarget,
-				emailField    = form.email;
 
-			$.ajax( {
-                'type'    : "POST",
-                'url'     : self.model.get('dbURL') + "forgotPassword/" + emailField.value,
-                'success' : function( ) {
-                    console.log( 'success!' );
-                },
-            } );
-		},
-
-        doLogin : function( e ) {
+	doLogin: function ( e ) {
 
             e.preventDefault( );
 
-            var self          = this;
-            var form          = e.currentTarget;
-            var emailField    = form.email;
+	    var self = this;
+	    var form = e.currentTarget;
+	    var emailField = form.email;
             var passwordField = form.password;
 
             if ( !emailField.value.trim( ).match( /^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/ ) ) {
@@ -167,7 +229,7 @@ define( [
 
         },
 
-        doLogOut : function( e ) {
+	doLogOut: function ( e ) {
 
             e.preventDefault( );
 
