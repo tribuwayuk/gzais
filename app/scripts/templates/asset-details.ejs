@@ -19,7 +19,7 @@
     <div class="col-sm-12">
         <small>ASSET NAME</small>
         <h3>
-            <%= model.get('asset_name') %>
+            <%= model.get( 'asset_name' ) %>
         </h3>
         <hr>
     </div>
@@ -28,7 +28,7 @@
     <div class="col-sm-12">
         <small>DESCRIPTION</small>
         <h4>
-            <%= model.get('asset_description') %>
+            <%= model.get( 'asset_description' ) %>
         </h4>
         <hr>
     </div>
@@ -37,27 +37,28 @@
     <div class="col-sm-3">
         <small>SERIAL NUMBER</small>
         <h4>
-            <%= model.get('serial_number') %>
+            <%= model.get( 'serial_number' ) %>
         </h4>
     </div>
     <div class="col-sm-3">
     	<div class="col-sm-12">
         <small>SUPPLIER</small>
-        <h4>
+		<td>
 		    <%= model.get( 'supplier' ) %>
+		</td>
         </h4>
         </div>
     </div>
     <div class="col-sm-3">
         <small>DATE PURCHASED</small>
         <h4>
-            <%= model.getDatePurchased() %>
+            <%= model.getDatePurchased( ) %>
         </h4>
     </div>
     <div class="col-sm-3">
         <small>STATUS</small>
         <h4>
-            <%= model.get('status') %>
+            <%= model.get( 'status' ) %>
         </h4>
     </div>
 </div>
@@ -69,7 +70,7 @@
     <div class="col-sm-6">
         <small>ASSET TYPE</small>
         <h4>
-            <%= model.get('asset_type') %>
+            <%= model.get( 'asset_type' ) %>
         </h4>
     </div>
     <div class="col-sm-6">
@@ -93,7 +94,7 @@
     <div class="col-sm-12">
         <small>REASONS FOR PURCHASE</small>
         <h4>
-            <%= model.get('reason') %>
+            <%= model.get( 'reason' ) %>
         </h4>
     </div>
 </div>
