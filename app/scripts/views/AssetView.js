@@ -23,28 +23,28 @@ define([
             'click .assign-asset' : 'displaySearchName',
         },
 
-        displaySearchName: function(e) {
-            e.preventDefault();
+        displaySearchName: function( e ) {
+            e.preventDefault( );
             var self         = this;
             var searchDivID  = '#div' + self.model.id;
             var assigneeTDID = '#assignee_' + this.model.id;
 
-            $(searchDivID).show();
+            $( searchDivID ).show( );
 
-            $(searchDivID).on("change", function(e) {
+            $( searchDivID ).on( 'change', function( e ) {
                 var name        = e.val;
                 var assigned_to = e.added['_id'];
 
-                self.model.save({
+                self.model.save( {
                     assignee: assigned_to
                 }, {
-                    success: function(data) {
-                        $(assigneeTDID).html(name);
-                        $(searchDivID).hide();
-                        self.model.fetch();
+                    success: function( data ) {
+                        $( assigneeTDID ).html( name );
+                        $( searchDivID ).hide( );
+                        self.model.fetch( );
                     },
-                    error: function() {
-                        $(searchDivID).hide();
+                    error: function( ) {
+                        $( searchDivID ).hide( );
                     }
                 });
             });
@@ -54,68 +54,68 @@ define([
 
             var self = this;
 
-            self.listenTo(self.model, 'remove', function(index) {
+            self.listenTo(self.model, 'remove', function( index ) {
 
                 var options = options || {};
-                options.url = self.model.url();
+                options.url = self.model.url( );
 
-                options.success = function() {
-                    return self.remove();
+                options.success = function( ) {
+                    return self.remove( );
                 };
-                options.error = function() {
-                    console.error('error');
+                options.error = function( ) {
+                    console.error( 'error' );
                 };
 
-                self.model.collection.sync('delete', self.model, options);
+                self.model.collection.sync( 'delete', self.model, options );
             });
 
         },
 
-        displayEditForm: function(e) {
+        displayEditForm: function( e ) {
 
             var self = this;
 
-            $('#edit-modal').empty();
-            $('#edit-modal').append(self.editTemplate({
+            $( '#edit-modal' ).empty( );
+            $( '#edit-modal' ).append( self.editTemplate( {
                 model: self.model
-            }));
+            } ) );
 
-            $('#edit-form').submit(self.updateAsset.bind(self));
+            $( '#edit-form' ).submit( self.updateAsset.bind( self ) );
 
         },
 
-        updateAsset: function(e) {
+        updateAsset: function( e ) {
 
-            e.preventDefault();
+            e.preventDefault( );
 
             var self = this;
             var form = e.currentTarget;
             var data = {};
 
-            data.asset_name        = self.fieldValidation(form.asset_name, /^[a-zA-Z0-9\.\-\,\''\s]{3,30}$/);
-            data.asset_type        = self.fieldValidation(form.asset_type, /^[a-zA-Z0-9\s]{3,30}$/);
-            data.date_purchased    = self.fieldValidation(form.date_purchased, /^\d{2}\/\d{2}\/\d{4}$/);
-            data.status            = self.fieldValidation(form.status, /^(working|defective)$/);
-            data.serial_number     = self.fieldValidation(form.serial_number, /^[a-zA-Z0-9-\s]{5,30}$/);
-            data.supplier          = self.fieldValidation(form.supplier, /^[a-zA-Z0-9\-\.\,\&\s]{5,160}$/);
-            data.reason            = self.fieldValidation(form.reason, /^.{5,160}$/);
-            data.asset_description = self.fieldValidation(form.asset_description, /^.{5,160}$/);
-            data.assignee          = self.model.get('assignee')._id;
+            data.asset_name        = self.fieldValidation( form.asset_name, /^[a-zA-Z0-9\.\-\,\''\s]{3,30}$/ );
+            data.asset_type        = self.fieldValidation( form.asset_type, /^[a-zA-Z0-9\s]{3,30}$/ );
+            data.date_purchased    = self.fieldValidation( form.date_purchased, /^\d{2}\/\d{2}\/\d{4}$/ );
+            data.status            = self.fieldValidation( form.status, /^(working|defective)$/ );
+            data.serial_number     = self.fieldValidation( form.serial_number, /^[a-zA-Z0-9-\s]{5,30}$/ );
+            data.supplier          = self.fieldValidation( form.supplier, /^[a-zA-Z0-9\-\.\,\&\s]{5,160}$/ );
+            data.reason            = self.fieldValidation( form.reason, /^.{5,160}$/ );
+            data.asset_description = self.fieldValidation( form.asset_description, /^.{5,160}$/ );
+            data.assignee          = self.model.get( 'assignee' )._id;
 
-            if (self.errorFields.length === 0) {
+            if ( self.errorFields.length === 0 ) {
 
-                $('input, button, option, textarea').prop('disabled', true);
-                $('.btns').addClass('loading');
+                $( 'input, button, option, textarea' ).prop( 'disabled', true );
+                $( '.btns' ).addClass( 'loading' );
 
-                self.model.save(data, {
-                    success: function() {
-                        self.render();
-                        $('#edit-modal').modal('hide');
-                        $('input, button, option, textarea').prop('disabled', false);
-                        $('.btns').removeClass('loading');
+                self.model.save( data, {
+                    success: function( ) {
+                        self.render( );
+                        $( '#edit-modal' ).modal( 'hide' );
+                        $( 'input, button, option, textarea' ).prop( 'disabled', false );
+                        $( '.btns' ).removeClass( 'loading' );
                     },
-                    error: function() {
-                        $('#edit-modal').modal('hide');
+                    error: function( ) {
+                        $( '#edit-modal' ).modal( 'hide' );
                     }
                 });
 

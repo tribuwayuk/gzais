@@ -2,25 +2,24 @@
 
     $.fn.nameSearch = function(url) {
 
-    	///////////////////////////
-        $(this).select2({
+        $( this ).select2( {
             minimumInputLength: 1,
             ajax: {
                 url: url,
                 dataType: 'json',
-                data: function(term, page) {
+                data: function( term, page ) {
                     return {
                         search: term,
                     };
                 },
-                results: function(data, page) {
+                results: function( data, page ) {
                     return {
                         id: data.id,
                         results: data
                     };
                 }
             },
-            id: function(user) {
+            id: function( user ) {
                 return user.first_name + " " + user.last_name;
             },
             escapeMarkup: function(m) {
@@ -29,7 +28,10 @@
             formatResult: userFormatResult,
             formatSelection: userFormatSelection
         });
-        //////////////////////////
+
+        $( this ).on( "select2-blur", function( e ) {
+            $( '.searchBox' ).hide( );
+        } );
 
     }
 
