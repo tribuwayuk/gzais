@@ -10,29 +10,29 @@ define([
 
     var AssetView = Backbone.View.extend({
 
-        className: 'asset-entry',
-        tagName: 'tr',
-        errorFields: [],
-        template: JST['app/scripts/templates/asset.ejs'],
-        editTemplate: JST['app/scripts/templates/asset-edit.ejs'],
-        assignAssetTemplate: JST['app/scripts/templates/asset-assign.ejs'],
+        className           : 'asset-entry',
+        tagName             : 'tr',
+        errorFields         : [],
+        template            : JST['app/scripts/templates/asset.ejs'],
+        editTemplate        : JST['app/scripts/templates/asset-edit.ejs'],
+        assignAssetTemplate : JST['app/scripts/templates/asset-assign.ejs'],
 
         events: {
-            'click .delete-asset': 'deleteAsset',
-            'click .edit-asset': 'displayEditForm',
-            'click .assign-asset': 'displaySearchName',
+            'click .delete-asset' : 'deleteAsset',
+            'click .edit-asset'   : 'displayEditForm',
+            'click .assign-asset' : 'displaySearchName',
         },
 
         displaySearchName: function(e) {
-            var self = this;
             e.preventDefault();
-            var searchDivID = '#div' + self.model.id;
+            var self         = this;
+            var searchDivID  = '#div' + self.model.id;
             var assigneeTDID = '#assignee_' + this.model.id;
 
             $(searchDivID).show();
 
             $(searchDivID).on("change", function(e) {
-                var name = e.val;
+                var name        = e.val;
                 var assigned_to = e.added['_id'];
 
                 self.model.save({
@@ -93,15 +93,15 @@ define([
             var form = e.currentTarget;
             var data = {};
 
-            data.asset_name = self.fieldValidation(form.asset_name, /^[a-zA-Z0-9\.\-\,\''\s]{3,30}$/);
-            data.asset_type = self.fieldValidation(form.asset_type, /^[a-zA-Z0-9\s]{3,30}$/);
-            data.date_purchased = self.fieldValidation(form.date_purchased, /^\d{2}\/\d{2}\/\d{4}$/);
-            data.status = self.fieldValidation(form.status, /^(working|defective)$/);
-            data.serial_number = self.fieldValidation(form.serial_number, /^[a-zA-Z0-9-\s]{5,30}$/);
-            data.supplier = self.fieldValidation(form.supplier, /^[a-zA-Z0-9\-\.\,\&\s]{5,160}$/);
-            data.reason = self.fieldValidation(form.reason, /^.{5,160}$/);
+            data.asset_name        = self.fieldValidation(form.asset_name, /^[a-zA-Z0-9\.\-\,\''\s]{3,30}$/);
+            data.asset_type        = self.fieldValidation(form.asset_type, /^[a-zA-Z0-9\s]{3,30}$/);
+            data.date_purchased    = self.fieldValidation(form.date_purchased, /^\d{2}\/\d{2}\/\d{4}$/);
+            data.status            = self.fieldValidation(form.status, /^(working|defective)$/);
+            data.serial_number     = self.fieldValidation(form.serial_number, /^[a-zA-Z0-9-\s]{5,30}$/);
+            data.supplier          = self.fieldValidation(form.supplier, /^[a-zA-Z0-9\-\.\,\&\s]{5,160}$/);
+            data.reason            = self.fieldValidation(form.reason, /^.{5,160}$/);
             data.asset_description = self.fieldValidation(form.asset_description, /^.{5,160}$/);
-            data.assignee = self.model.get('assignee')._id;
+            data.assignee          = self.model.get('assignee')._id;
 
             if (self.errorFields.length === 0) {
 
@@ -138,14 +138,14 @@ define([
                 title: "Confirm Deletion",
                 buttons: {
                     default: {
-                        label: " Cancel ",
-                        className: "btn-default",
-                        callback: function() {}
+                        label     : " Cancel ",
+                        className : "btn-default",
+                        callback  : function() {}
                     },
                     danger: {
-                        label: " Yes ",
-                        className: "btn-danger",
-                        callback: function() {
+                        label     : " Yes ",
+                        className : "btn-danger",
+                        callback  : function() {
                             return self.model.collection.remove(self.model);
                         }
                     }
