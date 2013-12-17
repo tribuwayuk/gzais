@@ -8,11 +8,11 @@
     <%= model.getDatePurchased( ) %>
 </td>
 
-<% if( model.get( 'assignee' ) == undefined ) { 
+<% if( model.get( 'assignee' ) == undefined ) {
         var fullName = '';
     } else {
         var fullName = model.get( 'assignee' ).first_name + " " + model.get( 'assignee' ).last_name;
-    } 
+    }
 %>
 
 <td id="assignee_<%= model.get( '_id' ) %>"><%= fullName %></td>
@@ -29,14 +29,17 @@
     <button type="button" data-toggle="tooltip" data-placement="bottom" title="Assign" class="btn btn-default btn-xs tool-tip assign-asset">
         <span class="glyphicon glyphicon-hand-up"></span>
     </button>
-        
+
     <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete" class="btn btn-danger btn-xs tool-tip delete-asset">&nbsp;x&nbsp;</button>
 
     <div class="searchBox" style='display:none;' id=<%= "div"+ model.get( '_id' ) %>>
-        <input type="hidden" class="bigdrop" id="search2" style="width:150px;" />
+        <input type="hidden" class="bigdrop" id="search2" style="width:150px;" /> <a id='closelink' href="#">close</a>
     </div>
     <script type="text/javascript">
         $( '#search2' ).nameSearch( "<%= model.searchURL %>" );
+        $("#closelink").click(function() {
+            $('.searchBox').hide();
+        });
     </script>
 </td>
 <script>
