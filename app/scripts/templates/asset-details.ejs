@@ -42,8 +42,9 @@
     </div>
     <div class="col-sm-3">
         <small>SUPPLIER</small>
-        <h4>
-            <%= model.get('supplier') %>
+		<td>
+		    <%= model.get( 'serial_number' ) %>
+		</td>
         </h4>
     </div>
     <div class="col-sm-3">
@@ -71,8 +72,16 @@
         </h4>
     </div>
     <div class="col-sm-6">
+		<% if( model.get( 'assignee' ) == undefined ) {
+			var fullName = '';
+		} else {
+			var fullName = model.get( 'assignee' ).first_name + " " + model.get( 'assignee' ).last_name;
+		}
+			%>
         <small>ASSIGNED TO</small>
-        <h4>None</h4>
+	<h4 id="assignee_<%= model.get( '_id' ) %>">
+			<%= fullName %>
+		</h4>
     </div>
 </div>
 <div class="row-fluid">
