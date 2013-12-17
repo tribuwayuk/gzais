@@ -150,11 +150,13 @@ button.selectpicker {
         &.active > a {
             background-color: #CEF274 !important;
             color: #779b14 !important;
+	    border: 1px solid #779b14 !important;
         }
 
         & > a {
             font-weight: bold;
             color: #82ad14;
+	    border: 1px solid #fff;
         }
     }
 }

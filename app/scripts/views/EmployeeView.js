@@ -69,16 +69,15 @@ define( [
         },
 
         resetPassword : function( self ) {
+			var urlRoot = self.model.collection.urlRoot + "/resetPassword";
 
-	    var urlRoot = self.model.collection.urlRoot + "/resetPassword";
-
-            $.ajax( {
-		    'type': "POST",
-		    'url': urlRoot,
-		    'data': {
-			'_id': self.model.get( '_id' )
-		    }
-		} );
+			$.ajax( {
+				'type'  : "POST",
+				'url'   : urlRoot,
+				'data'  : {
+					'_id':  self.model.get( '_id' )
+				}
+			} );
         },
 
         displayEditForm : function( e ) {
