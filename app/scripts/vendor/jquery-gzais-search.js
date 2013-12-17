@@ -13,20 +13,20 @@
                         search: term,
                     };
                 },
-                results: function(data, page) { 
+                results: function(data, page) {
                     return {
                         id: data.id,
                         results: data
                     };
                 }
             },
-            id: function(user) { 
-                return user.first_name + " " + user.last_name; 
+            id: function(user) {
+                return user.first_name + " " + user.last_name;
             },
             escapeMarkup: function(m) {
                 return m;
             },
-            formatResult: userFormatResult, 
+            formatResult: userFormatResult,
             formatSelection: userFormatSelection
         });
         //////////////////////////

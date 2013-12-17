@@ -41,8 +41,7 @@ define([
                     success: function(data) {
                         $(assigneeTDID).html(name);
                         $(searchDivID).hide();
-
-
+                        self.model.fetch();
                     },
                     error: function() {
                         $(searchDivID).hide();
