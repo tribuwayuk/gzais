@@ -48,7 +48,7 @@ define( [
             var bootbox = window.bootbox;
 
             bootbox.dialog( {
-                message: 'Do you want to reset password for ' + self.model.get( 'first_name' ) + ' ' + self.model.get( 'last_name' ) + ' ?',
+		message: 'Do you want to reset password for ' + self.model.get( 'first_name' ) + ' ' + self.model.get( 'last_name' ) + '?',
                 title: "Confirm Reset Password",
                 buttons: {
                     default: {
@@ -70,16 +70,15 @@ define( [
 
         resetPassword : function( self ) {
 
-            var urlRoot = self.model.collection.urlRoot + "/resetPassword/" + self.model.get( '_id' );
+	    var urlRoot = self.model.collection.urlRoot + "/resetPassword";
 
             $.ajax( {
-                'type'    : "POST",
-                'url'     : urlRoot,
-                'success' : function( ) {
-
-                },
-            } );
-
+		    'type': "POST",
+		    'url': urlRoot,
+		    'data': {
+			'_id': self.model.get( '_id' )
+		    }
+		} );
         },
 
         displayEditForm : function( e ) {
