@@ -79,9 +79,7 @@ define( [ 'jquery', 'underscore', 'backbone', 'templates', 'EmployeeView' ], fun
                     self.collection.add( result );
                     form.reset( );
 
-                    $( '#add-modal' ).modal( 'hide' );
-
-                    return;
+                    return $( '#add-modal' ).modal( 'hide' );
 
                 }
 
