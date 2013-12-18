@@ -250,3 +250,19 @@ label span.email-error {
 .dropdown-menu.open {
 	border-radius: 0;
 }
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+	background-color: #BCDB6D;
+}
+.dropdown-menu {
+	box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.176);
+}
+.account-settings {
+	input[type="password"] {
+		margin-bottom: 15px;
+		padding: 5px;
+	}
+	button {
+		float: right;
+	}
+}
