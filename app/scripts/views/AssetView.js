@@ -36,7 +36,8 @@ define([
                 var assigned_to = e.added['_id'];
 
                 self.model.save( {
-                    assignee: assigned_to
+                    assignee: assigned_to,
+                    flag: 'assign'
                 }, {
                     success: function( data ) {
                         $( assigneeTDID ).html( name );
