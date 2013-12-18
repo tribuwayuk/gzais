@@ -96,7 +96,19 @@
 <div class="row-fluid">
     <div class="col-sm-12">
         <small>ASSETS</small>
-        <h4>None</h4>
+        <h4>
+            <% var assetName;
+                for ( var i = 0, len = model.get( 'assets' ).length; i < len; i++ ) {
+                    if( model.get( 'assets' ) === undefined ) {
+                        assetName = 'None';
+                    } else {
+                        assetName = model.get( 'assets' )[i].asset_name;
+                    }
+            %>
+                    <%= assetName %>
+                    <br>
+            <% } %>
+		</h4>
         <hr>
     </div>
 </div>
