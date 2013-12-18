@@ -9,9 +9,9 @@ define( [
     'use strict';
 
     var InventoryReportView = Backbone.View.extend( {
-        className: 'inventory-entry',
-        tagName: 'tr',
-        template: JST[ 'app/scripts/templates/inventory-report.ejs' ],
+        className : 'inventory-entry',
+        tagName   : 'tr',
+        template  : JST[ 'app/scripts/templates/inventory-report.ejs' ],
 
         events: {
             'click .view-items-details': 'viewItemDetails'
@@ -24,7 +24,12 @@ define( [
         viewItemDetails: function ( e ) {
             var target = $( e.currentTarget );
 
-            target.siblings( '.items-views-detail' ).hasClass( 'hide' ) ? target.siblings( '.items-views-detail' ).removeClass( 'hide' ) : target.siblings( '.items-views-detail' ).addClass( 'hide' );
+            $('.items-views-detail').addClass('hide');
+            if( target.siblings( '.items-views-detail' ).hasClass( 'hide' ) ) {
+				target.siblings( '.items-views-detail' ).removeClass( 'hide' );
+            } else {
+				target.siblings( '.items-views-detail' ).addClass( 'hide' );
+			}
         },
 
         render: function ( ) {
