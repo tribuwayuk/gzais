@@ -56,6 +56,9 @@ require.config( {
         AssetsView           : 'views/AssetsView',
         AssetView            : 'views/AssetView',
         AssetDetailsView     : 'views/AssetDetailsView',
+        InventoryReports     : 'collections/Inventory',
+        InventoryReport      : 'models/InventoryReport',
+        InventoryReportView  : 'views/InventoryReportView',
         InventoryReportsView : 'views/InventoryReportsView'
     }
 } );

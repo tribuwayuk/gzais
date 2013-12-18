@@ -1,0 +1,15 @@
+<td class="col-sm-7">
+	<a href="#" data-toggle="tooltip" title="" data-placement='right' class="changecolor tool-tip view-items-details" data-original-title="please click to view more details." data-html='true'><%= model.get('asset_name') %></a>
+	<div class="items-views-detail hide">
+        <span class = "items-field">Type :</span> <span class="items-value"><%= model.get('asset_type') %></span>
+        <span class = "items-field">Description   :</span> <span class="items-value"><%= model.get('asset_description') %></span>
+        <span class = "items-field">Serial Number :</span> <span class="items-value"><%= model.get('serial_number') %></span>
+        <span class = "items-field">Supplier      :</span> <span class="items-value"><%= model.get('supplier') %></span>
+    </div>
+	</td>
+<td class="col-sm-2 td-middle"><%= model.getDatePurchased( ) %></td>
+<td class="col-sm-1 td-middle"><%= model.get('status') %></td>
+<td class="col-sm-2 td-middle"><%= model.getFullName() %></td>
+<script>
+	$('.tool-tip').tooltip();
+</script>

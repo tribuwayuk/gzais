@@ -49,8 +49,8 @@ define( [
 
             bootbox.dialog( {
 				message : 'Do you want to reset password for ' + self.model.get( 'first_name' ) + ' ' + self.model.get( 'last_name' ) + '?',
-		title   : "Confirm Reset Password",
-		buttons : {
+				title   : "Confirm Reset Password",
+				buttons : {
                     default: {
                         label     : " Cancel ",
                         className : "btn-default",

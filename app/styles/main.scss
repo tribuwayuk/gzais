@@ -201,7 +201,7 @@ button.selectpicker {
   }
 }
 
-.asset-entry, .employee-entry {
+.asset-entry, .employee-entry, .inventory-entry {
   .btn {
     border-bottom: 2px solid #aaa;
   }
@@ -259,10 +259,88 @@ label span.email-error {
 }
 .account-settings {
 	input[type="password"] {
-		margin-bottom: 15px;
-		padding: 5px;
+		margin-bottom : 15px;
+		padding       : 5px;
 	}
 	button {
 		float: right;
+	}
+}
+.item-details {
+	font-weight : normal;
+	color       : #9B9898;
+}
+.td-top {
+	vertical-align: top !important;
+}
+.export-group {
+	text-align : right;
+	padding    : 6px 20px 7px 0;
+}
+tr.inventory-entry {
+	.td-middle {
+		vertical-align: middle !important;
+	}
+
+	.changecolor + .tooltip > .tooltip-inner {
+	    background-color: #fff;
+	    color: #000;
+	    border: 1px solid #CCCCCC;
+	}
+
+	.changecolor + .tooltip.top > .tooltip-arrow{
+	    bottom:0;
+	    left:50%;
+	    margin-left:-5px;
+	    border-left:5px solid transparent;
+	    border-right:5px solid transparent;
+	    border-top:5px solid #CCC;
+	}
+	.changecolor + .tooltip.left > .tooltip-arrow{
+	    top:50%;
+	    right:0;
+	    margin-top:-5px;
+	    border-top:5px solid transparent;
+	    border-bottom:5px solid transparent;
+	    border-left:5px solid #CCC;
+	}
+	.changecolor + .tooltip.bottom > .tooltip-arrow{
+	    top:0;
+	    left:10%;
+	    margin-left:-5px;
+	    border-left:5px solid transparent;
+	    border-right:5px solid transparent;
+	    border-bottom:5px solid #CCC;
+	}
+	.changecolor + .tooltip.right > .tooltip-arrow{
+	    top:50%;
+	    left:0;
+	    margin-top:-5px;
+	    border-top:5px solid transparent;
+	    border-bottom:5px solid transparent;
+	    border-right:5px solid #CCC;
+	}
+	.changecolor + .tooltip.bottom {
+		margin-left:10px;
+	}
+	.changecolor {
+		text-decoration: none;
+	}
+	.items-views-detail {
+		.items-field {
+			text-align : right;
+			display    : inline-block;
+			width      : 110px;
+			font-weight: bold;
+		}
+		.items-value {
+			clear   : both;
+			display : inline-block;
+			width   : 400px;
+		}
+		.items-field, .items-value {
+			margin  : 0;
+			padding : 3px 0;
+		}
 	}
 }
