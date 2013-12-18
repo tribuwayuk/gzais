@@ -57,6 +57,8 @@ define( [
             this.mountSubView( 'assetsView', new AssetsView( {
                 collection: new Assets( )
             } ) );
+
+	    $('li.dropdown').removeClass('open');
         },
 
         assetDetails : function( id ) {
@@ -68,9 +70,12 @@ define( [
         },
 
         employees : function( ) {
+
             this.mountSubView( 'employeesView', new EmployeesView( {
                 collection: new Employees( )
             } ) );
+
+	    $('li.dropdown').removeClass('open');
         },
 
         employeeDetails : function( id ) {
