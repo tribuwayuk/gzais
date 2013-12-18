@@ -80,9 +80,9 @@ require( [
     app.router = new MainRouter( );
     app.view   = new AppView( {
         model: new App( {
-	    baseUrl      : '/assets',
-	    user         : appData.employee || undefined,
-	    access_token : appData.access_token || undefined
+		baseUrl      : '/assets',
+		user         : appData.employee || undefined,
+		access_token : appData.access_token || undefined
         } )
     } );
 
