@@ -9,7 +9,7 @@
                 <% if (model.get('user')) { %>
                     <li>
                         <p class="navbar-text navbar-right">Logged in as
-                            <strong>Elizar Pepino</strong>
+			    <strong><%= model.get('user').first_name + ' ' + model.get('user').last_name  %></strong>
                         </p>
                     </li>
 		    <li class="dropdown">

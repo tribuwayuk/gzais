@@ -17,6 +17,9 @@ require.config( {
             deps    : [ 'jquery' ],
             exports : 'datepicker'
         },
+	select2: {
+			deps: [ 'jquery' ]
+	},
         gzaisSearch: {
             deps: [ 'jquery', 'select2' ],
             exports: 'gzaisSearch'
@@ -28,7 +31,7 @@ require.config( {
         bootbox: {
             deps    : [ 'jquery', 'bootstrap' ],
             exports : 'bootbox'
-        }
+	},
     },
     paths: {
         jquery               : '../bower_components/jquery/jquery',
@@ -38,8 +41,8 @@ require.config( {
         datepicker           : 'vendor/bootstrap-datepicker',
         bootbox              : 'vendor/bootbox',
         selectpicker         : 'vendor/bootstrap-select',
-	select2              : 'vendor/select2/select2',
-	gzaisSearch          : 'vendor/jquery-gzais-search',
+		select2              : 'vendor/select2/select2',
+		gzaisSearch          : 'vendor/jquery-gzais-search',
         App                  : 'models/App',
         AppView              : 'views/AppView',
         MainRouter           : 'routes/MainRouter',
@@ -70,11 +73,13 @@ require( [
 ], function( Backbone, App, AppView, MainRouter ) {
 
     var app    = window.App = window.App || {};
+    var appData = JSON.parse( window.localStorage.getItem( 'app-data' ) ) || {};
     app.router = new MainRouter( );
     app.view   = new AppView( {
         model: new App( {
-            baseUrl : '/assets',
-            user    : JSON.parse( window.localStorage.getItem( 'user' ) ) || undefined
+	    baseUrl      : '/assets',
+	    user         : appData.employee || undefined,
+	    access_token : appData.access_token || undefined
         } )
     } );
 
