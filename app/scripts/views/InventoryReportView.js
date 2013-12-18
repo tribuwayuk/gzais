@@ -24,8 +24,8 @@ define( [
         viewItemDetails: function ( e ) {
             var target = $( e.currentTarget );
 
-            $('.items-views-detail').addClass('hide');
             if( target.siblings( '.items-views-detail' ).hasClass( 'hide' ) ) {
+				$('.items-views-detail').addClass('hide');
 				target.siblings( '.items-views-detail' ).removeClass( 'hide' );
             } else {
 				target.siblings( '.items-views-detail' ).addClass( 'hide' );
