@@ -22,7 +22,7 @@
             id: function( user ) {
                 return user.first_name + " " + user.last_name;
             },
-            escapeMarkup: function(m) {
+            escapeMarkup: function( m ) {
                 return m;
             },
             formatResult: userFormatResult,
