@@ -4,11 +4,12 @@ define( [
     'EmployeesView',
     'AssetsView',
     'InventoryReportsView',
+    'InventoryReports',
     'Employees',
     'EmployeeDetailsView',
     'Assets',
     'AssetDetailsView'
-], function( $, Backbone, EmployeesView, AssetsView, InventoryReportsView, Employees, EmployeeDetailsView, Assets, AssetDetailsView ) {
+], function( $, Backbone, EmployeesView, AssetsView, InventoryReportsView, InventoryReports, Employees, EmployeeDetailsView, Assets, AssetDetailsView ) {
     'use strict';
     var MainRouter = Backbone.Router.extend( {
         routes : {
@@ -58,7 +59,7 @@ define( [
                 collection: new Assets( )
             } ) );
 
-	    $('li.dropdown').removeClass('open');
+			$('li.dropdown').removeClass('open');
         },
 
         assetDetails : function( id ) {
@@ -75,7 +76,7 @@ define( [
                 collection: new Employees( )
             } ) );
 
-	    $('li.dropdown').removeClass('open');
+			$('li.dropdown').removeClass('open');
         },
 
         employeeDetails : function( id ) {
@@ -87,7 +88,9 @@ define( [
         },
 
         inventoryReports : function( ) {
-            this.mountSubView( 'inventoryReportsView', new InventoryReportsView( ) );
+            this.mountSubView( 'inventoryReportsView', new InventoryReportsView( {
+				collection: new InventoryReports( )
+            } ) );
         }
     } );
     return MainRouter;

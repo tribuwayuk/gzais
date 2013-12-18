@@ -1,3 +1,40 @@
 <br>
-<h2>Inventory Reports <small> - SOON </small></h2>
+<h2>Inventory Reports</h2>
 <hr>
+<div class="row">
+    <div class="col-xs-12 col-md-8">
+        <div class="filters">
+            <select class="assets-filter">
+                <option value="all">List of Items</option>
+                <option value="assigned">List of Items by Status</option>
+            </select>
+            <script>
+            	$('.assets-filter').selectpicker();
+            </script>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-4 export-group">
+        <a data-toggle="tooltip" class="changecolor tool-tip view-items-details" data-original-title="Export To CSV" href="" data-toggle="dropdown" data-placement='top'>
+			<span class="glyphicon glyphicon-download-alt"></span> CSV
+		</a> |
+		<a data-toggle="tooltip" class="changecolor tool-tip view-items-details" data-original-title="Export To PDF" href="" data-toggle="dropdown" data-placement='top'>
+			<span class="glyphicon glyphicon-download-alt"></span> PDF
+		</a>
+    </div>
+</div>
+<hr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="col-sm-7">Item Name<br><small class="item-details"><span class="glyphicon glyphicon-tasks"> </span> Type | Description | Serial Number | Supplier</small></th>
+            <th class="col-sm-2 td-top">Date Purchase</th>
+            <th class="col-sm-1 td-top">Status</th>
+            <th class="col-sm-2 td-top">Assign to</th>
+        </tr>
+    </thead>
+    <tbody class="inventory-list">
+    </tbody>
+</table>
+<script>
+	$('.tool-tip').tooltip();
+</script>
