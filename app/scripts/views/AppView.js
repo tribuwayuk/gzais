@@ -8,12 +8,12 @@ define( [
 
     var AppView = Backbone.View.extend( {
 
-	el: $( '#app' ),
-	subViews: {},
-	template: JST[ 'app/scripts/templates/app.ejs' ],
-	loginTemplate: JST[ 'app/scripts/templates/login-form.ejs' ],
-	forgotPasswordTemplate: JST[ 'app/scripts/templates/forgot-password.ejs' ],
-	mainTemplate: JST[ 'app/scripts/templates/app-main.ejs' ],
+	el                     : $( '#app' ),
+	subViews               : {},
+	template               : JST[ 'app/scripts/templates/app.ejs' ],
+	loginTemplate          : JST[ 'app/scripts/templates/login-form.ejs' ],
+	forgotPasswordTemplate : JST[ 'app/scripts/templates/forgot-password.ejs' ],
+	mainTemplate           : JST[ 'app/scripts/templates/app-main.ejs' ],
 
 	initialize: function ( ) {
 
@@ -27,9 +27,9 @@ define( [
         },
 
 	events: {
-	    'submit form.login-form': 'doLogin',
-	    'click a.logout': 'doLogOut',
-	    'click .forgot-password': 'forgotPassword'
+	    'submit form.login-form' : 'doLogin',
+	    'click a.logout'         : 'doLogOut',
+	    'click .forgot-password' : 'forgotPassword'
         },
 
 	render: function ( ) {
@@ -64,8 +64,8 @@ define( [
 
 	renderCurrentContent: function ( ) {
 
-	    var self = this;
-	    var currentContent = self.model.get( 'currentContent' );
+	    var self              = this;
+	    var currentContent    = self.model.get( 'currentContent' );
             var contentSectionDiv = self.model.get( 'contentSectionDiv' );
 
             currentContent.delegateEvents( );
@@ -112,11 +112,11 @@ define( [
 	requestForgotPassword: function ( e ) {
 	    e.preventDefault( );
 	    var self = this,
-		form = e.currentTarget,
-		bootbox = window.bootbox,
+		form       = e.currentTarget,
+		bootbox    = window.bootbox,
 		emailField = form.email;
 
-	    var urlRoot = emailField.value.length > 0 ? self.model.get( 'dbURL' ) + "/resetPassword" : '';
+	    var urlRoot = emailField.value.length > 0 ? self.model.get( 'dbURL' ) + "/reset-password" : '';
 	    $( 'input, button, option, textarea' ).prop( 'disabled', true );
 	    $( '.btns' ).addClass( 'loading' );
 
@@ -140,9 +140,9 @@ define( [
 					label: " OK",
 					className: "btn-default",
 					callback: function ( ) {
-											$( 'input, button, option' ).prop( 'disabled', false );
-											$( '.btns' ).removeClass( 'error loading' );
-											$( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
+					    $( 'input, button, option' ).prop( 'disabled', false );
+					    $( '.btns' ).removeClass( 'error loading' );
+					    $( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
 					}
 				    }
 				}
@@ -152,13 +152,13 @@ define( [
 				message: 'Your password has been reset. Please check your email.',
 				title: "Forgot Password Successful",
 				buttons: {
-				    default: {
-					label: " OK",
-					className: "btn-default",
-					callback: function ( ) {
-											self.render( );
-											$( 'input, button, option, textarea' ).prop( 'disabled', false );
-											$( '.btns' ).removeClass( 'loading' );
+				    default : {
+					label     : " OK",
+					className : "btn-default",
+					callback  : function ( ) {
+					    self.render( );
+					    $( 'input, button, option, textarea' ).prop( 'disabled', false );
+					    $( '.btns' ).removeClass( 'loading' );
 					}
 				    }
 				}
@@ -172,12 +172,12 @@ define( [
 		    title: "Forgot Password Error",
 		    buttons: {
 			default: {
-			    label: " OK",
-			    className: "btn-default",
-			    callback: function ( ) {
-								$( 'input, button, option' ).prop( 'disabled', false );
-								$( '.btns' ).removeClass( 'error loading' );
-								$( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
+			    label     : " OK",
+			    className : "btn-default",
+			    callback  : function ( ) {
+				$( 'input, button, option' ).prop( 'disabled', false );
+				$( '.btns' ).removeClass( 'error loading' );
+				$( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
 			    }
 			}
 		    }
@@ -189,9 +189,9 @@ define( [
 
             e.preventDefault( );
 
-	    var self = this;
-	    var form = e.currentTarget;
-	    var emailField = form.email;
+	    var self          = this;
+	    var form          = e.currentTarget;
+	    var emailField    = form.email;
             var passwordField = form.password;
 
             if ( !emailField.value.trim( ).match( /^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/ ) ) {
