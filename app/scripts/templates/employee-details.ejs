@@ -15,7 +15,7 @@
 </div>
 <div class="row-fluid">
 	<hr>
-    <br>    
+    <br>
     <div class="col-sm-4">
     	<small>FIRST NAME</small>
         <h3>
@@ -32,7 +32,7 @@
     	<small>LAST NAME</small>
         <h3>
             <%= model.get('last_name') %>
-        </h3>        
+        </h3>
     </div>
 </div>
 <div class="row-fluid">
@@ -96,19 +96,33 @@
 <div class="row-fluid">
     <div class="col-sm-12">
         <small>ASSETS</small>
-        <h4>
-            <% var assetName;
+        <table class="table table-striped">
+		    <thead>
+		        <tr>
+		            <th class="col-sm-1">Status</th>
+		            <th class="col-sm-2">Item Name</th>
+		            <th class="col-sm-1">Serial Number</th>
+		        </tr>
+		    </thead>
+		    <tbody class="assets-list">
+		    	<% var assetName, serialNumber, status;
                 for ( var i = 0, len = model.get( 'assets' ).length; i < len; i++ ) {
                     if( model.get( 'assets' ) === undefined ) {
                         assetName = 'None';
                     } else {
                         assetName = model.get( 'assets' )[i].asset_name;
+                        serialNumber = model.get('assets')[i].serial_number;
+                        status = model.get('assets')[i].status;
                     }
             %>
-                    <%= assetName %>
-                    <br>
+            	<tr>
+                    <td><%= status %></td>
+		    		<td><%= assetName %></td>
+		    		<td><%= serialNumber %></td>
+            	</tr>
             <% } %>
-		</h4>
+		    </tbody>
+		</table>
         <hr>
     </div>
 </div>
