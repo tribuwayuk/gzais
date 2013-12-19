@@ -1,5 +1,7 @@
 <br>
-<h2>Manage Assets</h2>
+<% var currentUser = window.App.view.model.get( 'user' ) %>
+<h2><%= currentUser.user_role === 'employee' ? 'Assigned' : 'Manage' %> Assets</h2>
+<% if ( currentUser.user_role.match( /(admin|custodian)/ ) ) { %>
 <hr>
 <div class="row">
     <div class="col-xs-12 col-md-8">
@@ -103,17 +105,17 @@
         <!-- /.modal -->
     </div>
 </div>
-
+<% } %>
 
 <hr>
 <table class="table table-striped">
     <thead>
         <tr>
             <th class="col-sm-1">Status</th>
-            <th class="col-sm-2">Item Name</th>
+            <th class="col-sm-3">Item Name</th>
             <th class="col-sm-2">Date Purchased</th>
             <th class="col-sm-2">Assigned To</th>
-            <th class="col-sm-1">Serial Number</th>
+            <th class="col-sm-2">Serial Number</th>
             <th class="col-sm-2 action-cols">Actions</th>
         </tr>
     </thead>

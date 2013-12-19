@@ -1,3 +1,4 @@
+<% var userRole = window.App.view.model.get( 'user' ).user_role %>
 <td>
     <%= model.get( 'status' ) %>
 </td>
@@ -21,8 +22,9 @@
 </td>
 <td style="text-align:center">
     <a href="/assets/<%= model.get('_id') %>" data-toggle="tooltip" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip view-details" data-original-title="View Details">
-        <span class="glyphicon glyphicon-search"></span>
+        <span class="glyphicon glyphicon-search"></span> <%= userRole === 'employee' ? 'View Details' : '' %>
     </a>
+    <% if ( userRole.match( /(admin|custodian)/ ) ) { %>
     <button type="button" data-toggle="modal" data-target="#edit-modal" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip edit-asset" data-original-title="Edit">
         <span class="glyphicon glyphicon-edit"></span>
     </button>
@@ -38,6 +40,7 @@
     <script type="text/javascript">
         $( '#search2' ).nameSearch( "<%= model.searchURL %>" );
     </script>
+    <% } %>
 </td>
 <script>
 	$( '.tool-tip' ).tooltip( );
