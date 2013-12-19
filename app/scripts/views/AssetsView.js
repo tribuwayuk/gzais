@@ -31,11 +31,9 @@ define( [
         },
 
         initialize : function( ) {
-
             var self = this;
             self.listenTo( self.collection, 'add', self.onAdd );
-
-            self.collection.url += '?access_token=' + window.App.view.model.get('access_token');
+            self.collection.url += "?access_token=" + window.App.view.model.get('access_token');
             self.collection.fetch( );
 
         },
@@ -97,9 +95,15 @@ define( [
         onAdd : function( model ) {
 
             var self  = this;
+
+			model.url = function () {
+				return this.urlRoot() + '/' + model.id + '?access_token=' + window.App.view.model.get('access_token');
+            };
+
             var asset = new AssetView( {
                 model: model
             } );
+
 
             $( 'tbody.assets-list' ).prepend( asset.render( ).el );
 

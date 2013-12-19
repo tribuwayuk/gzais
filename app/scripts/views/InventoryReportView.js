@@ -14,14 +14,14 @@ define( [
         template  : JST[ 'app/scripts/templates/inventory-report.ejs' ],
 
         events: {
-            'click .view-items-details': 'viewItemDetails'
+            'click .view-items-details' : 'viewItemDetails'
         },
 
         initialize: function ( ) {
 
         },
 
-        viewItemDetails: function ( e ) {
+        viewItemDetails : function ( e ) {
             var target = $( e.currentTarget );
 
             if( target.siblings( '.items-views-detail' ).hasClass( 'hide' ) ) {

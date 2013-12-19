@@ -38,7 +38,7 @@
         <input type="hidden" class="bigdrop" id="search2" style="width:150px;" />
     </div>
     <script type="text/javascript">
-        $( '#search2' ).nameSearch( "<%= model.searchURL %>" );
+        $( '#search2' ).nameSearch( "<%= model.searchURL %>" + "?access_token=" + window.App.view.model.get('access_token') );
     </script>
     <% } %>
 </td>

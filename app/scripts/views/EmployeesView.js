@@ -30,8 +30,7 @@ define( [ 'jquery', 'underscore', 'backbone', 'templates', 'EmployeeView' ], fun
         initialize : function ( ) {
             var self = this;
             self.listenTo( self.collection, 'add', self.onAdd );
-
-            self.collection.url += '?access_token=' + window.App.view.model.get('access_token');
+            self.collection.url += "/?access_token=" + window.App.view.model.get('access_token');
             self.collection.fetch( );
         },
 
@@ -97,6 +96,11 @@ define( [ 'jquery', 'underscore', 'backbone', 'templates', 'EmployeeView' ], fun
         onAdd : function ( model ) {
 
             var self     = this;
+
+            model.url = function () {
+				return this.urlRoot() + model.id + '?access_token=' + window.App.view.model.get('access_token');
+            };
+
             var employee = new EmployeeView( {
                 model : model
             } );

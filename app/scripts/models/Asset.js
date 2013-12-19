@@ -6,9 +6,13 @@ define( [
 
     var Asset = Backbone.Model.extend( {
 
-        defaults         : {},
-        idAttribute      : '_id',
-        searchURL        : 'http://gzais-api.herokuapp.com/employees/search/',
+        defaults    : {},
+        idAttribute : '_id',
+        searchURL   : 'http://gzais-api.herokuapp.com/employees/search/',
+
+        urlRoot     : function ( ) {
+			return this.collection.url.replace(/\?access_token.+/,'');
+        },
 
         getDatePurchased : function( ) {
 

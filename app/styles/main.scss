@@ -257,10 +257,16 @@ label span.email-error {
 .dropdown-menu {
 	box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.176);
 }
-.account-settings {
+.change-password-form {
+	padding: 15px;
+	background-color:#BCDB6D;
+	border-top:0;
+}
+.change-password {
 	input[type="password"] {
 		margin-bottom : 15px;
 		padding       : 5px;
+		width         : 200px;
 	}
 	button {
 		float: right;
@@ -342,5 +348,8 @@ tr.inventory-entry {
 			margin  : 0;
 			padding : 3px 0;
 		}
+	}
+	a {
+		cursor: pointer;
 	}
 }

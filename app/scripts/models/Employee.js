@@ -17,8 +17,12 @@ define( [
 
     var Employee = Backbone.Model.extend( {
 
-        defaults       : { assets: 0 },
-        idAttribute    : '_id',
+        defaults    : { assets: 0 },
+        idAttribute : '_id',
+
+        urlRoot     : function ( ) {
+			return this.collection.url.replace(/\?access_token.+/,'');
+        },
 
         getDateOfBirth : function( ) {
 

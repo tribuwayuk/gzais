@@ -6,7 +6,6 @@ define( [
     'use strict';
 
     var App = Backbone.Model.extend( {
-
         defaults : {
             title   : 'Global Zeal AIS',
             company : {

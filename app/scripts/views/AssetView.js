@@ -36,8 +36,7 @@ define([
                 var assigned_to = e.added['_id'];
 
                 self.model.save( {
-                    assignee: assigned_to,
-                    flag: 'assign'
+                    assignee: assigned_to
                 }, {
                     success: function( data ) {
                         $( assigneeTDID ).html( name );
@@ -81,6 +80,8 @@ define([
                 model: self.model
             } ) );
 
+            console.log(self.model.urlRoot());
+
             $( '#edit-form' ).submit( self.updateAsset.bind( self ) );
 
         },
@@ -107,6 +108,7 @@ define([
 
                 $( 'input, button, option, textarea' ).prop( 'disabled', true );
                 $( '.btns' ).addClass( 'loading' );
+
 
                 self.model.save( data, {
                     success: function( ) {
