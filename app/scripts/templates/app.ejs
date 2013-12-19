@@ -8,28 +8,27 @@
             <ul class="nav navbar-nav navbar-right">
                 <% if (model.get('user')) { %>
                     <li>
-                        <p class="navbar-text navbar-right">Logged in as
-			    <strong><%= model.get('user').first_name + ' ' + model.get('user').last_name  %></strong>
+                        <p class="navbar-text navbar-right">
+                        	Logged in as <strong><%= model.get('user').first_name + ' ' + model.get('user').last_name  %></strong>
                         </p>
                     </li>
-		    <li class="dropdown">
-			<a class="dropdown-toggle" href="/account-settings" data-toggle="dropdown">
-				<span class="glyphicon glyphicon-cog"></span> Change Password
-			</a>
-						<div class="dropdown-menu" style="padding: 15px;background-color:#BCDB6D;border-top:0;">
-							<form method="post" accept-charset="UTF-8" class="account-settings">
-							  <input id="old_password" type="password" placeholder="Old Password" name="" size="30" />
-							  <input id="new_password" type="password" placeholder="New Password" name="" size="30" />
-							  <input id="con_password" type="password" placeholder="Confirm Password" name="" size="30" />
-							  <div class="btns">
-								<button type="submit" class="btn btn-primary btn-settings">
-									<span class="glyphicon glyphicon-circle-arrow-right"></span> Save Changes
-								</button>
-								<button type="submit" class="btn btn-add btn-load" disabled> Please wait... </button>
+				    <li class="dropdown">
+						<a class="dropdown-toggle" href="" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Change Password</a>
+							<div class="dropdown-menu change-password-form">
+								<form method="post" accept-charset="UTF-8" class="change-password">
+									<input id="old_password" class="form-control" type="password" placeholder="Old Password" size="30" />
+									<input id="new_password" class="form-control" type="password" placeholder="New Password" size="30" />
+									<input id="con_password" class="form-control" type="password" placeholder="Confirm Password" size="30" />
+
+									<div class="btns">
+										<button type="submit" class="btn btn-primary btn-settings">
+											<span class="glyphicon glyphicon-circle-arrow-right"></span> Save Changes
+										</button>
+										<button type="submit" class="btn btn-add btn-load" disabled> Please wait... </button>
+									</div>
+								</form>
 							</div>
-							</form>
-						</div>
-                    </li>
+					</li>
                     <li>
                         <a href="#logout" class="logout">
                             <span class="glyphicon glyphicon-log-out"></span> Log Out </a>

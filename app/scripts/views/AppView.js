@@ -3,7 +3,7 @@ define( [
     'underscore',
     'backbone',
     'templates'
-], function( $, _, Backbone, JST ) {
+], function ( $, _, Backbone, JST ) {
     'use strict';
 
     var AppView = Backbone.View.extend( {
@@ -14,8 +14,9 @@ define( [
         loginTemplate          : JST[ 'app/scripts/templates/login-form.ejs' ],
         forgotPasswordTemplate : JST[ 'app/scripts/templates/forgot-password.ejs' ],
         mainTemplate           : JST[ 'app/scripts/templates/app-main.ejs' ],
+        errorFields            : [ ],
 
-        initialize: function( ) {
+        initialize: function ( ) {
 
             var self = this;
             self.listenTo( self.model, 'change:user', self.render );
@@ -25,12 +26,74 @@ define( [
         },
 
         events: {
-            'submit form.login-form' : 'doLogin',
-            'click a.logout'         : 'doLogOut',
-            'click .forgot-password' : 'forgotPassword'
+            'submit form.login-form'      : 'doLogin',
+            'click a.logout'              : 'doLogOut',
+            'click .forgot-password'      : 'forgotPassword',
+            'submit form.change-password' : 'changePassword'
+        },
+        changePassword: function ( e ) {
+            e.preventDefault( );
+
+            var self    = this;
+            var form    = e.currentTarget;
+            var bootbox = window.bootbox;
+            var data    = {};
+
+            var oldPassword = self.passwordValidation( form.old_password, form.new_password, '' );
+
+            if ( oldPassword.length > 0 ) {
+
+
+
+                var newPassword = self.passwordValidation( form.new_password, form.con_password, 'compare' );
+
+                if ( newPassword.length > 0 ) {
+                    bootbox.dialog( {
+                        message : 'Do you want to save your new password?',
+                        title   : "Confirm Change Password",
+                        buttons : {
+                            default: {
+                                label     : " Cancel ",
+                                className : "btn-default",
+                                callback  : function ( ) {
+                                    window.App.router.navigate( self.model.get( 'baseUrl' ), {
+                                        trigger: true
+                                    } );
+                                }
+                            },
+                            danger: {
+                                label     : " Save ",
+                                className : "btn-danger",
+                                callback  : function ( ) {
+                                    window.App.router.navigate( self.model.get( 'baseUrl' ), {
+                                        trigger: true
+                                    } );
+                                    data.password = newPassword;
+                                    return self.updatePassword( data, self );
+                                }
+                            }
+                        }
+                    } );
+                }
+            }
+
+        },
+        updatePassword: function ( data ) {
+			//data.
+			console.log( 'save user' + window.App.view.model.attributes.dbURL);
+
+			/*var urlRoot = self.model.collection.urlRoot + "/reset-password";
+
+			$.ajax( {
+				'type'  : "POST",
+				'url'   : urlRoot,
+				'data'  : {
+					'_id':  self.model.get( '_id' )
+				}
+			} );*/
         },
 
-        render: function( ) {
+        render: function ( ) {
 
             var self = this;
 
@@ -41,8 +104,10 @@ define( [
             self.model.set( 'containerDiv', self.$el.find( '.main > .container' )[ 0 ] );
 
             if ( self.model.get( 'user' ) ) {
+                $( self.model.get( 'containerDiv' ) ).html( self.mainTemplate( {
+                    model: self.model
+                } ) );
 
-                $( self.model.get( 'containerDiv' ) ).html( self.mainTemplate( {model:self.model} ) );
                 self.model.set( 'contentSectionDiv', $( self.model.get( 'containerDiv' ) ).find( '.content-section' )[ 0 ] );
 
                 window.App.router.navigate( self.model.get( 'baseUrl' ), {
@@ -59,7 +124,7 @@ define( [
 
         },
 
-        renderCurrentContent: function( ) {
+        renderCurrentContent: function ( ) {
 
             var self              = this;
             var currentContent    = self.model.get( 'currentContent' );
@@ -76,7 +141,7 @@ define( [
 
         },
 
-        handleMainNav: function( ) {
+        handleMainNav: function ( ) {
 
             $( '.main-nav > li.active' ).removeClass( 'active' );
             $( '.modal-backdrop' ).remove( );
@@ -98,7 +163,7 @@ define( [
 
         },
 
-        forgotPassword: function( e ) {
+        forgotPassword: function ( e ) {
             var self = this;
             $( self.model.get( 'containerDiv' ) ).html( self.forgotPasswordTemplate( ) );
 
@@ -106,7 +171,7 @@ define( [
             $( '.btn-back' ).click( self.render.bind( self ) );
         },
 
-        requestForgotPassword: function( e ) {
+        requestForgotPassword: function ( e ) {
             e.preventDefault( );
 
             var self       = this;
@@ -121,23 +186,23 @@ define( [
             if ( urlRoot.length > 0 ) {
 
                 $.ajax( {
-                    'type' : "POST",
-                    'url'  : urlRoot,
-                    'data' : {
+                    'type': "POST",
+                    'url': urlRoot,
+                    'data': {
                         'email': emailField.value
                     }
                 } )
-                    .complete( function( data ) {
+                    .complete( function ( data ) {
                         var result = JSON.parse( data.responseText );
                         if ( result.error ) {
                             bootbox.dialog( {
                                 message : 'Sorry, email not found!',
                                 title   : "Forgot Password Error",
                                 buttons : {
-                                    default: {
-                                        label: " OK",
-                                        className: "btn-default",
-                                        callback: function( ) {
+                                    default : {
+                                        label     : " OK",
+                                        className : "btn-default",
+                                        callback  : function ( ) {
                                             $( 'input, button, option' ).prop( 'disabled', false );
                                             $( '.btns' ).removeClass( 'error loading' );
                                             $( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
@@ -151,9 +216,9 @@ define( [
                                 title   : "Forgot Password Successful",
                                 buttons : {
                                     default: {
-                                        label: " OK",
-                                        className: "btn-default",
-                                        callback: function( ) {
+                                        label     : " OK",
+                                        className : "btn-default",
+                                        callback  : function ( ) {
                                             self.render( );
                                             $( 'input, button, option, textarea' ).prop( 'disabled', false );
                                             $( '.btns' ).removeClass( 'loading' );
@@ -170,9 +235,9 @@ define( [
                     title   : "Forgot Password Error",
                     buttons : {
                         default: {
-                            label: " OK",
-                            className: "btn-default",
-                            callback: function( ) {
+                            label     : " OK",
+                            className : "btn-default",
+                            callback  : function ( ) {
                                 $( 'input, button, option' ).prop( 'disabled', false );
                                 $( '.btns' ).removeClass( 'error loading' );
                                 $( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
@@ -183,13 +248,13 @@ define( [
             }
         },
 
-        doLogin: function( e ) {
+        doLogin: function ( e ) {
 
             e.preventDefault( );
 
-            var self          = this;
-            var form          = e.currentTarget;
-            var emailField    = form.email;
+            var self = this;
+            var form = e.currentTarget;
+            var emailField = form.email;
             var passwordField = form.password;
 
             if ( !emailField.value.trim( ).match( /^[a-z0-9._%\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/ ) ) {
@@ -213,28 +278,31 @@ define( [
             $( 'input, button' ).prop( 'disabled', true );
             $( '.btns' ).addClass( 'loading' );
 
+
+
             $.post( 'http://gzais-api.herokuapp.com/user-login', {
 
-                email    : emailField.value,
-                password : passwordField.value
+                email: emailField.value,
+                password: passwordField.value
 
-            } ).done( function( result ) {
+            } ).done( function ( result ) {
 
                 window.App.view.model.set( 'user', result.employee );
+
                 window.App.view.model.set( 'access_token', result.access_token );
                 window.localStorage.setItem( 'app-data', JSON.stringify( result ) );
                 window.App.router.navigate( '/assets', true );
 
-            } ).fail( function( err ) {
-				$( '.alert.hidden' ).removeClass('hidden');
-            } ).always( function( ) {
-				$( 'input, button' ).prop( 'disabled', false );
-				$( '.btns' ).removeClass( 'loading' );
+            } ).fail( function ( err ) {
+                $( '.alert.hidden' ).removeClass( 'hidden' );
+            } ).always( function ( ) {
+                $( 'input, button' ).prop( 'disabled', false );
+                $( '.btns' ).removeClass( 'loading' );
             } );
 
         },
 
-        doLogOut: function( e ) {
+        doLogOut: function ( e ) {
 
             e.preventDefault( );
 
@@ -248,6 +316,34 @@ define( [
                     trigger: true
                 } );
 
+            }
+
+        },
+
+        passwordValidation: function ( oldPassword, newPassword, type ) {
+
+            $( oldPassword ).removeClass( 'error' );
+
+            if ( oldPassword.value === newPassword.value ) {
+                if ( type === 'compare' ) {
+                    $( oldPassword ).parent( ).removeClass( 'has-error' );
+                    return oldPassword.value;
+                } else {
+                    this.errorFields.pop( oldPassword.id );
+                    this.errorFields.push( oldPassword.id );
+                    $( oldPassword ).parent( ).addClass( 'has-error' );
+                    return 0;
+                }
+            } else {
+                if ( type === 'compare' ) {
+                    this.errorFields.pop( oldPassword.id );
+                    this.errorFields.push( oldPassword.id );
+                    $( oldPassword ).parent( ).addClass( 'has-error' );
+                    return 0;
+                } else {
+                    $( oldPassword ).parent( ).removeClass( 'has-error' );
+                    return oldPassword.value;
+                }
             }
 
         }

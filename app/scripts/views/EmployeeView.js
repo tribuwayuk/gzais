@@ -30,6 +30,7 @@ define( [
                 var options = options || {};
                 options.url = self.model.url( );
 
+
                 options.success = function( ) {
                     return self.remove( );
                 };
