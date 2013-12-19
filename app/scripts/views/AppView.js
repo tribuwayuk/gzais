@@ -277,6 +277,7 @@ define( [
 
             $( 'input, button' ).prop( 'disabled', true );
             $( '.btns' ).addClass( 'loading' );
+            $( '.alert.alert-danger' ).addClass( 'hidden' );
 
 
 
@@ -287,17 +288,33 @@ define( [
 
             } ).done( function ( result ) {
 
-                window.App.view.model.set( 'user', result.employee );
+				/**
+				* NOTE:
+				* "access_token" should be set first before the "user" attribute
+				* this will fix the issue on the asset not listing when you first logged in to the system
+				**/
+                self.model.set( 'access_token', result.access_token );
 
-                window.App.view.model.set( 'access_token', result.access_token );
+                /*
+                * This mother f'n thing should trigger a change event on the View
+                * causing the view to re-route to /assets page.
+                **/
+                self.model.set( 'user', result.employee );
+
+                /**
+                * Now let's stringify them JSON result and store in localStorage
+                **/
                 window.localStorage.setItem( 'app-data', JSON.stringify( result ) );
-                window.App.router.navigate( '/assets', true );
 
-            } ).fail( function ( err ) {
-                $( '.alert.hidden' ).removeClass( 'hidden' );
-            } ).always( function ( ) {
-                $( 'input, button' ).prop( 'disabled', false );
-                $( '.btns' ).removeClass( 'loading' );
+            } ).fail( function( err ) {
+
+				$( '.alert.alert-danger' ).removeClass( 'hidden' );
+
+            } ).always( function( ) {
+
+				$( 'input, button' ).prop( 'disabled', false );
+				$( '.btns' ).removeClass( 'loading' );
+
             } );
 
         },
