@@ -1,0 +1,39 @@
+<% alert('test'); %>
+
+<div class="row-fluid">
+    <div class="col-sm-12">
+        <small>ASSETS</small>
+        <table class="table table-striped">
+		    <thead>
+		        <tr>
+		            <th class="col-sm-1">Status</th>
+		            <th class="col-sm-1">Item Name</th>
+		            <th class="col-sm-1">Serial Number</th>
+		        </tr>
+		    </thead>
+		    <tbody class="assets-list">
+		    	<%
+                    var assetName;
+                    var serialNumber;
+                    var status;
+
+                    for ( var i = 0, len = model.get( 'assets' ).length; i < len; i++ ) {
+                        if( model.get( 'assets' ) === undefined ) {
+                            assetName = 'None';
+                        } else {
+                            assetName = model.get( 'assets' )[i].asset_name;
+                            serialNumber = model.get('assets')[i].serial_number;
+                            status = model.get('assets')[i].status;
+                        }
+                %>
+            	<tr>
+                    <td><%= status %></td>
+		    		<td><%= assetName %></td>
+		    		<td><%= serialNumber %></td>
+            	</tr>
+                <% } %>
+		    </tbody>
+        </table>
+        <hr>
+    </div>
+</div
