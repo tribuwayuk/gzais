@@ -1,6 +1,6 @@
 <ul class="nav nav-pills main-nav">
 	<li class="assets"><a href="/assets"><span class="glyphicon glyphicon-list-alt"></span> Assets</a></li>
-	<li class="employees"><a href="/employees"><span class="glyphicon glyphicon-user"></span> Employees</a></li>
+	<li class="employees"><a href="/employees"><span class="glyphicon glyphicon-user"></span> Employees</a><%= model.get('user').user_role %></li>
 	<li class="reports"><a href="/inventory-reports"><span class="glyphicon glyphicon-signal"></span> Inventory Reports</a></li>
 </ul>
 

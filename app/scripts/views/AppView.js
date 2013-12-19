@@ -42,7 +42,7 @@ define( [
 
             if ( self.model.get( 'user' ) ) {
 
-                $( self.model.get( 'containerDiv' ) ).html( self.mainTemplate( ) );
+                $( self.model.get( 'containerDiv' ) ).html( self.mainTemplate( {model:self.model} ) );
                 self.model.set( 'contentSectionDiv', $( self.model.get( 'containerDiv' ) ).find( '.content-section' )[ 0 ] );
 
                 window.App.router.navigate( self.model.get( 'baseUrl' ), {
