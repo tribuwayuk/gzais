@@ -54,7 +54,6 @@ define( [
 
         assets : function( ) {
             window.App.view.subViews = {};
-
             this.mountSubView( 'assetsView', new AssetsView( {
                 collection: new Assets( )
             } ) );
