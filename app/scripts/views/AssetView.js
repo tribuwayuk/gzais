@@ -28,15 +28,19 @@ define([
             var self         = this;
             var searchDivID  = '#div' + self.model.id;
             var assigneeTDID = '#assignee_' + this.model.id;
+            var firstname    = window.App.view.model.attributes.user.first_name;
+            var lastname    = window.App.view.model.attributes.user.last_name;
+            var loggedin_user = firstname + " " + lastname;
 
             $( searchDivID ).show( );
 
             $( searchDivID ).on( 'change', function( e ) {
-                var name        = e.val;
-                var assigned_to = e.added['_id'];
+                var name          = e.val;
+                var assigned_to   = e.added['_id'];
 
                 self.model.save( {
-                    assignee: assigned_to
+                    assignee      : assigned_to,
+                    loggedin_user : loggedin_user
                 }, {
                     success: function( data ) {
                         $( assigneeTDID ).html( name );
