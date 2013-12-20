@@ -42,14 +42,11 @@
                         <input type="text" class="form-control birthdate" id="date_of_birth" value="<%= model.getDateOfBirth() %>">
                         <script>
                         var nowTemp = new Date();
-                        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+                        var legalAge = new Date(nowTemp.getFullYear() - 18, nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
                         $('.birthdate').datepicker({
                             autoclose: true,
-                            endDate: new Date
-                            // onRender: function(date) {
-                            //   return date.valueOf() > now.valueOf() ? 'disabled' : '';
-                            // }
+                            endDate: legalAge
                         });
                         </script>
                     </div>
@@ -76,12 +73,9 @@
                         var nowTemp = new Date();
                         var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
-                        $('.employeddate').datepicker({
+                        $('.birthdate').datepicker({
                             autoclose: true,
-                            endDate: new Date
-                            // onRender: function(date) {
-                            //   return date.valueOf() > now.valueOf() ? 'disabled' : '';
-                            // }
+                            endDate: now
                         });
                         </script>
                     </div>
