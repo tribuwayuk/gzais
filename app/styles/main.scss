@@ -196,7 +196,7 @@ button.selectpicker {
     .btn-add.btn-load {
       display: inline;
     }
-    .btn-add {
+    .btn-add, .btn-primary {
       display: none;
     }
   }
@@ -266,14 +266,30 @@ label span.email-error {
 	background-color:#BCDB6D;
 	border-top:0;
 }
+
 .change-password {
-	input[type="password"] {
-		margin-bottom : 15px;
-		padding       : 5px;
-		width         : 200px;
+	width: 320px;
+	.form-group {
+		display: block;
+		margin-bottom: 3px;
+		overflow: hidden;
 	}
-	button {
-		float: right;
+	.form-control-label {
+		float       : left;
+    	margin      : 6px 10px 0 0;
+    	line-height : 29px;
+	}
+	input[type="password"] {
+		margin  : 0 0 3px;
+		padding : 5px;
+		width   : 200px;
+		float   : right;
+	}
+	.btn-settings {
+		border-top: 1px solid #96998E;
+		margin-top: 10px;
+		padding-top: 10px;
+		text-align: right;
 	}
 }
 .item-details {
