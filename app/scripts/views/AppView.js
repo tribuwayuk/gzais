@@ -36,61 +36,76 @@ define( [
 
             var self    = this;
             var form    = e.currentTarget;
-            var bootbox = window.bootbox;
             var data    = {};
 
             var oldPassword = self.passwordValidation( form.old_password, form.new_password, '' );
 
             if ( oldPassword.length > 0 ) {
 
-
-
                 var newPassword = self.passwordValidation( form.new_password, form.con_password, 'compare' );
 
-                if ( newPassword.length > 0 ) {
-                    bootbox.dialog( {
-                        message : 'Do you want to save your new password?',
-                        title   : "Confirm Change Password",
-                        buttons : {
-                            default: {
-                                label     : " Cancel ",
-                                className : "btn-default",
-                                callback  : function ( ) {
-                                    window.App.router.navigate( self.model.get( 'baseUrl' ), {
-                                        trigger: true
-                                    } );
-                                }
-                            },
-                            danger: {
-                                label     : " Save ",
-                                className : "btn-danger",
-                                callback  : function ( ) {
-                                    window.App.router.navigate( self.model.get( 'baseUrl' ), {
-                                        trigger: true
-                                    } );
-                                    data.password = newPassword;
-                                    return self.updatePassword( data, self );
-                                }
-                            }
-                        }
-                    } );
-                }
-            }
+                if ( newPassword.length > 5 ) {
+					data.oldPassword = oldPassword;
+					data.password    = newPassword;
+					data._id         = self.model.get( 'user' )._id;
+					data.email       = self.model.get( 'user' ).email;
+					return self.updatePassword( data, self, form, e );
+                } else {
+					if( newPassword.length > 0 ) {
+						$( '.alert.alert-danger' ).children()[0].innerHTML = 'Password should atleast 6 characters.';
+					} else {
+						$( '.alert.alert-danger' ).children()[0].innerHTML = 'Password is not confirm!';
+					}
 
+					$(".alert.alert-danger").removeClass( 'hidden' ).fadeToggle(4000, function () {
+						$(".alert.alert-danger").addClass( 'hidden' );
+						$(".alert.alert-danger").css({ display: "block" });
+					});
+				}
+            } else {
+				$( '.alert.alert-danger' ).children()[0].innerHTML = 'Password does not change!';
+
+				$(".alert.alert-danger").removeClass( 'hidden' ).fadeToggle(4000, function () {
+					$(".alert.alert-danger").addClass( 'hidden' );
+					$(".alert.alert-danger").css({ display: "block" });
+				});
+			}
         },
-        updatePassword: function ( data ) {
-			//data.
-			console.log( 'save user' + window.App.view.model.attributes.dbURL);
+        updatePassword: function ( data, self, form, evt) {
+			var bootbox = window.bootbox;
+			var urlRoot = self.model.get( 'dbURL' ) + "/reset-password";
 
-			/*var urlRoot = self.model.collection.urlRoot + "/reset-password";
+			$( 'input, button' ).prop( 'disabled', true );
+			$( '.btns' ).addClass( 'loading' );
 
 			$.ajax( {
 				'type'  : "POST",
 				'url'   : urlRoot,
-				'data'  : {
-					'_id':  self.model.get( '_id' )
+				'data'  : data
+			} )
+			.complete( function ( data ) {
+				var result = JSON.parse( data.responseText );
+
+				if( result.error && (result.error_message).match( /password does not exist/ ) ) {
+
+					$( '.alert.alert-danger' ).children()[0].innerHTML = result.error_message;
+
+					$(".alert.alert-danger").removeClass( 'hidden' ).fadeToggle(4000, function () {
+						$(".alert.alert-danger").addClass( 'hidden' );
+						$(".alert.alert-danger").css({ display: "block" });
+					});
+
+					$( 'input, button' ).prop( 'disabled', false );
+					$( '.btns' ).removeClass( 'error loading' );
+
+				} else {
+					$( 'input, button' ).prop( 'disabled', false );
+					$( '.btns' ).removeClass( 'error loading' );
+					$('li.dropdown').removeClass('open');
+					return self.doLogOut( evt );
 				}
-			} );*/
+			});
+
         },
 
         render: function ( ) {
@@ -341,6 +356,13 @@ define( [
 
             $( oldPassword ).removeClass( 'error' );
 
+            if(newPassword.value.length < 6) {
+				this.errorFields.pop( newPassword.id );
+				this.errorFields.push( newPassword.id );
+				$( newPassword ).parent( ).addClass( 'has-error' );
+				return newPassword.value;
+            }
+
             if ( oldPassword.value === newPassword.value ) {
                 if ( type === 'compare' ) {
                     $( oldPassword ).parent( ).removeClass( 'has-error' );
@@ -349,6 +371,7 @@ define( [
                     this.errorFields.pop( oldPassword.id );
                     this.errorFields.push( oldPassword.id );
                     $( oldPassword ).parent( ).addClass( 'has-error' );
+                    $( newPassword ).parent( ).addClass( 'has-error' );
                     return 0;
                 }
             } else {
