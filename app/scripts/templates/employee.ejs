@@ -1,3 +1,4 @@
+<% var user = window.App.view.model.get( 'user' ) %>
 <td>
     <%=model.get( 'assets').length %>
 </td>
@@ -18,8 +19,9 @@
 </td>
 <td style="text-align:center">
     <a href="/employees/<%= model.get('_id') %>" data-toggle="tooltip" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip view-details" data-original-title="View Details">
-        <span class="glyphicon glyphicon-search"></span>
+        <span class="glyphicon glyphicon-search"></span> <%= user.user_role !== 'admin' ? 'View Details' : '' %>
     </a>
+    <% if( user.user_role === 'admin' ) { %>
     <button type="button" data-toggle="modal" data-target="#edit-modal" data-placement="bottom" title="" class="btn btn-default btn-xs tool-tip edit-employee" data-original-title="Edit">
         <span class="glyphicon glyphicon-edit"></span>
     </button>
@@ -27,6 +29,7 @@
         <span class="glyphicon glyphicon-lock"></span>
     </button>
     <button type="button" data-toggle="tooltip" data-placement="bottom" title="" class="btn btn-danger btn-xs tool-tip delete-employee" data-original-title="Delete">&nbsp;x&nbsp;</button>
+    <% } %>
 </td>
 <script>
 	$('.tool-tip').tooltip();

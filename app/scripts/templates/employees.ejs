@@ -16,6 +16,7 @@
         </div>
     </div>
     <div class="col-xs-6 col-md-4">
+        <% if ( window.App.view.model.get( 'user' ).user_role === 'admin') { %>
         <button class="btn btn-add pull-right" data-toggle="modal" data-target="#add-modal">
             <span class="glyphicon glyphicon-plus-sign"></span> New Employee </button>
         <!-- Modal -->
@@ -122,6 +123,7 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+        <% } %>
         <!-- /.modal -->
     </div>
 </div>
