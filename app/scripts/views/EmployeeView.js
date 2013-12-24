@@ -26,14 +26,15 @@ define( [
 
             var self = this;
 
-			self.listenTo( self.model, 'remove', function ( index ) {
+            self.listenTo( self.model, 'remove', function ( index ) {
+
                 var options = options || {};
                 options.url = self.model.url( );
-
 
                 options.success = function ( ) {
                     return self.remove( );
                 };
+
                 options.error = function ( ) {
 
                 };
@@ -49,9 +50,9 @@ define( [
             var bootbox = window.bootbox;
 
             bootbox.dialog( {
-				message : 'Do you want to reset password for ' + self.model.get( 'first_name' ) + ' ' + self.model.get( 'last_name' ) + '?',
-				title   : "Confirm Reset Password",
-				buttons : {
+                message : 'Do you want to reset password for ' + self.model.get( 'first_name' ) + ' ' + self.model.get( 'last_name' ) + '?',
+                title   : "Confirm Reset Password",
+                buttons : {
                     default: {
                         label     : " Cancel ",
                         className : "btn-default",
@@ -70,15 +71,16 @@ define( [
         },
 
         resetPassword : function ( self ) {
-			var urlRoot = self.model.collection.urlRoot + "/reset-password";
+            var urlRoot = self.model.collection.urlRoot + "/reset-password";
 
-			$.ajax( {
-				'type'  : "POST",
-				'url'   : urlRoot,
-				'data'  : {
-					'_id':  self.model.get( '_id' )
-				}
-			} );
+            $.ajax( {
+                'type'  : "POST",
+                'url'   : urlRoot,
+                'data'  : {
+                    '_id':  self.model.get( '_id' )
+                }
+            } );
+
         },
 
         displayEditForm : function ( e ) {
@@ -88,8 +90,8 @@ define( [
             var self = this;
 
             if(self.model){
-				self.model.fetch();
-			}
+                self.model.fetch();
+            }
 
             $( '#edit-modal' ).empty( );
             $( '#edit-modal' ).append( self.editTemplate( {
@@ -122,28 +124,29 @@ define( [
                 $( 'input, button, option, textarea' ).prop( 'disabled', true );
                 $( '.btns' ).addClass( 'loading' );
 
-				self.model.save( data, {
-					wait: true,
+                self.model.save( data, {
+                    wait: true,
                     success: function ( model, xhr, options) {
-						if ( JSON.stringify( xhr ) && JSON.stringify( xhr ).match( /email/ ) ) {
-							$( 'input, button, option' ).prop( 'disabled', false );
-							$( '.btns' ).removeClass( 'error loading' );
-							$( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
-							model.set(model.previousAttributes(),{silent: true});					// if error, reset modal value
-						} else {
-							$( '#edit-modal' ).modal( 'hide' );
-							$( 'input, button, option, textarea' ).prop( 'disabled', false );
-							$( '.btns' ).removeClass( 'loading' );
-							self.render( );
-						}
+                        if ( JSON.stringify( xhr ) && JSON.stringify( xhr ).match( /email/ ) ) {
+                            $( 'input, button, option' ).prop( 'disabled', false );
+                            $( '.btns' ).removeClass( 'error loading' );
+                            $( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
+                            model.set(model.previousAttributes(),{silent: true});					// if error, reset modal value
+                        } else {
+                            $( '#edit-modal' ).modal( 'hide' );
+                            $( 'input, button, option, textarea' ).prop( 'disabled', false );
+                            $( '.btns' ).removeClass( 'loading' );
+                            self.render( );
+                        }
                     },
                     error: function ( model, xhr, options) {
-						if ( JSON.stringify( xhr ) && JSON.stringify( xhr ).match( /email/ ) ) {
-							$( 'input, button, option' ).prop( 'disabled', false );
-							$( '.btns' ).removeClass( 'error loading' );
-							$( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
-							model.set(model.previousAttributes(),{silent: true});					// if error, reset modal value
-						}
+                        if ( JSON.stringify( xhr ) && JSON.stringify( xhr ).match( /email/ ) ) {
+                            $( 'input, button, option' ).prop( 'disabled', false );
+                            $( '.btns' ).removeClass( 'error loading' );
+                            $( form[ 'email' ] ).parent( ).addClass( 'has-error error' );
+                            model.set(model.previousAttributes(),{silent: true});					// if error, reset modal value
+                        }
+
                     }
                 } );
 

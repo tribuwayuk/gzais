@@ -1,5 +1,3 @@
-/*global define*/
-
 define( [ 'jquery', 'underscore', 'backbone', 'templates', 'EmployeeView' ], function ( $, _, Backbone, JST, EmployeeView ) {
 
     'use strict';
@@ -98,7 +96,7 @@ define( [ 'jquery', 'underscore', 'backbone', 'templates', 'EmployeeView' ], fun
             var self     = this;
 
             model.url = function () {
-				return this.urlRoot() + model.id + '?access_token=' + window.App.view.model.get('access_token');
+                return this.urlRoot() + model.id + '?access_token=' + window.App.view.model.get('access_token');
             };
 
             var employee = new EmployeeView( {
