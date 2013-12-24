@@ -4,7 +4,7 @@ define( [
     'backbone',
     'templates',
     'AssetView'
-], function( $, _, Backbone, JST, AssetView ) {
+], function ( $, _, Backbone, JST, AssetView ) {
 
     'use strict';
 
@@ -18,19 +18,19 @@ define( [
             'hidden.bs.modal #add-modal'  : 'resetForm'
         },
 
-        render : function( ) {
+        render : function ( ) {
             var self = this;
             self.$el.html( self.template( ) );
             return self;
         },
 
-        resetForm : function( e ) {
+        resetForm : function ( e ) {
             var form = e.currentTarget.querySelector( 'form' );
             form.reset( );
             $( form ).find( '.has-error' ).removeClass( 'has-error' );
         },
 
-        initialize : function( ) {
+        initialize : function ( ) {
             var self = this;
             self.listenTo( self.collection, 'add', self.onAdd );
             self.collection.url += "?access_token=" + window.App.view.model.get('access_token');
@@ -38,7 +38,7 @@ define( [
 
         },
 
-        newAsset : function( e ) {
+        newAsset : function ( e ) {
 
             e.preventDefault( );
 
@@ -64,14 +64,14 @@ define( [
 
         },
 
-        ajaxRequest : function( form, data ) {
+        ajaxRequest : function ( form, data ) {
 
             var self = this;
 
             $( 'input, button, option, textarea' ).prop( 'disabled', true );
             $( '.btns' ).addClass( 'loading' );
 
-            $.post( self.collection.url, data ).done( function( result ) {
+            $.post( self.collection.url, data ).done( function ( result ) {
 
 				$( 'input, button, option, textarea' ).prop( 'disabled', false );
 				$( '.btns' ).removeClass( 'loading' );
@@ -85,14 +85,14 @@ define( [
 
                 }
                 if ( result.errors ) {
-                    Object.keys( result.errors ).forEach( function( key ) {
+                    Object.keys( result.errors ).forEach( function ( key ) {
                         $( form[ key ] ).addClass( 'has-error' );
                     } );
                 }
             } );
         },
 
-        onAdd : function( model ) {
+        onAdd : function ( model ) {
 
             var self  = this;
 
@@ -109,7 +109,7 @@ define( [
 
         },
 
-        fieldValidation : function( field, regexp ) {
+        fieldValidation : function ( field, regexp ) {
 
             $( field ).removeClass( 'error' );
 

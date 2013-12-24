@@ -5,7 +5,7 @@ define( [
     'underscore',
     'backbone',
     'templates',
-], function( $, _, Backbone, JST ) {
+], function ( $, _, Backbone, JST ) {
     'use strict';
 
     var EmployeeView = Backbone.View.extend( {
@@ -22,19 +22,19 @@ define( [
             'click .reset-password'  : 'displayResetForm'
         },
 
-        initialize : function( ) {
+        initialize : function ( ) {
 
             var self = this;
 
-			self.listenTo( self.model, 'remove', function( index ) {
+			self.listenTo( self.model, 'remove', function ( index ) {
                 var options = options || {};
                 options.url = self.model.url( );
 
 
-                options.success = function( ) {
+                options.success = function ( ) {
                     return self.remove( );
                 };
-                options.error = function( ) {
+                options.error = function ( ) {
 
                 };
 
@@ -43,7 +43,7 @@ define( [
 
         },
 
-        displayResetForm : function( ) {
+        displayResetForm : function ( ) {
 
             var self    = this;
             var bootbox = window.bootbox;
@@ -55,13 +55,13 @@ define( [
                     default: {
                         label     : " Cancel ",
                         className : "btn-default",
-                        callback  : function( ) {
+                        callback  : function ( ) {
                         }
                     },
                     danger: {
                         label     : " Yes ",
                         className : "btn-danger",
-                        callback  : function( ) {
+                        callback  : function ( ) {
                             return self.resetPassword( self );
                         }
                     }
@@ -69,7 +69,7 @@ define( [
             } );
         },
 
-        resetPassword : function( self ) {
+        resetPassword : function ( self ) {
 			var urlRoot = self.model.collection.urlRoot + "/reset-password";
 
 			$.ajax( {
@@ -81,7 +81,7 @@ define( [
 			} );
         },
 
-        displayEditForm : function( e ) {
+        displayEditForm : function ( e ) {
 
             e.preventDefault( );
 
@@ -100,7 +100,7 @@ define( [
 
         },
 
-        updateEmployee : function( e ) {
+        updateEmployee : function ( e ) {
             e.preventDefault( );
 
             var self = this;
@@ -124,7 +124,7 @@ define( [
 
 				self.model.save( data, {
 					wait: true,
-                    success: function( model, xhr, options) {
+                    success: function ( model, xhr, options) {
 						if ( JSON.stringify( xhr ) && JSON.stringify( xhr ).match( /email/ ) ) {
 							$( 'input, button, option' ).prop( 'disabled', false );
 							$( '.btns' ).removeClass( 'error loading' );
@@ -137,7 +137,7 @@ define( [
 							self.render( );
 						}
                     },
-                    error: function( model, xhr, options) {
+                    error: function ( model, xhr, options) {
 						if ( JSON.stringify( xhr ) && JSON.stringify( xhr ).match( /email/ ) ) {
 							$( 'input, button, option' ).prop( 'disabled', false );
 							$( '.btns' ).removeClass( 'error loading' );
@@ -153,7 +153,7 @@ define( [
 
         },
 
-        deleteEmployee : function( ) {
+        deleteEmployee : function ( ) {
 
             var self    = this;
             var bootbox = window.bootbox;
@@ -165,13 +165,13 @@ define( [
                     default : {
                         label     : " Cancel ",
                         className : "btn-default",
-                        callback  : function( ) {
+                        callback  : function ( ) {
                         }
                     },
                     danger : {
                         label     : " Yes ",
                         className : "btn-danger",
-                        callback  : function( ) {
+                        callback  : function ( ) {
                             self.model.collection.remove( self.model );
                         }
                     }
@@ -180,7 +180,7 @@ define( [
 
         },
 
-        fieldValidation : function( field, regexp ) {
+        fieldValidation : function ( field, regexp ) {
 
             $( field ).removeClass( 'error' );
 
@@ -195,7 +195,7 @@ define( [
 
         },
 
-        render : function( ) {
+        render : function ( ) {
 
             var self = this;
 

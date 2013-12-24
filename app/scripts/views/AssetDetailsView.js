@@ -41,7 +41,7 @@ define( [
             } );
 
         },
-        displayEditForm: function( e ) {
+        displayEditForm: function ( e ) {
 
             var self = this;
 

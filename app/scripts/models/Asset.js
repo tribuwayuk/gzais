@@ -1,7 +1,7 @@
 define( [
     'underscore',
     'backbone'
-], function( _, Backbone ) {
+], function ( _, Backbone ) {
     'use strict';
 
     var Asset = Backbone.Model.extend( {
@@ -14,7 +14,7 @@ define( [
 			return this.collection.url.replace(/\?access_token.+/,'');
         },
 
-        getDatePurchased : function( ) {
+        getDatePurchased : function ( ) {
 
             var date   = new Date( this.get( 'date_purchased' ) );
             var _month = ( date.getMonth( ) + 1 < 10 ) ? '0' + ( date.getMonth( ) + 1 ) : '' + ( date.getMonth( ) + 1 );

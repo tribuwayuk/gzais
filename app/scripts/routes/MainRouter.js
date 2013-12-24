@@ -9,7 +9,7 @@
     'EmployeeDetailsView',
     'Assets',
     'AssetDetailsView'
-], function( $, Backbone, EmployeesView, AssetsView, InventoryReportsView, InventoryReports, Employees, EmployeeDetailsView, Assets, AssetDetailsView ) {
+], function ( $, Backbone, EmployeesView, AssetsView, InventoryReportsView, InventoryReports, Employees, EmployeeDetailsView, Assets, AssetDetailsView ) {
     'use strict';
     var MainRouter = Backbone.Router.extend( {
         routes : {
@@ -21,12 +21,12 @@
             'inventory-reports' : 'inventoryReports'
         },
 
-        initialize : function( ) {
+        initialize : function ( ) {
             var self = this;
             self.app = window.App || {};
         },
 
-        mountSubView : function( name, subView ) {
+        mountSubView : function ( name, subView ) {
             if ( !window.App.view.model.get( 'user' ) ) {
                 return window.App.router.navigate( window.App.view.model.get( '/' ), {
                     trigger: true
@@ -40,7 +40,7 @@
             return subView;
         },
 
-        home : function( ) {
+        home : function ( ) {
             var self = this;
 
             if ( window.App.view.model.get( 'user' ) ) {
@@ -52,7 +52,7 @@
             window.App.view.subViews = {};
         },
 
-        assets : function( ) {
+        assets : function ( ) {
             window.App.view.subViews = {};
             this.mountSubView( 'assetsView', new AssetsView( {
                 collection: new Assets( )
@@ -61,7 +61,7 @@
 			$('li.dropdown').removeClass('open');
         },
 
-        assetDetails : function( id ) {
+        assetDetails : function ( id ) {
             var model = window.App.view.model.get( 'currentContent' ).collection.get( id );
 
             this.mountSubView( id, new AssetDetailsView( {
@@ -69,7 +69,7 @@
             } ) );
         },
 
-        employees : function( ) {
+        employees : function ( ) {
 
             this.mountSubView( 'employeesView', new EmployeesView( {
                 collection: new Employees( )
@@ -78,7 +78,7 @@
 			$('li.dropdown').removeClass('open');
         },
 
-        employeeDetails : function( id ) {
+        employeeDetails : function ( id ) {
             var model = window.App.view.model.get( 'currentContent' ).collection.get( id );
 
             this.mountSubView( id, new EmployeeDetailsView( {
@@ -86,7 +86,7 @@
             } ) );
         },
 
-        inventoryReports : function( ) {
+        inventoryReports : function ( ) {
             this.mountSubView( 'inventoryReportsView', new InventoryReportsView( {
 				collection: new InventoryReports( )
             } ) );

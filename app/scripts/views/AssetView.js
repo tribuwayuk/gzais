@@ -5,7 +5,7 @@ define([
     'underscore',
     'backbone',
     'templates'
-], function($, _, Backbone, JST) {
+], function ($, _, Backbone, JST) {
     'use strict';
 
     var AssetView = Backbone.View.extend({
@@ -23,7 +23,7 @@ define([
             'click .assign-asset' : 'displaySearchName',
         },
 
-        displaySearchName: function( e ) {
+        displaySearchName: function ( e ) {
             e.preventDefault( );
             var self         = this;
             var searchDivID  = '#div' + self.model.id;
@@ -34,7 +34,7 @@ define([
 
             $( searchDivID ).show( );
 
-            $( searchDivID ).on( 'change', function( e ) {
+            $( searchDivID ).on( 'change', function ( e ) {
                 var name          = e.val;
                 var assigned_to   = e.added['_id'];
 
@@ -42,31 +42,31 @@ define([
                     assignee      : assigned_to,
                     loggedin_user : loggedin_user
                 }, {
-                    success: function( data ) {
+                    success: function ( data ) {
                         $( assigneeTDID ).html( name );
                         $( searchDivID ).hide( );
                         self.model.fetch( );
                     },
-                    error: function( ) {
+                    error: function ( ) {
                         $( searchDivID ).hide( );
                     }
                 });
             });
         },
 
-        initialize: function() {
+        initialize: function () {
 
             var self = this;
 
-            self.listenTo(self.model, 'remove', function( index ) {
+            self.listenTo(self.model, 'remove', function ( index ) {
 
                 var options = options || {};
                 options.url = self.model.url( );
 
-                options.success = function( ) {
+                options.success = function ( ) {
                     return self.remove( );
                 };
-                options.error = function( ) {
+                options.error = function ( ) {
                     console.error( 'error' );
                 };
 
@@ -75,7 +75,7 @@ define([
 
         },
 
-        displayEditForm: function( e ) {
+        displayEditForm: function ( e ) {
 
             var self = this;
 
@@ -90,7 +90,7 @@ define([
 
         },
 
-        updateAsset: function( e ) {
+        updateAsset: function ( e ) {
 
             e.preventDefault( );
 
@@ -115,13 +115,13 @@ define([
 
 
                 self.model.save( data, {
-                    success: function( ) {
+                    success: function ( ) {
                         self.render( );
                         $( '#edit-modal' ).modal( 'hide' );
                         $( 'input, button, option, textarea' ).prop( 'disabled', false );
                         $( '.btns' ).removeClass( 'loading' );
                     },
-                    error: function( ) {
+                    error: function ( ) {
                         $( '#edit-modal' ).modal( 'hide' );
                     }
                 });
@@ -134,7 +134,7 @@ define([
 
         },
 
-        deleteAsset: function() {
+        deleteAsset: function () {
 
             var self = this;
             var bootbox = window.bootbox;
@@ -146,12 +146,12 @@ define([
                     default: {
                         label     : " Cancel ",
                         className : "btn-default",
-                        callback  : function() {}
+                        callback  : function () {}
                     },
                     danger: {
                         label     : " Yes ",
                         className : "btn-danger",
-                        callback  : function() {
+                        callback  : function () {
                             return self.model.collection.remove(self.model);
                         }
                     }
@@ -159,7 +159,7 @@ define([
             });
         },
 
-        render: function() {
+        render: function () {
             var self = this;
 
             self.$el.html(self.template({
@@ -168,7 +168,7 @@ define([
             return self;
         },
 
-        fieldValidation: function(field, regexp) {
+        fieldValidation: function (field, regexp) {
             $(field).removeClass('error');
             if (field.value.match(regexp) !== null) {
                 $(field).parent().removeClass('has-error');

@@ -1,10 +1,10 @@
 define( [
     'underscore',
     'backbone'
-], function( _, Backbone ) {
+], function ( _, Backbone ) {
     'use strict';
 
-    var _formatDate = function( d ) {
+    var _formatDate = function ( d ) {
 
         var date   = new Date( d );
         var _month = ( date.getMonth( ) + 1 < 10 ) ? '0' + ( date.getMonth( ) + 1 ) : '' + ( date.getMonth( ) + 1 );
@@ -24,19 +24,19 @@ define( [
 			return this.collection.url.replace(/\?access_token.+/,'');
         },
 
-        getDateOfBirth : function( ) {
+        getDateOfBirth : function ( ) {
 
             return _formatDate( this.get( 'date_of_birth' ) );
 
         },
 
-        getDateEmployed : function( ) {
+        getDateEmployed : function ( ) {
 
             return _formatDate( this.get( 'date_employed' ) );
 
         },
 
-        getFullName : function( ) {
+        getFullName : function ( ) {
 
             return this.get( 'first_name' ) + ' ' + this.get( 'last_name' );
 

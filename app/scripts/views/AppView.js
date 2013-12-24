@@ -321,11 +321,11 @@ define( [
                 **/
                 window.localStorage.setItem( 'app-data', JSON.stringify( result ) );
 
-            } ).fail( function( err ) {
+            } ).fail( function ( err ) {
 
 				$( '.alert.alert-danger' ).removeClass( 'hidden' );
 
-            } ).always( function( ) {
+            } ).always( function ( ) {
 
 				$( 'input, button' ).prop( 'disabled', false );
 				$( '.btns' ).removeClass( 'loading' );
