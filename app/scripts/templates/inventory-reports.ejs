@@ -5,8 +5,10 @@
     <div class="col-xs-12 col-md-8">
         <div class="filters">
             <select class="inventory-filter">
-                <option value="all">List of Items</option>
-                <option value="assigned">List of Items by Status</option>
+            	<option value="itemName">Sort Items by Item Name</option>
+            	<option value="datePurchased">Sort Items by Date Purchased</option>
+                <option value="status">Sort Items by Status</option>
+                <option value="assignedTo">Sort Items by Assign To</option>
             </select>
             <script>
             	$('.inventory-filter').selectpicker();
@@ -27,7 +29,7 @@
     <thead>
         <tr>
             <th class="col-sm-7">Item Name<br><small class="item-details"><span class="glyphicon glyphicon-tasks"> </span> Type | Description | Serial Number | Supplier</small></th>
-            <th class="col-sm-2 td-top">Date Purchase</th>
+            <th class="col-sm-2 td-top">Date Purchased</th>
             <th class="col-sm-1 td-top">Status</th>
             <th class="col-sm-2 td-top">Assign to</th>
         </tr>
