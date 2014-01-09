@@ -102,7 +102,16 @@ define( [
 					$( 'input, button' ).prop( 'disabled', false );
 					$( '.btns' ).removeClass( 'error loading' );
 					$('li.dropdown').removeClass('open');
-					return self.doLogOut( evt );
+					bootbox.dialog( {
+                        message : 'Password successfully change!',
+                        title   : "Confirm Changed Password",
+                        buttons : {
+                            default : {
+                                label     : " OK",
+                                className : "btn-default"
+                            }
+                        }
+                    } );
 				}
 			});
 

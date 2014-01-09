@@ -352,12 +352,21 @@ tr.inventory-entry {
 	.changecolor {
 		text-decoration: none;
 	}
+	.selected-item-views {
+		border-bottom : 1px dashed #428BCA;
+		display       : block;
+		padding       : 0 0 5px 5px;
+	}
 	.items-views-detail {
+
+		background-color:#D0E2F2;
+
 		.items-field {
-			text-align : right;
-			display    : inline-block;
-			width      : 110px;
-			font-weight: bold;
+			text-align     : right;
+			display        : inline-block;
+			width          : 110px;
+			font-weight    : bold;
+			vertical-align : top;
 		}
 		.items-value {
 			clear   : both;
