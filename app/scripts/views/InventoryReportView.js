@@ -24,12 +24,14 @@ define( [
         viewItemDetails : function ( e ) {
             var target = $( e.currentTarget );
 
+            $( '.changecolor' ).removeClass('selected-item-views');
+
             if( target.siblings( '.items-views-detail' ).hasClass( 'hide' ) ) {
 				$('.items-views-detail').addClass('hide');
 				target.addClass('selected-item-views');
 				target.siblings( '.items-views-detail' ).removeClass( 'hide' );
             } else {
-            	target.removeClass('selected-item-views');
+				target.removeClass('selected-item-views');
 				target.siblings( '.items-views-detail' ).addClass( 'hide' );
 			}
         },
