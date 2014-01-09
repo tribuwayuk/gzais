@@ -362,10 +362,11 @@ tr.inventory-entry {
 		background-color:#D0E2F2;
 
 		.items-field {
-			text-align : right;
-			display    : inline-block;
-			width      : 110px;
-			font-weight: bold;
+			text-align     : right;
+			display        : inline-block;
+			width          : 110px;
+			font-weight    : bold;
+			vertical-align : top;
 		}
 		.items-value {
 			clear   : both;
